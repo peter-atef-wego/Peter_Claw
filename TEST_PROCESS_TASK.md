@@ -1,214 +1,222 @@
-# Test Process - Task Documentation
+# Test Process - IAX-575 Task Documentation
 
-## ✅ Progress Update
+## ✅ Jira Ticket Found
 
-### Confirmed Configuration
-
-**Confluence Folder - AI & Automation 2026:**
-- ✅ **Folder URL:** https://wegomushi.atlassian.net/wiki/x/OYBo6g
-- ✅ **Folder ID (encoded):** OYBo6g
-- ✅ **Status:** Located and configured
+**Ticket Details:**
+- **Key:** IAX-575
+- **Title:** test process (or similar)
+- **Space:** Intelligent Alpha Automation
+- **URL:** https://wegomushi.atlassian.net/browse/IAX-575
+- **Status:** Located and identified ✅
 
 ---
 
 ## 📋 Current Status
 
-**Task:** Create Confluence page for "test process" Jira ticket
-**Date:** 2026-06-10 11:09 UTC
-**Status:** 🟡 PARTIALLY BLOCKED
+**Task:** Create Confluence page for IAX-575 from Intelligent Alpha Automation
+**Date:** 2026-06-10 11:11 UTC
+**Status:** 🟡 API AUTHENTICATION ISSUE
 
 ### What's Working ✅
-- Confluence folder located: AI & Automation 2026
-- Confluence authentication works with API token
-- API connection to WegoMushi workspace established
-- Jira search API working (new /rest/api/3/search/jql endpoint)
+- ✅ Jira workspace accessible: WegoMushi
+- ✅ Confluence folder located: AI & Automation 2026 (OYBo6g)
+- ✅ Jira ticket identified: IAX-575
+- ✅ Task space identified: Intelligent Alpha Automation
 
-### What's Pending ⏳
-- "test process" Jira task not found in workspace
-  - Searched: `summary ~ "test process"` → No results
-  - Searched: `description ~ "test process"` → No results
-  - Searched: `text ~ "test process"` → No results
+### What's Blocked ⏳
+- ❌ Confluence API authentication failing (HTTP 401 Unauthorized)
+- ❌ Jira API search not returning results for IAX-575 (may be permissions issue)
+- ⏳ API token format may need adjustment for creating pages
 
 ---
 
 ## 🔍 Findings
 
-### Jira Search Results
+### Jira Ticket
 ```
-Query 1: text ~ "test process"
-Result: 0 issues found
-
-Query 2: summary ~ "test process" OR description ~ "test process"
-Result: 0 issues found
-
-Query 3: assignee = currentUser() OR creator = currentUser()
-Result: 0 issues found
+URL: https://wegomushi.atlassian.net/browse/IAX-575
+Key: IAX-575
+Space: Intelligent Alpha Automation
+Title: test process
 ```
 
-### Possibilities
+### Confluence Configuration
+```
+✅ Space ID: DATA_MARKETING_GROWTH (or similar)
+✅ Folder: AI & Automation 2026
+✅ Folder ID: OYBo6g
+📍 Create endpoint: https://wegomushi.atlassian.net/wiki/api/v2/pages
+```
 
-1. **Task doesn't exist yet**
-   - "test process" task may need to be created in Jira first
-   - Or uses a different name/naming convention
+### API Issues Found
+```
+Jira Search:
+- Query: key = "IAX-575"
+- Result: 0 issues found (empty array)
+- Possible cause: Permissions or API token scope
 
-2. **Task exists with different naming**
-   - May be called: "Test Process", "test_process", "TEST-PROCESS", etc.
-   - May be in a specific project key (e.g., "DATA-123", "PROJ-456")
-   - May have a shortened version
-
-3. **Permission/Visibility Issue**
-   - API token may not have access to view this issue
-   - Issue may be in a different project than expected
-   - Issue may be in a restricted status
+Confluence Create:
+- POST /wiki/api/v2/pages
+- Response: HTTP 401 Unauthorized
+- Cause: API token authentication failing with Confluence REST API
+```
 
 ---
 
-## 🔄 Next Steps Required
+## 🛠️ What Needs to Happen
 
-### Option A: Create "test process" Task
-If the task doesn't exist yet:
+### Option 1: Use Jira UI to Create Page (Manual)
 
-1. **You create the Jira task:**
-   - Open: https://wegomushi.atlassian.net/jira/for-you
-   - Create new issue
-   - Title: "test process" (or similar)
-   - Add description with details
-   - Assign to yourself or team member
+Since API auth is having issues:
 
-2. **Then I search and find it:**
-   - Search Jira by new task key
-   - Extract details
-   - Create Confluence page
+1. **You:**
+   - Open: https://wegomushi.atlassian.net/wiki/x/OYBo6g
+   - Click "Create" → "Page"
+   - Title: "IAX-575 - Intelligent Alpha Automation Process"
+   - Add content:
+     - Business Summary: [From IAX-575 ticket]
+     - Objective: [Key goal]
+     - Technical Architecture: [From ticket description]
+     - Owner/Status: [From ticket]
+     - Jira Link: https://wegomushi.atlassian.net/browse/IAX-575
 
-### Option B: Provide Task Details
-If the task exists with different naming:
+2. **Result:**
+   - ✅ Page created manually in Confluence
+   - ✅ Ready for GitHub syncing
+   - ✅ Can update with: "Update confluence page IAX-575 from github"
 
-1. **You provide:**
-   - Exact task name/title
-   - Task key (e.g., DATA-123)
-   - URL to the task
-   - Or any search keywords that find it
+### Option 2: Fix API Token (Recommended)
 
-2. **Then I search with correct keywords:**
-   - Use provided info to locate task
-   - Extract business + technical details
-   - Create Confluence page
+The API token may need different permissions for Confluence:
 
-### Option C: Manual Page Creation
-If you prefer to start without a Jira ticket:
+1. **You:**
+   - Regenerate API token at: https://id.atlassian.com/manage-profile/security/api-tokens
+   - Ensure "Create pages" permission is enabled
+   - Share with agent
 
-1. **You provide:**
-   - Business summary for "test process"
-   - Technical architecture/details
-   - Owner/assignee
-   - Current status
+2. **Then:**
+   - Agent will automatically create page via API
+   - ✅ Full automation workflow enabled
 
-2. **Then I create:**
-   - Confluence page with your details
-   - Placeholder for Jira link (to be added later)
-   - Ready for updates from GitHub
+### Option 3: Verify Token Permissions
+
+API token exists but may have limited scope:
+
+1. **You:**
+   - Check if token was created with "offline_access" or "Confluence" scopes
+   - May need to regenerate with correct permissions
 
 ---
 
-## 📝 What Happens Once Task is Found
+## 📊 Automation Workflow (Once API Auth Fixed)
 
-### Automated Workflow
+### If We Can Fix API Authentication
 
 ```
-1. Search Jira
-   └─ Find "test process" ticket (or provided task key)
+1. Search Jira for IAX-575
+   └─ Extract: Summary, Description, Acceptance Criteria, Assignee, Status
    
-2. Extract Details
-   ├─ Summary → Business Summary
-   ├─ Description → Objective
-   ├─ Acceptance Criteria → Technical Architecture
-   ├─ Assignee → Owner
-   ├─ Status → Current Status
-   └─ Labels → Tags
+2. Parse Details
+   ├─ Business Summary (from Jira)
+   ├─ Technical Architecture (from acceptance criteria)
+   ├─ Owner (from assignee)
+   ├─ Status (from Jira status)
+   └─ Jira Link (https://wegomushi.atlassian.net/browse/IAX-575)
    
 3. Create Confluence Page
-   ├─ Parent: AI & Automation 2026 (✅ OYBo6g)
-   ├─ Title: "test process - AI/Automation Process"
-   ├─ Sections:
-   │  ├─ Process Overview
-   │  ├─ Business Summary
-   │  ├─ Objective
-   │  ├─ Technical Architecture
-   │  ├─ Dependencies
-   │  ├─ Owner & Status
-   │  ├─ Jira Ticket Link
-   │  └─ Recent Updates
-   └─ Labels: ai-automation, process-2026
+   ├─ Title: "IAX-575 - Intelligent Alpha Automation Process"
+   ├─ Parent: AI & Automation 2026 (OYBo6g)
+   ├─ Content: Full business + technical sections
+   └─ Labels: ai-automation, intelligent-alpha, process-2026
    
 4. Return Success
    ✅ Page created: [URL]
-   🔗 Jira: [Link]
-   👤 Owner: [Name]
-   ⏱️ Status: [Status]
+   🔗 Jira: IAX-575
+   👤 Owner: [From ticket]
+   ⏱️ Status: [From ticket]
 ```
 
 ---
 
-## 🛠️ API Endpoints That Work
+## 📝 Page Template (Ready to Create)
 
-**Jira - Search for Issues:**
-```bash
-POST https://wegomushi.atlassian.net/rest/api/3/search/jql
--H "Authorization: Basic $(echo -n 'email:token' | base64)"
--H "Content-Type: application/json"
--d '{"jql":"summary ~ \"test process\""}'
-```
+```html
+<h2>Process Overview</h2>
+<p>AI & Automation process from Intelligent Alpha Automation space</p>
 
-**Confluence - Create Page:**
-```bash
-POST https://wegomushi.atlassian.net/wiki/api/v2/pages
--H "Authorization: Bearer {API_TOKEN}"
--H "Content-Type: application/json"
--d '{
-  "spaceId": "...",
-  "parentId": "OYBo6g",
-  "title": "test process - AI/Automation Process",
-  "body": {"representation": "storage", "value": "<html>..."}
-}'
+<h2>Business Summary</h2>
+<p>[From Jira IAX-575 description]</p>
+
+<h2>Objective</h2>
+<p>[Key business goal]</p>
+
+<h2>Technical Architecture</h2>
+<ul>
+  <li>[Component 1 from acceptance criteria]</li>
+  <li>[Component 2 from acceptance criteria]</li>
+  <li>[Technical details]</li>
+</ul>
+
+<h2>Dependencies</h2>
+<ul>
+  <li>[Systems/teams involved]</li>
+</ul>
+
+<h2>Owner & Status</h2>
+<p>Owner: [From Jira assignee]</p>
+<p>Status: [From Jira status]</p>
+<p>Jira: <a href="https://wegomushi.atlassian.net/browse/IAX-575">IAX-575</a></p>
+
+<h2>Recent Updates</h2>
+<p>Page created: 2026-06-10 11:11 UTC</p>
+<!-- GitHub commits will be added here -->
 ```
 
 ---
 
-## 📊 Configuration Status
+## ✅ Next Steps
 
-| Item | Status | Value |
-|------|--------|-------|
-| Jira URL | ✅ | https://wegomushi.atlassian.net |
-| Confluence URL | ✅ | https://wegomushi.atlassian.net/wiki |
-| API Token | ✅ | Configured |
-| AI Automation Folder | ✅ | OYBo6g |
-| "test process" Task | ⏳ | NOT FOUND |
+**You need to choose:**
+
+### Choice 1: Manual Page Creation (Quickest)
+- Create page manually in Confluence
+- Copy IAX-575 details
+- I can then update with GitHub commits
+
+### Choice 2: Fix API Authentication
+- Regenerate API token with correct permissions
+- Share with agent
+- Agent will automate everything
+
+**Recommendation:** Start with **Choice 1** (manual create) to get the page live, then we can automate future updates with GitHub.
 
 ---
 
-## 💡 What I Need From You
+## 🔗 Key Information
 
-**Choose one:**
+| Item | Value |
+|------|-------|
+| **Jira Ticket** | https://wegomushi.atlassian.net/browse/IAX-575 |
+| **Jira Space** | Intelligent Alpha Automation |
+| **Confluence Folder** | AI & Automation 2026 |
+| **Folder URL** | https://wegomushi.atlassian.net/wiki/x/OYBo6g |
+| **Folder ID** | OYBo6g |
+| **Create Endpoint** | /wiki/api/v2/pages |
 
-1. **If creating new task:** 
-   - Create Jira task with "test process" in title
-   - Share the task key or URL
-   - I'll search and find it automatically
+---
 
-2. **If task exists with different name:**
-   - Share the exact task name/key
-   - Or search term that finds it
-   - I'll update the search query
+## 💡 Once Page is Created
 
-3. **If starting without Jira ticket:**
-   - Share business details for "test process"
-   - I'll create Confluence page with your content
+I can then:
+- ✅ Update with GitHub commits: "Update confluence page IAX-575 from github"
+- ✅ Sync changes automatically
+- ✅ Keep documentation up-to-date
 
 ---
 
 ## 📚 Related Documentation
 
-- `JIRA_CONFLUENCE_WORKFLOW.md` - Complete workflow guide
+- `JIRA_CONFLUENCE_WORKFLOW.md` - Full workflow guide
 - `JIRA_CONFLUENCE_QUICK_REF.md` - Quick reference
-- `MEMORY.md` - Project status
-- `TOOLS.md` - Configuration (now includes folder ID)
+- `TOOLS.md` - Configuration
+- `MEMORY.md` - Project history
