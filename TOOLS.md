@@ -58,6 +58,11 @@ Endpoints:
 - Jira: `https://wegomushi.atlassian.net/rest/api/3/`
 - Confluence: `https://wegomushi.atlassian.net/wiki/api/v2/`
 
+### AI & Automation 2026 Folder
+- **Folder URL:** https://wegomushi.atlassian.net/wiki/x/OYBo6g
+- **Folder ID (encoded):** OYBo6g
+- **Status:** ✅ Found and configured
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.

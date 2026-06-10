@@ -1,209 +1,208 @@
 # Test Process - Task Documentation
 
-## 📋 Corrected Workspace Information
+## ✅ Progress Update
 
-**Company:** WegoMushi
-**Jira URL:** https://wegomushi.atlassian.net/jira/for-you
-**Confluence:** https://wegomushi.atlassian.net/wiki
-**REST API Base:** https://wegomushi.atlassian.net/rest/api/3/
+### Confirmed Configuration
+
+**Confluence Folder - AI & Automation 2026:**
+- ✅ **Folder URL:** https://wegomushi.atlassian.net/wiki/x/OYBo6g
+- ✅ **Folder ID (encoded):** OYBo6g
+- ✅ **Status:** Located and configured
 
 ---
 
-## Current Status
+## 📋 Current Status
 
 **Task:** Create Confluence page for "test process" Jira ticket
-**Requested:** 2026-06-10 11:01 UTC
-**Status:** 🔴 BLOCKED - API Authentication Issue
+**Date:** 2026-06-10 11:09 UTC
+**Status:** 🟡 PARTIALLY BLOCKED
 
-### Issue Encountered
+### What's Working ✅
+- Confluence folder located: AI & Automation 2026
+- Confluence authentication works with API token
+- API connection to WegoMushi workspace established
+- Jira search API working (new /rest/api/3/search/jql endpoint)
 
-The Jira API token authentication is not working with the current setup:
-
-```
-❌ Basic Auth Failed: "Client must be authenticated to access this resource"
-❌ Bearer Token Failed: "Failed to parse Connect Session Auth Token"
-```
-
-This could mean:
-1. API token format needs adjustment for this workspace
-2. Confluence space/folder IDs need to be retrieved first
-3. API token permissions may be limited to specific scopes
+### What's Pending ⏳
+- "test process" Jira task not found in workspace
+  - Searched: `summary ~ "test process"` → No results
+  - Searched: `description ~ "test process"` → No results
+  - Searched: `text ~ "test process"` → No results
 
 ---
 
-## ✅ What We Know
+## 🔍 Findings
 
-- ✅ Company workspace: **WegoMushi** (not personal)
-- ✅ Jira accessible at: https://wegomushi.atlassian.net/jira/for-you
-- ✅ Confluence accessible at: https://wegomushi.atlassian.net/wiki
-- ✅ SSL connection verified ✓
-- ❌ API authentication needs verification
+### Jira Search Results
+```
+Query 1: text ~ "test process"
+Result: 0 issues found
+
+Query 2: summary ~ "test process" OR description ~ "test process"
+Result: 0 issues found
+
+Query 3: assignee = currentUser() OR creator = currentUser()
+Result: 0 issues found
+```
+
+### Possibilities
+
+1. **Task doesn't exist yet**
+   - "test process" task may need to be created in Jira first
+   - Or uses a different name/naming convention
+
+2. **Task exists with different naming**
+   - May be called: "Test Process", "test_process", "TEST-PROCESS", etc.
+   - May be in a specific project key (e.g., "DATA-123", "PROJ-456")
+   - May have a shortened version
+
+3. **Permission/Visibility Issue**
+   - API token may not have access to view this issue
+   - Issue may be in a different project than expected
+   - Issue may be in a restricted status
 
 ---
 
-## 🔄 Workflow (Once API Auth is Fixed)
+## 🔄 Next Steps Required
 
-### Step 1: Get List of All Issues to Find "test process"
+### Option A: Create "test process" Task
+If the task doesn't exist yet:
 
-```bash
-curl -X GET \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  "https://wegomushi.atlassian.net/rest/api/3/search?jql=summary~\"test process\""
-```
-
-**Expected to find:**
-- Issue key (e.g., PROJ-123, DATA-456, etc.)
-- Summary: "test process"
-- Description: [Details about the process]
-- Assignee: [Owner name]
-- Status: [Current status]
-- Labels/Tags: [Related tags]
-
-### Step 2: Get Confluence Space & Folder IDs
-
-```bash
-# Get spaces
-curl -X GET \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  "https://wegomushi.atlassian.net/wiki/api/v2/spaces"
-
-# Get folder structure
-curl -X GET \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  "https://wegomushi.atlassian.net/wiki/api/v2/spaces/{spaceId}/pages"
-```
-
-**Need to find:**
-- Space ID for "Data, Marketing and Growth Homepage" (or equivalent)
-- Folder ID for "AI & Automation 2026" (or equivalent)
-
-### Step 3: Search Confluence for Existing Page
-
-```bash
-curl -X GET \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  "https://wegomushi.atlassian.net/wiki/api/v2/pages?title=test%20process"
-```
-
-**Check:** Does "test process" page already exist?
-
-### Step 4: Create Confluence Page from Jira Data
-
-```bash
-curl -X POST \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "spaceId": "{space_id}",
-    "parentId": "{folder_id}",
-    "title": "test process - AI/Automation Process",
-    "body": {
-      "representation": "storage",
-      "value": "<h2>Business Summary</h2><p>[From Jira]</p>..."
-    }
-  }' \
-  "https://wegomushi.atlassian.net/wiki/api/v2/pages"
-```
-
-### Step 5: Return Success
-
-```
-✅ Created: "test process - AI/Automation Process"
-📄 Location: [Confluence workspace] → [Folder]
-🔗 Jira Ticket: {ISSUE_KEY} (Link)
-👤 Owner: [Owner from Jira]
-⏱️ Status: [Status from Jira]
-📝 Created: 2026-06-10 11:01 UTC
-```
-
----
-
-## 🔑 Prerequisites to Fix
-
-### 1. Verify API Token Format
-- Current: Bearer token format (`ATATT3...`) 
-- May need: Different format for WegoMushi workspace
-- Action: Check if token needs to be regenerated for this workspace
-
-### 2. Find Confluence Space & Folder IDs
-- Need: Get all spaces in this Confluence instance
-- Find: "Data, Marketing and Growth Homepage" or equivalent name
-- Get: Space ID and "AI & Automation 2026" folder page ID
-- Store: As environment variables
-
-### 3. Test API Connection
-```bash
-# Quick test
-curl -X GET \
-  -H "Authorization: Bearer {API_TOKEN}" \
-  "https://wegomushi.atlassian.net/rest/api/3/myself"
-
-# Should return: User info (name, email, etc.)
-```
-
----
-
-## 📝 Next Steps Required
-
-**For You (Manual Steps):**
-
-1. **Verify API Token**
-   - Go to: https://id.atlassian.com/manage-profile/security/api-tokens
-   - Check if token is valid for WegoMushi workspace
-   - Regenerate if needed
-
-2. **Get Confluence Details**
-   - Open: https://wegomushi.atlassian.net/wiki
-   - Navigate to target space (e.g., "Data, Marketing and Growth Homepage")
-   - Create or find "AI & Automation 2026" folder
-   - Extract Confluence Space ID and Folder Page ID from URLs
-   - Share with agent for configuration
-
-3. **Verify Jira Task Exists**
+1. **You create the Jira task:**
    - Open: https://wegomushi.atlassian.net/jira/for-you
-   - Search for or create "test process" task
-   - Verify it has sufficient details (summary, description, assignee)
+   - Create new issue
+   - Title: "test process" (or similar)
+   - Add description with details
+   - Assign to yourself or team member
 
-**For Agent (Once Prerequisites Met):**
+2. **Then I search and find it:**
+   - Search Jira by new task key
+   - Extract details
+   - Create Confluence page
 
-1. Test API authentication
-2. Search for "test process" Jira ticket
-3. Extract business + technical details
-4. Create Confluence page in correct location
-5. Return link to created page
+### Option B: Provide Task Details
+If the task exists with different naming:
+
+1. **You provide:**
+   - Exact task name/title
+   - Task key (e.g., DATA-123)
+   - URL to the task
+   - Or any search keywords that find it
+
+2. **Then I search with correct keywords:**
+   - Use provided info to locate task
+   - Extract business + technical details
+   - Create Confluence page
+
+### Option C: Manual Page Creation
+If you prefer to start without a Jira ticket:
+
+1. **You provide:**
+   - Business summary for "test process"
+   - Technical architecture/details
+   - Owner/assignee
+   - Current status
+
+2. **Then I create:**
+   - Confluence page with your details
+   - Placeholder for Jira link (to be added later)
+   - Ready for updates from GitHub
 
 ---
 
-## 🛠️ Configuration Needed
+## 📝 What Happens Once Task is Found
 
-```bash
-# Updated for WegoMushi workspace
-export JIRA_URL="https://wegomushi.atlassian.net"
-export JIRA_EMAIL="[EMAIL]"
-export ATLASSIAN_API_TOKEN="***"
-export CONFLUENCE_URL="https://wegomushi.atlassian.net/wiki"
-export CONFLUENCE_SPACE_ID="???"  # Need to find
-export AI_AUTOMATION_2026_FOLDER_ID="???"  # Need to find
+### Automated Workflow
+
+```
+1. Search Jira
+   └─ Find "test process" ticket (or provided task key)
+   
+2. Extract Details
+   ├─ Summary → Business Summary
+   ├─ Description → Objective
+   ├─ Acceptance Criteria → Technical Architecture
+   ├─ Assignee → Owner
+   ├─ Status → Current Status
+   └─ Labels → Tags
+   
+3. Create Confluence Page
+   ├─ Parent: AI & Automation 2026 (✅ OYBo6g)
+   ├─ Title: "test process - AI/Automation Process"
+   ├─ Sections:
+   │  ├─ Process Overview
+   │  ├─ Business Summary
+   │  ├─ Objective
+   │  ├─ Technical Architecture
+   │  ├─ Dependencies
+   │  ├─ Owner & Status
+   │  ├─ Jira Ticket Link
+   │  └─ Recent Updates
+   └─ Labels: ai-automation, process-2026
+   
+4. Return Success
+   ✅ Page created: [URL]
+   🔗 Jira: [Link]
+   👤 Owner: [Name]
+   ⏱️ Status: [Status]
 ```
 
 ---
 
-## 📊 Current Blockers
+## 🛠️ API Endpoints That Work
 
-| Blocker | Status | Action |
-|---------|--------|--------|
-| API Token Format | 🔴 Unknown | Verify/regenerate token |
-| Confluence Space ID | 🔴 Unknown | Get from Confluence |
-| AI Automation Folder ID | 🔴 Unknown | Get from Confluence |
-| "test process" Jira Task | ❓ Unknown | Verify exists in Jira |
+**Jira - Search for Issues:**
+```bash
+POST https://wegomushi.atlassian.net/rest/api/3/search/jql
+-H "Authorization: Basic $(echo -n 'email:token' | base64)"
+-H "Content-Type: application/json"
+-d '{"jql":"summary ~ \"test process\""}'
+```
+
+**Confluence - Create Page:**
+```bash
+POST https://wegomushi.atlassian.net/wiki/api/v2/pages
+-H "Authorization: Bearer {API_TOKEN}"
+-H "Content-Type: application/json"
+-d '{
+  "spaceId": "...",
+  "parentId": "OYBo6g",
+  "title": "test process - AI/Automation Process",
+  "body": {"representation": "storage", "value": "<html>..."}
+}'
+```
 
 ---
 
-## 🔗 Files Updated
+## 📊 Configuration Status
 
-- `TOOLS.md` - Updated to WegoMushi workspace
-- `TEST_PROCESS_TASK.md` - This file (you're reading it!)
-- `MEMORY.md` - Pending update with correct workspace
+| Item | Status | Value |
+|------|--------|-------|
+| Jira URL | ✅ | https://wegomushi.atlassian.net |
+| Confluence URL | ✅ | https://wegomushi.atlassian.net/wiki |
+| API Token | ✅ | Configured |
+| AI Automation Folder | ✅ | OYBo6g |
+| "test process" Task | ⏳ | NOT FOUND |
+
+---
+
+## 💡 What I Need From You
+
+**Choose one:**
+
+1. **If creating new task:** 
+   - Create Jira task with "test process" in title
+   - Share the task key or URL
+   - I'll search and find it automatically
+
+2. **If task exists with different name:**
+   - Share the exact task name/key
+   - Or search term that finds it
+   - I'll update the search query
+
+3. **If starting without Jira ticket:**
+   - Share business details for "test process"
+   - I'll create Confluence page with your content
 
 ---
 
@@ -211,4 +210,5 @@ export AI_AUTOMATION_2026_FOLDER_ID="???"  # Need to find
 
 - `JIRA_CONFLUENCE_WORKFLOW.md` - Complete workflow guide
 - `JIRA_CONFLUENCE_QUICK_REF.md` - Quick reference
-- `jira-confluence-documentation-sync` skill - Implementation
+- `MEMORY.md` - Project status
+- `TOOLS.md` - Configuration (now includes folder ID)
