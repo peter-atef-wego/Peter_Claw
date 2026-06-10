@@ -36,10 +36,24 @@ Things like:
 - **Username:** peter-atef-wego
 - **Status:** ✅ Connected via PAT (stored locally, not in repo)
 
-To use with git/gh CLI:
+## Atlassian (Jira + Confluence)
+
+- **Email:** [EMAIL]
+- **Jira URL:** https://peter-atef.atlassian.net
+- **Confluence URL:** https://peter-atef.atlassian.net/wiki
+- **API Token:** (stored securely in environment, not in repo)
+- **Status:** ✅ API token configured
+
+To use with Jira/Confluence REST APIs:
 ```bash
-export GITHUB_TOKEN=<your-pat-token>
+export ATLASSIAN_API_TOKEN=***
+export JIRA_EMAIL=***
+export JIRA_URL="https://peter-atef.atlassian.net"
 ```
+
+Endpoints:
+- Jira: `https://peter-atef.atlassian.net/rest/api/3/`
+- Confluence: `https://peter-atef.atlassian.net/wiki/api/v2/`
 
 ## Why Separate?
 
