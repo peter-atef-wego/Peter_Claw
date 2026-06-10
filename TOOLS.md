@@ -39,8 +39,10 @@ Things like:
 ## Atlassian (Jira + Confluence)
 
 - **Email:** [EMAIL]
-- **Jira URL:** https://peter-atef.atlassian.net
-- **Confluence URL:** https://peter-atef.atlassian.net/wiki
+- **Company Workspace:** WegoMushi
+- **Jira URL:** https://wegomushi.atlassian.net
+- **Jira Dashboard:** https://wegomushi.atlassian.net/jira/for-you
+- **Confluence URL:** https://wegomushi.atlassian.net/wiki
 - **API Token:** (stored securely in environment, not in repo)
 - **Status:** ✅ API token configured
 
@@ -48,12 +50,18 @@ To use with Jira/Confluence REST APIs:
 ```bash
 export ATLASSIAN_API_TOKEN=***
 export JIRA_EMAIL=***
-export JIRA_URL="https://peter-atef.atlassian.net"
+export JIRA_URL="https://wegomushi.atlassian.net"
+export CONFLUENCE_URL="https://wegomushi.atlassian.net/wiki"
 ```
 
 Endpoints:
-- Jira: `https://peter-atef.atlassian.net/rest/api/3/`
-- Confluence: `https://peter-atef.atlassian.net/wiki/api/v2/`
+- Jira: `https://wegomushi.atlassian.net/rest/api/3/`
+- Confluence: `https://wegomushi.atlassian.net/wiki/api/v2/`
+
+### AI & Automation 2026 Folder
+- **Folder URL:** https://wegomushi.atlassian.net/wiki/x/OYBo6g
+- **Folder ID (encoded):** OYBo6g
+- **Status:** ✅ Found and configured
 
 ## Why Separate?
 

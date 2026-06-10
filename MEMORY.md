@@ -38,17 +38,20 @@ Flow:
 
 ### Configuration
 
-**Credentials (in TOOLS.md, not committed):**
-- Jira URL: https://peter-atef.atlassian.net
-- Confluence URL: https://peter-atef.atlassian.net/wiki
-- Space: "Data, Marketing and Growth Homepage"
+**Updated for WegoMushi (Company Workspace):**
+- Jira URL: https://wegomushi.atlassian.net
+- Jira Dashboard: https://wegomushi.atlassian.net/jira/for-you
+- Confluence URL: https://wegomushi.atlassian.net/wiki
+- Space: "Data, Marketing and Growth Homepage" (company space)
 - Folder: "AI & Automation 2026"
-- API tokens stored in environment variables
+- API tokens stored in environment variables (not committed)
 
 **Manual Setup Needed:**
-1. Get Confluence Space ID for "Data, Marketing and Growth Homepage"
-2. Find/create folder "AI & Automation 2026" and get its page ID
-3. Store folder ID in: `AI_AUTOMATION_2026_FOLDER_ID` env var
+1. ✅ Verify API token valid for WegoMushi workspace
+2. ✅ Get Confluence Space ID for company space
+3. ✅ Find/create folder "AI & Automation 2026" and get page ID
+4. ✅ Store: `CONFLUENCE_SPACE_ID`, `AI_AUTOMATION_2026_FOLDER_ID` env vars
+5. ✅ Test API auth: `GET /rest/api/3/myself`
 
 ### Example Usage
 
@@ -72,4 +75,37 @@ Flow:
 
 ### Status
 ✅ Skill created and applied
-⏳ Waiting for: Jira instance reactivation, Confluence folder ID setup
+✅ Updated to WegoMushi company workspace
+⏳ Waiting for: API token verification, Confluence IDs, "test process" task details
+
+## Task Attempt: "test process" (2026-06-10 11:01 UTC)
+
+**User Request:** Create Confluence page for "test process" Jira ticket
+
+**Correction Made:** WegoMushi company workspace (not personal)
+- **Correct:** https://wegomushi.atlassian.net/jira/for-you
+- Previous assumption: https://peter-atef.atlassian.net (personal)
+
+**Status:** 🔴 BLOCKED - API Authentication Issues
+
+**Current Blockers:**
+1. API token authentication not working with current token format
+   - Basic Auth failed: "Client must be authenticated"
+   - Bearer token failed: "Failed to parse Connect Session Auth Token"
+2. Missing Confluence Space ID for company workspace
+3. Missing "AI & Automation 2026" folder page ID
+4. Need to verify "test process" Jira ticket exists in company workspace
+
+**What Will Execute (Once Blockers Fixed):**
+1. Search Jira for "test process" ticket in WegoMushi workspace
+2. Extract business summary + technical details
+3. Create Confluence page in "AI & Automation 2026" folder
+4. Return link to created page with owner and status
+
+**Next Steps Required:**
+1. Verify/regenerate API token for WegoMushi workspace
+2. Get Confluence Space ID and Folder Page ID
+3. Verify "test process" Jira task exists in company workspace
+4. Test API authentication with `/rest/api/3/myself` endpoint
+
+**Documentation:** See `TEST_PROCESS_TASK.md` for detailed workflow and API calls
