@@ -22,7 +22,7 @@ from model_router import route
 class SimpleSlackHandler:
     def __init__(self):
         self.bot_token = os.getenv("SLACK_BOT_TOKEN")
-        self.nikhil_id = "U04H3EB2PTN"
+        self.peter_id = "PETER_SLACK_USER_ID_TODO"
         
         if not self.bot_token:
             print("❌ SLACK_BOT_TOKEN not set")
@@ -72,8 +72,8 @@ class SimpleSlackHandler:
             
             messages = []
             for channel in data.get("channels", []):
-                # Only process DMs with Nikhil
-                if channel.get("is_dm") and channel.get("user") == self.nikhil_id:
+                # Only process DMs with Peter
+                if channel.get("is_dm") and channel.get("user") == self.peter_id:
                     channel_id = channel["id"]
                     
                     # Get messages from this channel
@@ -91,8 +91,8 @@ class SimpleSlackHandler:
                     if msg_resp.ok:
                         msg_data = msg_resp.json()
                         for msg in reversed(msg_data.get("messages", [])):
-                            # Only process messages from Nikhil
-                            if msg.get("user") == self.nikhil_id and msg.get("type") == "message":
+                            # Only process messages from Peter
+                            if msg.get("user") == self.peter_id and msg.get("type") == "message":
                                 messages.append({
                                     "channel": channel_id,
                                     "text": msg.get("text", ""),
@@ -160,7 +160,7 @@ class SimpleSlackHandler:
         if not text or not channel_id:
             return
         
-        self.log(f"📨 DM from Nikhil: '{text[:50]}...'")
+        self.log(f"📨 DM from Peter: '{text[:50]}...'")
         
         # Classify and route
         agent_id = self.classify_message(text)

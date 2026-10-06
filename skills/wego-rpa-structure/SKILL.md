@@ -1,6 +1,6 @@
 ---
 name: wego-rpa-structure
-description: Follow Nikhil's RPA repository conventions (Python + Robot Framework + BigQuery helpers + scheduler entrypoints). Use when creating, reviewing, or refactoring automations so new jobs match the established folder/file structure and naming patterns.
+description: Follow Peter's RPA repository conventions (Python + Robot Framework + BigQuery helpers + scheduler entrypoints). Use when creating, reviewing, or refactoring automations so new jobs match the established folder/file structure and naming patterns.
 ---
 
 # Wego RPA Structure

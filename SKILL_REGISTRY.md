@@ -56,7 +56,7 @@ is the authoritative routing table — this is a summary of it.
 | netsuite_ota | C08LZTG1YR5 | skills/wego-netsuite/knowledge_base/netsuite_ota.md |
 | netsuite_adminsupport | C08MCK8936Z | — (human triage channel, do not auto-respond) |
 | netsuite_champion | C0B1T3B4RMH | skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/references/channel_routing.md (master channel — domain resolved at runtime) |
-| netsuite-dev-agent | C0B9A8ZRM5X | skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/references/channel_routing.md (master access — Nikhil's dev/QA channel for testing changes before they reach live finance channels) |
+| netsuite-dev-agent | C0B9A8ZRM5X | skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/references/channel_routing.md (master access — Peter's dev/QA channel for testing changes before they reach live finance channels) |
 | data-marketing-reports | C07EGK6JU8Y | knowledge/company/wego-business.md |
 | alphabot-masters | C08T81REV6Y | skills/automation-hub/SKILL.md + skills/wego-coding-automation-style/SKILL.md |
 | proj-alphabot-testing | C090HF85F2P | skills/Finance/reconciliation_claw/SKILL.md (internal team testing bridge) |
@@ -74,8 +74,8 @@ is the authoritative routing table — this is a summary of it.
 | dm-working-indicator | skills/dm-working-indicator/SKILL.md | Showing a working indicator while a DM turn is in flight |
 | itops | skills/itops/SKILL.md | IT operations, monitoring, incident workflows |
 | model-providers | skills/model-providers/SKILL.md | OpenAI vs Claude selection, API patterns |
-| nik-memory-sync | skills/nik-memory-sync/SKILL.md | When syncing memory/skills to GitHub |
-| nik-profile | skills/nik-profile/SKILL.md | When collaboration style or Nikhil context is needed |
+| peter-memory-sync | skills/peter-memory-sync/SKILL.md | When syncing memory/skills to GitHub |
+| peter-profile | skills/peter-profile/SKILL.md | When collaboration style or Peter context is needed |
 | openclaw-nova-mirror | skills/openclaw-nova-mirror/SKILL.md | When validating or running the weekly mirror sync |
 | ops-sync | skills/ops-sync/SKILL.md | When updating cron schedule docs or OpenClaw job config |
 | robot-python-automation | skills/robot-python-automation/SKILL.md | Robot Framework + Python design patterns |

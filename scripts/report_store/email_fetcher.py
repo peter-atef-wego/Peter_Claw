@@ -43,7 +43,7 @@ FROM_ADDR = os.environ.get("REPORT_FROM_ADDR", "system@sent-via.netsuite.com")
 IMAP_HOST = os.environ.get("GMAIL_IMAP_HOST", "imap.gmail.com")
 
 
-# Env vars checked first, in this order. EMAIL_FROM_PWD is what Nikhil set in
+# Env vars checked first, in this order. EMAIL_FROM_PWD is what Peter set in
 # OpenClaw secrets (2026-07-28) and mirrors the old Secrets Manager key name.
 # Matched CASE-INSENSITIVELY (Linux env vars are case-sensitive, so
 # EMAIL_FROM_PWD / email_from_pwd / Email_From_Pwd would otherwise be three
@@ -161,7 +161,7 @@ def _imap_login():
 
     Three different things get reported as "Gmail is broken" and they have
     three different fixes — guessing between them sends the wrong person to do
-    the wrong job (2026-08-10: the agent told Nikhil the rpa@wego.com password
+    the wrong job (2026-08-10: the agent told Peter the rpa@wego.com password
     was "invalid/expired" and to get Akansha to re-auth, without knowing
     whether a password had even been found).
     """
@@ -279,7 +279,7 @@ def _fetch_headers(conn, ids, batch=200):
     """Return [(mid, subject, sent_datetime)] for every candidate id, pulling
     ONLY the Subject/Date headers.
 
-    Why this exists (Nikhil 2026-08-10): the old code ran
+    Why this exists (Peter 2026-08-10): the old code ran
     `conn.fetch(mid, "(RFC822)")` for EVERY email the FROM+SINCE search
     returned, just to read its Subject. Over a 180-day window All Mail holds
     thousands of NetSuite emails carrying 1-2 MB attachments each — several GB
@@ -358,7 +358,7 @@ def fetch(subject_contains, report_key, period=None, since_days=7,
         # overwrites the same key/period/filename — so "latest wins" was only
         # true by accident (ascending UIDs). Sorting on Date makes it explicit,
         # and the seen-set means an older duplicate can never overwrite a newer
-        # file for the same period (Nikhil 2026-07-29).
+        # file for the same period (Peter 2026-07-29).
         # PASS 1 — headers only, so subject matching costs bytes not gigabytes.
         cands = []
         for mid, subject, sent in _fetch_headers(conn, ids):

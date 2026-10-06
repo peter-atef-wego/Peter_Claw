@@ -26,11 +26,11 @@ This skill handles all automation-related tasks: designing, building, reviewing,
 
 ## Decision Rules
 
-1. If the automation involves finance data → confirm with Nikhil before wiring to production NetSuite.
+1. If the automation involves finance data → confirm with Peter before wiring to production NetSuite.
 2. If the automation writes to a shared Slack channel → test in DM first, not in the live channel.
 3. If reusing AlphaBot → check `github.com/wego/alphabot` first. Do not reinvent existing libraries.
 4. If the automation is scheduled (cron) → add a pattern entry to `memory/knowledge/cron_resilience.md` on first deploy.
-5. If a running automation needs to be disabled → do NOT disable silently. Notify stakeholder and Nikhil first.
+5. If a running automation needs to be disabled → do NOT disable silently. Notify stakeholder and Peter first.
 6. If the request is vague → clarify scope with one focused question before building anything.
 7. n8n for event-driven integrations and simpler workflows; Robot Framework for complex multi-step bots with state.
 8. Airflow for data pipeline orchestration only — not for ad-hoc automations.

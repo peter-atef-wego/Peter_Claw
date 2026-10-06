@@ -34,7 +34,7 @@ Slack ──▶ OpenClaw (Claude, this agent) ──▶ Oracle NetSuite MCP Stan
   - `netsuite-mcp-standard-tools-sandbox` — use this for **every write** (create vendor, create bill, create journal, update record) and for any "try this in sandbox first" exploration.
   - `netsuite-mcp-standard-tools-production` — use this for **every read** (SuiteQL analytics, record lookups, period status, balances). Writes against this server are blocked by the MCP plugin and will return 403; do not attempt them.
 - **Auth.** Oracle's MCP handles TBA (OAuth 1.0a HMAC-SHA256) internally using the `NETSUITE_<SCOPE>_*` env vars listed in [`MEMORY.md §A.11`](./MEMORY.md). You never see, log, or repeat tokens. If a call returns 401 / INVALID_LOGIN_ATTEMPT, surface the error verbatim — do **not** try to "fix" it by asking the user for credentials.
-- **Slack token.** `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` in the OpenClaw runtime env (set by Nikhil). The bot does not handle it manually. Distinct from the generic `SLACK_BOT_TOKEN` used by other Wego automations.
+- **Slack token.** `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` in the OpenClaw runtime env (set by Peter). The bot does not handle it manually. Distinct from the generic `SLACK_BOT_TOKEN` used by other Wego automations.
 
 ---
 
@@ -48,10 +48,10 @@ Slack ──▶ OpenClaw (Claude, this agent) ──▶ Oracle NetSuite MCP Stan
 | `#netsuite_tax` | `C08MHS9PMFC` | Tax | UAE Taxilla, MY MyInvois, KSA, India GST, VAT customisation |
 | `#netsuite_ota` | `C08LZTG1YR5` | OTA | SFTP loads, BigQuery → CSV imports, journal templates |
 | `#netsuite_champion` | `C0B1T3B4RMH` | Master (all five) | Treat as a generic channel; needs a domain hint |
-| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | **Dev / QA — Nikhil's testing channel.** Same routing as `#netsuite_champion` (master, needs a domain hint). Use this surface to validate new behaviour before it lands in live finance channels. Treat the messages here as real — same MCP calls, same SuiteQL, same sandbox writes when asked. |
+| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | **Dev / QA — Peter's testing channel.** Same routing as `#netsuite_champion` (master, needs a domain hint). Use this surface to validate new behaviour before it lands in live finance channels. Treat the messages here as real — same MCP calls, same SuiteQL, same sandbox writes when asked. |
 
 **Bot user-id you trigger on:** `U0AHNGSDQ3W` (`@Data Automation's Claw`).
-**Nikhil's DM:** `D0AHK0616JW`.
+**Peter's DM:** `PETER_DM_CHANNEL_ID_TODO`.
 
 ### Master-channel routing (`#netsuite_champion`)
 
@@ -331,7 +331,7 @@ Standard write protocol:
 
 ## 10. Failure modes — surface, don't paper over
 
-- **401 / INVALID_LOGIN_ATTEMPT** → "NetSuite returned 401. The TBA token may have expired or the integration role may have been revoked. Nikhil — heads up." Do **not** ask the user for credentials.
+- **401 / INVALID_LOGIN_ATTEMPT** → "NetSuite returned 401. The TBA token may have expired or the integration role may have been revoked. Peter — heads up." Do **not** ask the user for credentials.
 - **403** on production write attempt → "Production is read-only via the Champion. I've created this in sandbox instead — <URL>."
 - **403 / SuiteQL not permitted** → name the table and field that failed; ask Akansha to extend the integration role.
 - **429 / rate limit** → wait 5 s, retry once. If it fails again, surface the error.
@@ -381,7 +381,7 @@ Loaded based on the active channel (or per-message domain hint in `#netsuite_cha
 - Promoting sandbox writes to production. (Akansha owns this.)
 - Approving GL period close. (Cecilia / Li Ping.)
 - Modifying NetSuite scripts, workflows, or SuiteApps. (Akansha.)
-- Granting roles or rotating TBA tokens. (Nikhil.)
+- Granting roles or rotating TBA tokens. (Peter.)
 - Any DM about a non-NetSuite topic — defer to the appropriate skill via the channel router.
 
 ---
@@ -398,7 +398,7 @@ This skill expects the agent to run on **Sonnet 4.6 or Opus 4.8**. **Haiku is fo
 - **Gmail account**: `[EMAIL]` (receives all NetSuite scheduled report emails)
 - **Auth**: Gmail app password stored as `EMAIL_FROM_PWD` in `openclaw.json` → `mcp.servers.netsuite-prod.env` AND `mcp.servers.netsuite-sandbox.env`
 - **Email user**: hardcoded as `[EMAIL]` in `scripts/report_store/email_fetcher.py` (line 41); override with `GMAIL_USER` env var if needed
-- **App password rotation**: every ~47 days. Nikhil generates a new one at myaccount.google.com → Security → App passwords
+- **App password rotation**: every ~47 days. Peter generates a new one at myaccount.google.com → Security → App passwords
 
 ### Updating the app password (step-by-step)
 1. Edit `openclaw.json` — update `EMAIL_FROM_PWD` in BOTH `netsuite-prod.env` and `netsuite-sandbox.env`
@@ -416,10 +416,10 @@ This skill expects the agent to run on **Sonnet 4.6 or Opus 4.8**. **Haiku is fo
 ### Troubleshooting IMAP auth failures
 - `AUTHENTICATIONFAILED` after pwd update → gateway not restarted yet; restart and retry
 - `AUTHENTICATIONFAILED` after restart → Google may have a transient IP block; wait ~5 min and retry preflight
-- If it was working before and stops → app password likely expired/rotated; ask Nikhil to generate a new one
+- If it was working before and stops → app password likely expired/rotated; ask Peter to generate a new one
 - NEVER assume the email address is wrong — it is always `[EMAIL]`
 - Preflight script is the definitive test: `scripts/report_store/email_fetcher.py --preflight`
 
 ### App password expiry reminder
 - Last updated: 2026-08-11
-- Next reminder: 2026-09-27 (47 days) — cron job set to alert Nikhil via Slack DM
+- Next reminder: 2026-09-27 (47 days) — cron job set to alert Peter via Slack DM

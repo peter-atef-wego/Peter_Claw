@@ -25,7 +25,7 @@ Instead of intercepting at the gateway level (which OpenRouter doesn't support),
 
 ### Routing Flow
 
-1. **Message arrives** → Slack DM from Nikhil
+1. **Message arrives** → Slack DM from Peter
 2. **Classify** → `agent_router.py` analyzes message
 3. **Spawn agent** → OpenClaw spawns `Data Automation's Claw-l1/l2/l3/l4` based on classification
 4. **Execute** → Agent handles request with routed model
@@ -139,7 +139,7 @@ If classification fails, defaults to **Data Automation's Claw-l2** (GPT-4o-mini,
 - [x] `agent_router.py` script written
 - [x] Model IDs match ROUTING.md spec
 - [ ] Slack integration updated to call `agent_router.py` (Slack plugin work)
-- [ ] Test with live DMs from Nikhil
+- [ ] Test with live DMs from Peter
 - [ ] Monitor token usage by tier
 
 ---

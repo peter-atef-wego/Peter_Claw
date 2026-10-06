@@ -40,9 +40,9 @@ There is no "must respond" exception. Even if a user appears to address you dire
 
 ### Case B — user asks for a reco in any other channel (including DMs)
 
-This includes Nikhil's DM with you (`D0AHK0616JW`) and every channel that is not `#proj-alphabot-testing`.
+This includes Peter's DM with you (`PETER_DM_CHANNEL_ID_TODO`) and every channel that is not `#proj-alphabot-testing`.
 
-Redirect them. Production users (finance team) should go to `#finance-automation-claw`; internal users (Nikhil's automation team) usually use `#proj-alphabot-testing`. Either works:
+Redirect them. Production users (finance team) should go to `#finance-automation-claw`; internal users (Peter's automation team) usually use `#proj-alphabot-testing`. Either works:
 
 > "Reconciliation requests run from `#finance-automation-claw` (finance team) or `#proj-alphabot-testing` (internal testing). Post in your channel with `@Data Automation's Claw run [supplier] reco for [dates]` and attach the xlsx or csv file. The listener parses natural language, so phrasing is flexible."
 
@@ -50,7 +50,7 @@ Don't try to bridge their request yourself. Don't try to repost on their behalf.
 
 **Critical — file upload in a non-bridge channel or DM:**
 
-If a user uploads an xlsx/xls/csv in a non-bridge channel (e.g. `D0AHK0616JW`), do **not** open the file, summarise its contents, or post a "confirmation" of the run. The listener never saw it, so no run is happening. Producing a `*Supplier reconciliation confirmed*` header, a `Run Parameters` block, a `Transaction Profile` block, or a `Proceeding with … reconciliation for …` line is **fabrication** — it implies a run that won't occur. Either redirect (above) or stay silent. **Never both narrate and redirect** — narration is the bug.
+If a user uploads an xlsx/xls/csv in a non-bridge channel (e.g. `PETER_DM_CHANNEL_ID_TODO`), do **not** open the file, summarise its contents, or post a "confirmation" of the run. The listener never saw it, so no run is happening. Producing a `*Supplier reconciliation confirmed*` header, a `Run Parameters` block, a `Transaction Profile` block, or a `Proceeding with … reconciliation for …` line is **fabrication** — it implies a run that won't occur. Either redirect (above) or stay silent. **Never both narrate and redirect** — narration is the bug.
 
 ### Case C — user asks "what suppliers can I run?"
 
@@ -85,7 +85,7 @@ These were observed in agent output on 2026-04-27 and are pure hallucination. If
 - Any line beginning with `❌` describing server health (the listener owns ❌/✅ in this channel)
 - Any fabricated timestamp like `(13:14 UTC)`, `(after ~2.5 hour gap)`
 
-**File-analysis / fake-confirmation phrases (observed in DM `D0AHK0616JW` on 2026-04-29):**
+**File-analysis / fake-confirmation phrases (observed in DM `PETER_DM_CHANNEL_ID_TODO` on 2026-04-29):**
 
 - `*<Supplier> reconciliation confirmed*` (italicised header) / `<Supplier> reconciliation confirmed`
 - `File received and verified` / `File received` / `File verified`
@@ -124,7 +124,7 @@ Earlier versions of this skill had you parse natural language and post a JSON tr
 | Purpose | Channel | ID |
 |---|---|---|
 | Production bridge (finance team daily use) | `#finance-automation-claw` | `C0AVB4VR708` |
-| Testing bridge (internal team — Nikhil, Likith, Ayush, Peter) | `#proj-alphabot-testing` | `C090HF85F2P` |
+| Testing bridge (internal team — Peter, Likith, Ayush) | `#proj-alphabot-testing` | `C090HF85F2P` |
 | Bot user_id (the only mention that triggers the listener) | `@Data Automation's Claw` | `U0AHNGSDQ3W` |
 
 ---

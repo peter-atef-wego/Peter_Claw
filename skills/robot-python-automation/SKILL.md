@@ -5,7 +5,7 @@ description: Robot Framework + Python automation design, coding patterns, execut
 
 # Robot Framework + Python Automation
 
-This skill captures the engineering patterns Nikhil’s team uses for reliable, unattended automations with Robot Framework and Python.
+This skill captures the engineering patterns Peter’s team uses for reliable, unattended automations with Robot Framework and Python.
 
 ## 1) Architecture split
 

@@ -119,7 +119,7 @@ For this session and ongoing:
 
 Once OpenClaw has the wrapper + config, auto-routing kicks in automatically.
 
-## Questions for Nikhil
+## Questions for Peter
 
 1. Do you have access to OpenClaw gateway code to add the middleware?
 2. Can OpenClaw support per-request model overrides in the API?

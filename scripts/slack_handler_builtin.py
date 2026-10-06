@@ -23,7 +23,7 @@ from model_router import route
 class SlackHandler:
     def __init__(self):
         self.bot_token = os.getenv("SLACK_BOT_TOKEN")
-        self.nikhil_id = "U04H3EB2PTN"
+        self.peter_id = "PETER_SLACK_USER_ID_TODO"
         
         if not self.bot_token:
             print("❌ SLACK_BOT_TOKEN not set")
@@ -32,7 +32,7 @@ class SlackHandler:
         self.base_url = "https://slack.com/api"
         self.last_ts = None
         self.dm_channel = None
-        self.log("✅ Initialized and listening for DMs from Nikhil...")
+        self.log("✅ Initialized and listening for DMs from Peter...")
     
     def log(self, msg):
         """Log with timestamp"""
@@ -68,7 +68,7 @@ class SlackHandler:
             return {"ok": False}
     
     def get_dm_channel(self):
-        """Get or find DM channel with Nikhil"""
+        """Get or find DM channel with Peter"""
         if self.dm_channel:
             return self.dm_channel
         
@@ -80,8 +80,8 @@ class SlackHandler:
                 return None
             
             for channel in data.get("channels", []):
-                # Find DM with Nikhil
-                if channel.get("is_dm") and channel.get("user") == self.nikhil_id:
+                # Find DM with Peter
+                if channel.get("is_dm") and channel.get("user") == self.peter_id:
                     self.dm_channel = channel["id"]
                     self.log(f"Found DM channel: {self.dm_channel}")
                     return self.dm_channel
@@ -109,8 +109,8 @@ class SlackHandler:
             
             messages = []
             for msg in reversed(data.get("messages", [])):
-                # Only process messages from Nikhil
-                if msg.get("user") == self.nikhil_id and msg.get("type") == "message":
+                # Only process messages from Peter
+                if msg.get("user") == self.peter_id and msg.get("type") == "message":
                     messages.append({
                         "channel": channel,
                         "text": msg.get("text", ""),

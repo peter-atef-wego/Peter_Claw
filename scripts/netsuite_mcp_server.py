@@ -1547,7 +1547,7 @@ ORDER BY a.acctnumber, t.trandate, t.tranid
     # `currency` table's per-record `exchangerate` field (wrong — that's a
     # display rate, not a pairwise rate), sometimes it flipped the base, and
     # the values/columns came out different every time it was asked (see
-    # Nikhil's 3-snapshot report 2026-06-30). This template pins:
+    # Peter's 3-snapshot report 2026-06-30). This template pins:
     #   • SOURCE  : `currencyrate` (the pairwise rate table) — the SAME data
     #               behind `Lists > Accounting > Currency Exchange Rates`.
     #   • DIRECTION: exchange_rate = units of base_currency per 1 source_currency
@@ -2893,7 +2893,7 @@ def execute_get_stored_report(report_key, period, subsidiary=None):
                                     f"period either. The inbox was searched just now for "
                                     f"'{sub_subject}' (180 days). Say exactly this. Do NOT "
                                     f"fall back to the consolidated file, do NOT use SuiteQL.")}
-            # Nikhil 2026-08-10: "always upload whatever latest is available
+            # Peter 2026-08-10: "always upload whatever latest is available
             # instead of asking". Done HERE, in the tool, not by the agent —
             # the agent improvising this is what produced a hand-filtered file
             # and a three-message interrogation. It can only fire when the
@@ -2931,7 +2931,7 @@ def execute_get_stored_report(report_key, period, subsidiary=None):
                                 f"Deliver via upload_file_to_slack (in-thread).")}
     # ALWAYS re-check the inbox for this report first, even when the period is
     # already stored: Akansha re-sends/reschedules, so the newest email for a
-    # period supersedes what we hold (Nikhil 2026-07-29). Newest-wins because
+    # period supersedes what we hold (Peter 2026-07-29). Newest-wins because
     # save_report overwrites the same report_key/period/filename.
     fetched_fresh = False
     refresh_error = None
@@ -2951,7 +2951,7 @@ def execute_get_stored_report(report_key, period, subsidiary=None):
                 "message": f"{type(e).__name__}: {e}"}
 
     if not paths and entry.get("source") == "email" and entry.get("subject_contains"):
-        # FALLBACK (Nikhil 2026-07-28): not in memory -> pull fresh from the
+        # FALLBACK (Peter 2026-07-28): not in memory -> pull fresh from the
         # inbox, which saves to memory as a side effect, then serve it now.
         # period=None: each email is stored under ITS OWN parsed period, so a
         # different month's email is never mis-filed under the asked period.
@@ -3018,14 +3018,14 @@ def execute_get_stored_report(report_key, period, subsidiary=None):
         #   3. If already .xlsx / .xlsm, serve as-is
         # Serving BOTH the raw .xls AND .csv would upload two files and confuse
         # callers — always produce exactly one xlsx output.
-        # (Nikhil 2026-07-29: bug fix — previously both files were returned,
+        # (Peter 2026-07-29: bug fix — previously both files were returned,
         # causing the raw .xls to be uploaded as the first attachment.)
         out_paths, converted = list(paths), False
         if entry.get("deliver_as") == "xlsx":
             fs_mod = _load_filter_module()
             if isinstance(fs_mod, dict):
                 return fs_mod
-            # Pick ONE source, in this order (Nikhil 2026-07-29: "the raw can be
+            # Pick ONE source, in this order (Peter 2026-07-29: "the raw can be
             # anything apart from xls, mostly it'll be csv — convert that"):
             #   1. an existing .xlsx/.xlsm  -> serve as-is, nothing to convert
             #   2. ANY non-.xls raw         -> convert (csv first, then tsv/txt/
@@ -3786,7 +3786,7 @@ TOOLS = [
             "memory/logs/netsuite-mcp/<DATE>.md for today (and optionally "
             "the last days_back-1 days). The agent must then git add / "
             "commit / push the rendered files — this tool does NOT touch "
-            "git. Use this when the user (in DM with Nikhil) asks for "
+            "git. Use this when the user (in DM with Peter) asks for "
             "'logs', 'activity', 'what did you do today', or 'give me the "
             "NetSuite logs', so they can see fresh activity on GitHub "
             "without waiting for the daily cron. Returns the list of "

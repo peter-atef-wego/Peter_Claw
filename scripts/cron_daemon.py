@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-cron_daemon.py — Nikhil's cron daemon. Clean rewrite 2026-06-05.
+cron_daemon.py — Peter's cron daemon. Clean rewrite 2026-06-05.
 
 Single file. No dependencies beyond stdlib.
 Runs 7 scheduled jobs using shell commands.

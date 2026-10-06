@@ -23,7 +23,7 @@ from model_router import route
 class DirectSlackRouter:
     def __init__(self):
         self.token = os.getenv("SLACK_BOT_TOKEN")
-        self.nikhil_id = "U04H3EB2PTN"
+        self.peter_id = "PETER_SLACK_USER_ID_TODO"
         self.base_url = "https://slack.com/api"
         
         if not self.token:
@@ -104,11 +104,11 @@ class DirectSlackRouter:
                     ch_id = channel["id"]
                     user = channel.get("user")
                     
-                    # Only process Nikhil's DMs
-                    if user != self.nikhil_id:
+                    # Only process Peter's DMs
+                    if user != self.peter_id:
                         continue
                     
-                    print(f"📨 Checking Nikhil's DM channel: {ch_id}", flush=True)
+                    print(f"📨 Checking Peter's DM channel: {ch_id}", flush=True)
                     
                     # Get messages
                     oldest = last_seen.get(ch_id)
@@ -122,7 +122,7 @@ class DirectSlackRouter:
                     
                     for msg in reversed(msgs):
                         # Only process user messages
-                        if msg.get("user") != self.nikhil_id or msg.get("type") != "message":
+                        if msg.get("user") != self.peter_id or msg.get("type") != "message":
                             continue
                         
                         text = msg.get("text", "").strip()

@@ -169,7 +169,7 @@ def scope_from_subject(text):
     'AP: A/P Aging Detail BK Wego Pte Ltd (Singapore) as of 30/07/2026' — and
     the agent forwards it as the subsidiary, which matched nothing and made the
     agent ask which subsidiary was meant when the user had already said it in
-    full (Nikhil 2026-08-11). Returns None when the text isn't subject-shaped.
+    full (Peter 2026-08-11). Returns None when the text isn't subject-shaped.
     """
     m = _SUBJECT_SCOPE.search(re.sub(r"\s+", " ", str(text or "")))
     return m.group(1).strip() if m else None
@@ -242,7 +242,7 @@ def convert_to_xlsx(src_path, out_path=None):
     DD/MM/YYYY instead of ISO text, money columns become 2dp numbers.
 
     Needed because the scheduled export is now CSV while finance wants Excel
-    (Nikhil 2026-07-29). Format change only — no rows added, dropped or
+    (Peter 2026-07-29). Format change only — no rows added, dropped or
     recomputed."""
     try:
         import openpyxl

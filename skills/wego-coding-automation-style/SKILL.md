@@ -1,6 +1,6 @@
 ---
 name: wego-coding-automation-style
-description: Apply Nikhil's coding and automation delivery style for Wego projects. Use when writing, refactoring, reviewing, or planning Python + Robot Framework automations so implementation choices, naming, modularity, error handling, and delivery practices stay consistent with his team standards.
+description: Apply Peter's coding and automation delivery style for Wego projects. Use when writing, refactoring, reviewing, or planning Python + Robot Framework automations so implementation choices, naming, modularity, error handling, and delivery practices stay consistent with his team standards.
 ---
 
 # Wego Coding + Automation Style

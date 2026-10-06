@@ -1,14 +1,14 @@
 ---
 name: Brain Sync — Advanced Rich Format
 description: Complete system status in rich Slack blocks (interactive, multi-section)
-owner: Nikhil Gupta
+owner: Peter Atef
 created: 2026-04-14
 trigger_phrase: "synced brain?"
 ---
 
 # Brain Sync — Advanced Rich Format
 
-When Nikhil asks "synced brain?", respond with this advanced rich Slack block format (not plain text).
+When Peter asks "synced brain?", respond with this advanced rich Slack block format (not plain text).
 
 ---
 

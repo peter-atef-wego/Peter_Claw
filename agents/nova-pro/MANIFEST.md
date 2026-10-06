@@ -19,12 +19,12 @@ These files are loaded on every session regardless of context:
 
 ---
 
-## Personal Use — Nikhil Direct (Override Priority)
+## Personal Use — Peter Direct (Override Priority)
 
-When Nikhil is using OpenClaw UI directly (not from a Slack channel):
+When Peter is using OpenClaw UI directly (not from a Slack channel):
 - **No channel-based routing restrictions apply**
 - Load skills based on query intent (Step 2) with full access to all skill files
-- Identity confirmed via OpenClaw UI session (peer.id = U04H3EB2PTN) — no Slack channel context present
+- Identity confirmed via OpenClaw UI session (peer.id = PETER_SLACK_USER_ID_TODO) — no Slack channel context present
 - Default model: L1 (Sonnet 4.6) for DMs; L3 (Sonnet 4.6) for channel @mentions — same model, different chip; L4 (Opus 4.8) for strategy and highest-stakes work; L5 (GPT-5.5) manual only. Haiku removed 2026-06-16; Opus 4.7 retired 2026-08-11.
 
 If no Slack channel ID is detected in the query context, treat as personal use and proceed to Step 2 directly.
@@ -44,7 +44,7 @@ When a query originates from a Slack channel, check the source channel ID BEFORE
 | C08MCK8936Z | netsuite_adminsupport | (do not auto-respond — human triage channel) |
 | C08LZTG1YR5 | netsuite_ota | skills/wego-netsuite/SKILL.md + skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/TOOL_RESPONSE_MANDATE.md + skills/wego-netsuite/MEMORY.md + skills/wego-netsuite/knowledge_base/netsuite_ota.md |
 | C0B1T3B4RMH | netsuite_champion (master — domain resolved from message prefix or classifier) | skills/wego-netsuite/SKILL.md + skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/TOOL_RESPONSE_MANDATE.md + skills/wego-netsuite/MEMORY.md + skills/wego-netsuite/references/channel_routing.md + skills/wego-netsuite/references/prompt_templates.md |
-| C0B9A8ZRM5X | netsuite-dev-agent (master — Nikhil's dev/QA channel for testing changes before they reach live finance channels; identical routing to netsuite_champion) | skills/wego-netsuite/SKILL.md + skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/TOOL_RESPONSE_MANDATE.md + skills/wego-netsuite/MEMORY.md + skills/wego-netsuite/references/channel_routing.md + skills/wego-netsuite/references/prompt_templates.md |
+| C0B9A8ZRM5X | netsuite-dev-agent (master — Peter's dev/QA channel for testing changes before they reach live finance channels; identical routing to netsuite_champion) | skills/wego-netsuite/SKILL.md + skills/wego-netsuite/CLAUDE.md + skills/wego-netsuite/TOOL_RESPONSE_MANDATE.md + skills/wego-netsuite/MEMORY.md + skills/wego-netsuite/references/channel_routing.md + skills/wego-netsuite/references/prompt_templates.md |
 | C07EGK6JU8Y | data-marketing-reports | knowledge/company/wego-business.md |
 | C08T81REV6Y | alphabot-masters | skills/automation-hub/SKILL.md + skills/wego-coding-automation-style/SKILL.md |
 | C090HF85F2P | proj-alphabot-testing (testing bridge — internal team) | skills/Finance/reconciliation_claw/SKILL.md + references/suppliers.md + references/date-parsing.md |
@@ -113,7 +113,7 @@ Load only when explicitly requested or clearly required:
 
 | Tool | Connection | MCP ID | Purpose |
 |---|---|---|---|
-| Slack | MCP | d1f954aa-b930-4277-8bf8-862c5efde5cb | Send messages, read channels, search, DM Nikhil |
+| Slack | MCP | d1f954aa-b930-4277-8bf8-862c5efde5cb | Send messages, read channels, search, DM Peter |
 | Jira / Confluence | MCP | 01934f1e-d7f4-4cc5-8894-e5f48e7cbdfa | Query/update issues, read Confluence |
 | GitHub | Env Var GITHUB_TOKEN_V4 | - | Read/write openclaw-nova; read alphabot (read-only) |
 | Gmail | MCP | c2b3d5cb-2b67-4a15-a75b-3be2901d1847 | Read-only monitoring; never send unless instructed |
@@ -133,7 +133,7 @@ Auth notes:
 | AI Automation | IAX | 721 | https://wegomushi.atlassian.net/jira/software/projects/IAX/boards/721 |
 | NetSuite | NDS | 753 | https://wegomushi.atlassian.net/jira/software/projects/NDS/boards/753 |
 
-Auth: JIRA_EMAIL=nikhil@wego.com + JIRA_API_TOKEN (from WegoClaw secrets)
+Auth: JIRA_EMAIL=peter.atef@wego.com + JIRA_API_TOKEN (from WegoClaw secrets)
 
 ---
 
@@ -146,19 +146,19 @@ Jira:
 
 GitHub:
 - Run auth preflight before any push or PR action
-- PRs require Nikhil review before merge
+- PRs require Peter review before merge
 - AlphaBot repo (wego/alphabot) is read-only - never push there
 
 Slack:
-- Never send to group or public channels without Nikhil review
+- Never send to group or public channels without Peter review
 - Use slack_search_public_and_private to find thread context before messaging
 - Vendor/supplier messages must go through designated channels
-- Never DM stakeholders on Nikhil behalf without explicit instruction
+- Never DM stakeholders on Peter behalf without explicit instruction
 - Respond in-thread when source is a Slack thread - preserves context per thread ID
 
 BigQuery:
 - Do not attempt BQ queries unless explicitly given credentials and full context
-- Delegate BQ work to Ayush unless Nikhil says otherwise
+- Delegate BQ work to Ayush unless Peter says otherwise
 
 Memory:
 - Daily log: memory/daily/YYYY-MM-DD.md - write here after each meaningful session

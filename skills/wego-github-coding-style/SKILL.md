@@ -1,11 +1,11 @@
 ---
 name: wego-github-coding-style
-description: Apply Nikhil’s GitHub coding style for Wego automations (Python + Robot Framework), including repo/module structure, naming, code quality, and PR standards. Use when creating, refactoring, reviewing, or preparing commits/PRs so code matches established team conventions.
+description: Apply Peter’s GitHub coding style for Wego automations (Python + Robot Framework), including repo/module structure, naming, code quality, and PR standards. Use when creating, refactoring, reviewing, or preparing commits/PRs so code matches established team conventions.
 ---
 
 # Wego GitHub Coding Style
 
-Follow these standards when producing code changes for Nikhil’s automation repos.
+Follow these standards when producing code changes for Peter’s automation repos.
 
 ## 1) Repo and module structure
 

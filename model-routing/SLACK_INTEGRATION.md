@@ -6,7 +6,7 @@
 
 ## How It Works
 
-When a DM arrives from Nikhil:
+When a DM arrives from Peter:
 
 1. **Slack plugin receives DM** → Message text available
 2. **Router classifies** → `slack_dm_router.py` → returns agent ID

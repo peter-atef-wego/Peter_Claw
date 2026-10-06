@@ -1,6 +1,6 @@
 ---
 name: Wego AI & Automation — Systems Architecture
-owner: Nikhil Gupta
+owner: Peter Atef
 last_reviewed: 2026-04-06
 ---
 
@@ -13,7 +13,7 @@ last_reviewed: 2026-04-06
 | OpenClaw | s-c58f0c35.openclaw.wego.engineering | AI agent platform — Data Automation's Claw-PRO runs here |
 | Jira | wegomushi.atlassian.net | Project tracking (IAX + NDS boards) |
 | Confluence | wegomushi.atlassian.net | Documentation |
-| GitHub | github.com/Nikhil-Wego / github.com/wego | Code repos |
+| GitHub | github.com/peter-atef-wego / github.com/wego | Code repos |
 | Slack | wego workspace | Team communication |
 | NetSuite | Internal ERP | Finance/accounting operations |
 | BigQuery | GCP project | Data warehouse for pipeline outputs |
@@ -41,7 +41,7 @@ last_reviewed: 2026-04-06
 
 ### Robot Framework + Python (AlphaBot)
 - **What**: Keyword-driven test/automation framework. All bot logic in `github.com/wego/alphabot`.
-- **Who**: Ayush (Hotels/HCN), Peter (HR, disputes). Nikhil oversees architecture.
+- **Who**: Ayush (Hotels/HCN). Peter oversees architecture.
 - **Structure**: Each automation is a Robot Framework suite; shared Python libraries in `alphabot/libs/`.
 - **Run**: Triggered via schedule or Slack command via AlphaBot dispatcher.
 
@@ -71,7 +71,7 @@ last_reviewed: 2026-04-06
 
 - **Instance**: s-c58f0c35.openclaw.wego.engineering
 - **Workspace path**: `/home/openclaw/.openclaw/workspace`
-- **Secrets (WegoClaw)**: GITHUB_TOKEN_V4 (fine-grained, Nikhil-Wego org), JIRA_EMAIL, JIRA_API_TOKEN (pending)
+- **Secrets (WegoClaw)**: GITHUB_TOKEN_V4 (fine-grained, peter-atef-wego org), JIRA_EMAIL, JIRA_API_TOKEN (pending)
 - **Known issue**: Data Automation's Claw OAuth token refresh failure for openai-codex — monitor `alphabot-masters` channel.
 - **Cron**: `daily-push-Data Automation's Claw-claw` — setup in progress.
 - **Contact for platform issues**: Madan Kumar (madan@wego.com).

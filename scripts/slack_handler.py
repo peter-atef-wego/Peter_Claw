@@ -3,7 +3,7 @@
 Custom Slack Handler — Intercepts DMs and auto-routes to correct tier agent.
 
 This handler:
-1. Listens for incoming DMs from Nikhil
+1. Listens for incoming DMs from Peter
 2. Classifies message to tier (L1-L4)
 3. Spawns correct agent session (nova-l1/l2/l3/l4)
 4. Executes with routed model
@@ -33,8 +33,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger('SlackHandler')
 
-# Nikhil's user ID (authorized only)
-NIKHIL_USER_ID = "U04H3EB2PTN"
+# Peter's user ID (authorized only)
+PETER_USER_ID = "PETER_SLACK_USER_ID_TODO"
 
 class SlackDMRouter:
     """Routes Slack DMs to correct tier agent."""
@@ -125,9 +125,9 @@ class SlackDMRouter:
         """
         Handle incoming DM event.
         """
-        # Verify sender is Nikhil
+        # Verify sender is Peter
         user_id = event.get("user")
-        if user_id != NIKHIL_USER_ID:
+        if user_id != PETER_USER_ID:
             logger.warning(f"DM from unauthorized user: {user_id}")
             return
         
@@ -139,7 +139,7 @@ class SlackDMRouter:
             logger.warning("Invalid DM event structure")
             return
         
-        logger.info(f"DM from Nikhil: '{message_text[:50]}...'")
+        logger.info(f"DM from Peter: '{message_text[:50]}...'")
         
         # Classify and get agent
         agent_id = self.classify_message(message_text)

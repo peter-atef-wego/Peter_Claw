@@ -30,7 +30,7 @@ from zoneinfo import ZoneInfo
 # ─────────────────────────────────────────────
 
 JIRA_BASE_URL = "https://api.atlassian.com/ex/jira/a7e53b72-ded0-45e3-8d7c-fd3573f46f1d/rest/api/3"
-JIRA_EMAIL = os.environ.get("JIRA_EMAIL", "nikhil@wego.com")
+JIRA_EMAIL = os.environ.get("JIRA_EMAIL", "peter.atef@wego.com")
 JIRA_API_TOKEN = os.environ.get("JIRA_API_TOKEN")
 SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN_NETSUITE_CHAMPION")
 SLACK_WEBHOOK = os.environ.get("SLACK_WEBHOOK") or os.environ.get("SLACK_WEBHOOK_ALPHABOT_MASTERS")

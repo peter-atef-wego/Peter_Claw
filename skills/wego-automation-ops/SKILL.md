@@ -20,7 +20,7 @@ Use this skill for strategic and delivery work across Wego automations.
 
 - Favor proven patterns over experimental complexity.
 - Optimize for unattended execution and operational reliability.
-- Provide direct, actionable recommendations (Nikhil prefers brevity).
+- Provide direct, actionable recommendations (Peter prefers brevity).
 
 ## Typical outputs
 

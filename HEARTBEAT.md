@@ -1,8 +1,8 @@
 # HEARTBEAT.md — Proactive Check Protocol
 
 ## Overview
-Data Automation's Claw-PRO runs a heartbeat during active hours to surface issues before Nikhil has to ask.
-Operating window: **09:00–23:00 Asia/Kolkata**.
+Data Automation's Claw-PRO runs a heartbeat during active hours to surface issues before Peter has to ask.
+Operating window: **09:00–23:00 Africa/Cairo**.
 State is tracked in `memory/heartbeat-state.json`.
 
 ---
@@ -19,7 +19,7 @@ These run automatically via `cron/jobs.json`. Data Automation's Claw monitors th
 | `weekly_team_friday` | Fri 9:00 AM DXB | Send Friday Slack reminder to team |
 | `daily_sync_status` | Daily 11:05 PM DXB | Post daily cron sync status to Nik (Slack DM) |
 
-**REMOVED (2026-04-13):** `netsuite_kb_sync` — disabled per Nikhil's request. No more NetSuite notifications.
+**REMOVED (2026-04-13):** `netsuite_kb_sync` — disabled per Peter's request. No more NetSuite notifications.
 
 If any of these fail, check `memory/knowledge/cron_resilience.md` for known failure patterns first.
 
@@ -35,8 +35,8 @@ These checks run on every heartbeat cycle without exception.
 - Never just list them — propose a next step for each.
 
 **DISABLED (2026-04-29):**
-- ~~Team Blocker Monitor~~ — Disabled per Nikhil's request
-- ~~Automation Failure Check~~ — Disabled per Nikhil's request
+- ~~Team Blocker Monitor~~ — Disabled per Peter's request
+- ~~Automation Failure Check~~ — Disabled per Peter's request
 
 ---
 
@@ -60,7 +60,7 @@ Review `cron_resilience.md` for repeated failure patterns.
 Verify cron jobs in table above ran successfully at last scheduled time.
 
 ### E. Upcoming Meetings
-Check calendar for meetings in the next 24h involving Nikhil or team members.
+Check calendar for meetings in the next 24h involving Peter or team members.
 Flag any meeting with no agenda or pre-read material.
 
 
@@ -87,12 +87,12 @@ Check if any capability improvements identified in past sessions can now be impl
 
 After each heartbeat, update `memory/heartbeat-state.json`:
 - Set `last_checks.<check_name>` to current ISO timestamp.
-- If `crisis_mode` triggered (automation down, blocker unresolved >48h): set `crisis_mode: true` and notify Nikhil via Slack DM immediately.
-- Log completed checks in `completed_today` array (reset daily at 00:00 IST).
+- If `crisis_mode` triggered (automation down, blocker unresolved >48h): set `crisis_mode: true` and notify Peter via Slack DM immediately.
+- Log completed checks in `completed_today` array (reset daily at 00:00 Africa/Cairo).
 
 ## Output Format
 Each heartbeat report:
 1. P1 findings first — with a clear CLEAR / FLAG / ESCALATE status per item.
 2. P2 rotating findings — summarised, not verbose.
 3. Any actions Data Automation's Claw took autonomously (Slack message, Jira update).
-4. Items requiring Nikhil's decision — surfaced as explicit questions, not buried.
+4. Items requiring Peter's decision — surfaced as explicit questions, not buried.

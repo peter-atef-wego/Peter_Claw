@@ -157,7 +157,7 @@ Add to MEMORY.md section after this is live:
 ## Important Notes
 
 ✅ Handler runs continuously in background  
-✅ Listens only for YOUR DMs (Nikhil, U04H3EB2PTN)  
+✅ Listens only for YOUR DMs (Peter, PETER_SLACK_USER_ID_TODO)  
 ✅ Rejects DMs from anyone else  
 ✅ Falls back to L2 if classification fails  
 ✅ All logs show in handler output

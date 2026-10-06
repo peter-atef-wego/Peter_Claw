@@ -10,7 +10,7 @@ last_updated: 2026-04-06
 
 - Workflow names: `[domain]-[action]-[target]` → e.g., `finance-sync-netsuite-invoices`, `hr-notify-contract-renewal`
 - Node names: Descriptive verbs → `Fetch Invoices`, `Filter Unpaid`, `Post to Slack`
-- Credential names: `[service]-[env]` → e.g., `slack-prod`, `jira-nikhil`, `netsuite-prod`
+- Credential names: `[service]-[env]` → e.g., `slack-prod`, `jira-peter`, `netsuite-prod`
 - Webhook paths: `/wego/[domain]/[action]` → e.g., `/wego/hr/contract-event`
 
 ---
@@ -59,7 +59,7 @@ last_updated: 2026-04-06
   "text": ":red_circle: *Workflow Failed*: {{ $workflow.name }}\nError: {{ $json.error.message }}\nNode: {{ $json.error.node }}\nTime: {{ $now }}"
 }
 ```
-- For P0 workflows: send error DM to Nikhil (U04H3EB2PTN) in addition to channel.
+- For P0 workflows: send error DM to Peter (PETER_SLACK_USER_ID_TODO) in addition to channel.
 
 ---
 
@@ -106,7 +106,7 @@ When adding a new scheduled workflow: add entry to `memory/knowledge/cron_resili
 ### Slack
 - Use `Slack` node (not HTTP Request) for all Slack operations.
 - Channel IDs are in CLAUDE.md and MEMORY.md. Always use IDs, not channel names (names can change).
-- For DMs: use `channel: U04H3EB2PTN` (Nikhil's Slack ID) for direct messages.
+- For DMs: use `channel: PETER_SLACK_USER_ID_TODO` (Peter's Slack ID) for direct messages.
 
 ### Jira
 - Use HTTP Request node with Jira REST API v3 (`https://wegomushi.atlassian.net/rest/api/3/`).
@@ -121,7 +121,7 @@ When adding a new scheduled workflow: add entry to `memory/knowledge/cron_resili
 
 ### Gmail / Email
 - Use `Gmail` node for read operations.
-- Sending via automation: confirm with Nikhil before wiring — email is one-way in USER.md rules.
+- Sending via automation: confirm with Peter before wiring — email is one-way in USER.md rules.
 
 ---
 

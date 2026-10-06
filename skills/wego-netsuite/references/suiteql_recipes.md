@@ -197,7 +197,7 @@ WHERE  tl.subsidiary = :subsid
 
 ### 6.9 FX rate from NetSuite (Rule 7 — never use external sources)
 
-> **Use the locked tool, not these recipes by hand, and NOT saved search 705.** For any FX question call `run_standard_report` with `report_name: "fx_rate_list"` (params: `as_of_date` required; `base_symbol` / `source_symbol` optional). This reproduces the native **`Lists > Accounting > Currency Exchange Rates`** page (`currencyratelist.nl`) — `currencyrate` joined to `currency` for names. The SQL below is what the template runs server-side — reference/review only; do NOT paste it into `run_suiteql` yourself (the agent drifted three times — Nikhil 2026-06-30), and do NOT route FX to `run_saved_search`/search 705 (it returns raw internal ids).
+> **Use the locked tool, not these recipes by hand, and NOT saved search 705.** For any FX question call `run_standard_report` with `report_name: "fx_rate_list"` (params: `as_of_date` required; `base_symbol` / `source_symbol` optional). This reproduces the native **`Lists > Accounting > Currency Exchange Rates`** page (`currencyratelist.nl`) — `currencyrate` joined to `currency` for names. The SQL below is what the template runs server-side — reference/review only; do NOT paste it into `run_suiteql` yourself (the agent drifted three times — Peter 2026-06-30), and do NOT route FX to `run_saved_search`/search 705 (it returns raw internal ids).
 
 Wego's books use NetSuite's `currencyrate` table as the source of truth for FX. **Never fall back to XE.com / Xignite / Bloomberg / Google Finance.** Per Akansha's standing instruction (2026-06-27), every currency-exchange-rate question routes here first.
 

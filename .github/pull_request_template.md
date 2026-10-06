@@ -4,7 +4,7 @@
 
 ## Why
 
-<!-- The trigger: a Jira ticket, an incident, a Nikhil decision, a stale doc. Link it. -->
+<!-- The trigger: a Jira ticket, an incident, a Peter decision, a stale doc. Link it. -->
 
 - Jira:
 - Related PR / incident:
@@ -38,10 +38,10 @@ Git Discipline).
 
 Does this change a long-running process (e.g. `scripts/netsuite_mcp_server.py`)?
 If so the container needs a restart before the new code takes effect — say so
-here and tell Nikhil (MEMORY.md § 4).
+here and tell Peter (MEMORY.md § 4).
 
 - [ ] No restart needed
-- [ ] Restart needed — flagged to Nikhil
+- [ ] Restart needed — flagged to Peter
 
 ## Memory
 

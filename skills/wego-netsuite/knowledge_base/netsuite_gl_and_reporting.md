@@ -30,7 +30,7 @@
 ---
 title: General Ledger & Reporting — Wego NetSuite PRODUCTION
 maintainer: Akansha Singh (akansha@wego.com)
-owners: Akansha Singh, Nikhil Gupta
+owners: Akansha Singh, Peter Atef
 last_updated: 2026-04-28
 next_review: 2026-05-12
 source_doc: prod/gl_reporting.md (rewrite blending #proj-finance-segment-allocation Slack + live PROD pulls)
@@ -78,10 +78,10 @@ Authoritative reference for Wego's **production** General Ledger, chart of accou
 | Data Engineering — NetSuite files | Sang Le | Monthly GMV NetSuite files (Flights/Hotels), GDS Incentive, segment aggregations |
 | Data Engineering — automation | Sheng Xiong Quek | Segment list automation, aggregation scripts |
 | BU/segment data feeds | Hansel Baro | Cross-team coordination on segment work |
-| Reconciliation automation | Nikhil Dalmia, Harshal Patankar | Payment gateway recon → NetSuite |
+| Reconciliation automation | Peter Dalmia, Harshal Patankar | Payment gateway recon → NetSuite |
 | SuiteScript / mappings | GC (external, handover 2026-03-30) | CoA changes, custom record updates, saved searches |
 | Project lead | Akansha Singh | OpenClaw automation; chart-of-account questions; this doc |
-| Project co-lead | Nikhil Gupta | OpenClaw automation; integration work |
+| Project co-lead | Peter Atef | OpenClaw automation; integration work |
 
 ### Slack channels (GL-relevant)
 
@@ -92,7 +92,7 @@ Authoritative reference for Wego's **production** General Ledger, chart of accou
 | `#finance-tech` | Finance automation tools / RPA / NetSuite tech |
 | `#finance-fx-cashflow-treasury` | FX rate sourcing, cashflow, treasury allocation |
 | `#payments-finance` | Payments ↔ finance interface (gateway settlements, recon files) |
-| `#payments-reconciliation` | Active recon-automation work — Alexandre Morin (Payments) ↔ Nikhil Dalmia ↔ Harshal Patankar; gateway file formats; crypto payments rollout (Feb 2026) |
+| `#payments-reconciliation` | Active recon-automation work — Alexandre Morin (Payments) ↔ Peter Dalmia ↔ Harshal Patankar; gateway file formats; crypto payments rollout (Feb 2026) |
 | `#netsuite_ar`, `#netsuite_ap`, `#netsuite_adminsupport` | Sub-ledger questions that may roll up to GL |
 | `#finance-automation-claw`, `#data-automations-bow-finance` | OpenClaw automation scope |
 
@@ -100,7 +100,7 @@ Authoritative reference for Wego's **production** General Ledger, chart of accou
 
 1. Single-sub posting issue → relevant sub-ledger lead (Sally for AR, Nurul Ain for AP).
 2. Cross-sub or segment booking issue → Li Ping (`#proj-finance-segment-allocation`).
-3. CoA / custom segment / saved-search change → GC + Akansha + Nikhil.
+3. CoA / custom segment / saved-search change → GC + Akansha + Peter.
 4. FX rate, period reopen, consolidation diff → Li Ping → Cecilia Tong (CFO).
 
 ---
@@ -133,7 +133,7 @@ PROD has **16 active operating subsidiaries + 3 elimination subsidiaries**. Same
 
 **Currency id legend (live `currency` table):** `1=USD, 4=EUR, 5=INR, 7=EGP, 8=IDR, 9=SAR, 10=AED, 11=SGD, 16=MYR, 25=AUD, 59=GBP, 77=JPY, 83=KWD, 115=PKR.`
 
-> **PROD anomaly to verify:** `subsidiary.currency` for SG-country subsidiaries (1, 3, 11, 15, 16, 27, 31) returns **id=1** (USD), not id=11 (SGD). Likely a functional vs. transaction currency nuance. **Confirm with Li Ping / Nikhil.** [Gap §22]
+> **PROD anomaly to verify:** `subsidiary.currency` for SG-country subsidiaries (1, 3, 11, 15, 16, 27, 31) returns **id=1** (USD), not id=11 (SGD). Likely a functional vs. transaction currency nuance. **Confirm with Li Ping / Peter.** [Gap §22]
 
 ---
 
@@ -761,7 +761,7 @@ PROD has 93 OthCurrAsset accounts. The payment gateway clearing accounts split p
 
 Pair with: AR Central Clearance per currency (AED, EGP, INR, PKR, SAR, USD) on `OthCurrAsset`; AP Central Clearance per currency on `OthCurrLiab` — see `prod/ap_operations.md` §4.
 
-> Active recon-automation work in `#payments-reconciliation`: Alexandre Morin (Payments) is sharing settlement file samples → Nikhil Dalmia / Harshal Patankar map them to NetSuite. **Crypto Payments rollout (Feb 2026)** added a new gateway-side recon stream.
+> Active recon-automation work in `#payments-reconciliation`: Alexandre Morin (Payments) is sharing settlement file samples → Peter Dalmia / Harshal Patankar map them to NetSuite. **Crypto Payments rollout (Feb 2026)** added a new gateway-side recon stream.
 
 ### 13.3 Bank accounts (87 active)
 
@@ -845,7 +845,7 @@ The recurring inputs Li Ping consumes for close:
 | Payroll segment allocation (entity × Department × BU per employee) | Mimi (Payroll2u, custom field "Department/BU Code") | Monthly (run ~24th of month) | Payroll2u export |
 | Manpower budget allocation file | Cecilia Tong (CFO) | Annual + ad-hoc | CFO sheet |
 | Segment list reference (Jan26 worksheet, etc.) | Li Ping | Quarterly refresh | Master segment Google Sheet |
-| Payment gateway settlement files | Alexandre Morin (Payments) → Nikhil Dalmia / Harshal Patankar | Per-gateway daily/weekly | Per-gateway dashboards / email |
+| Payment gateway settlement files | Alexandre Morin (Payments) → Peter Dalmia / Harshal Patankar | Per-gateway daily/weekly | Per-gateway dashboards / email |
 
 ### 16.5 Period close
 
@@ -870,7 +870,7 @@ The recurring inputs Li Ping consumes for close:
 
 - **Monthly close pack** — Li Ping (post Sang Le's GMV file ingestion + Mimi's payroll segment file)
 - **Weekly AP aging** — currently manual; OpenClaw automation scope (Beekim, 2026-04-17 ask)
-- **Payment gateway recon** — automation in `#payments-reconciliation` (Alexandre / Nikhil Dalmia / Harshal)
+- **Payment gateway recon** — automation in `#payments-reconciliation` (Alexandre / Peter Dalmia / Harshal)
 - **GDS Incentive** — monthly accrual + true-up, Sang Le file → Li Ping
 - **VAT / GST / TDS / PPH returns** — see `prod/tax_reporting.md`
 
@@ -980,7 +980,7 @@ Use REST: `mcp__netsuite-prod__get_record` with `record_type=journalEntry` (sing
 
 In PROD these are extra-sensitive — never propose changes without sign-off:
 
-- New CoA addition / retirement → Li Ping + Akansha + Nikhil + GC
+- New CoA addition / retirement → Li Ping + Akansha + Peter + GC
 - New custom segment value (Product Segment / Market Segment) → Li Ping + GC
 - Period reopen → Li Ping only
 - Cross-sub manual JE → use Advanced IC JE; not parallel single-sub JEs
@@ -1047,7 +1047,7 @@ In PROD these are extra-sensitive — never propose changes without sign-off:
 - `prod/tax_reporting.md` — Input/Output VAT, TDS, PPH, e-invoicing
 - `sbx/gl_reporting.md` — Sandbox equivalent of this doc
 - Skill: `intercompany-balance-investigation` — IC reconciliation playbook
-- Skill: `openclaw-meeting-actions` — Akansha/Nikhil sync action items
+- Skill: `openclaw-meeting-actions` — Akansha/Peter sync action items
 - Skill: `netsuite-report-ticket` — convert finance ask → NDS Jira ticket
 - Slack: `#proj-finance-segment-allocation` — primary GL/segment work
 - GDrive: Sang Le's monthly Flights/Hotels NS files; segment master sheet (Jan26)

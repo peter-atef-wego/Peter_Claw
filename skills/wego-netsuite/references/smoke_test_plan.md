@@ -1,6 +1,6 @@
 # references/smoke_test_plan.md
 
-End-to-end smoke test for the NetSuite Champion running on OpenClaw + Oracle's NetSuite MCP Standard Tools. Run these in order. Each test is a Slack message the user (Nikhil) posts in the listed channel; the **expected outcome** is what the bot should reply.
+End-to-end smoke test for the NetSuite Champion running on OpenClaw + Oracle's NetSuite MCP Standard Tools. Run these in order. Each test is a Slack message the user (Peter) posts in the listed channel; the **expected outcome** is what the bot should reply.
 
 **Important caveat:** these tests must be executed **live** by the user against the deployed Champion — they can't run from inside this conversation, because they go through Slack → OpenClaw → Oracle MCP → NetSuite. Use this doc as the checklist; tick each item off as you run it.
 
@@ -22,7 +22,7 @@ If any of 0.1–0.3 fail, stop and fix before running anything below.
 
 | # | Channel | Test message | Expected reply (shape) |
 |---|---|---|---|
-| 1.1 | DM (`D0AHK0616JW`) | `list our 8 subsidiaries` | Table of 8 rows with `id`, `name`, `country`, `currency`. Matches the alias table in `dimension_aliases.md`. |
+| 1.1 | DM (`PETER_DM_CHANNEL_ID_TODO`) | `list our 8 subsidiaries` | Table of 8 rows with `id`, `name`, `country`, `currency`. Matches the alias table in `dimension_aliases.md`. |
 | 1.2 | DM | `which period is open right now?` | One-line: "Current period is `MAY-2026` — open (closed=F, alllocked=F)." or the actual state. |
 | 1.3 | DM | `what's the FX rate AED to SGD today?` | Headline `1 AED = X.XXXX SGD`, with effective date. |
 
@@ -124,7 +124,7 @@ Each reply MUST be **in-thread** (not in the channel main feed). If you see a ma
 | 9.1 | DM | `create vendor "Foo" in Atlantis` (unknown subsidiary) | Error: "I don't recognise 'Atlantis' as a subsidiary. Which subsidiary — Wego Pte Ltd, Wego FZ-LLC, …?" |
 | 9.2 | DM | `create bill for vendor "Acme" in Wego SG today for 100` (multiple vendors match) | Error: "Vendor 'Acme' matches multiple records — be more specific. Candidates: Acme Travel (id=…), Acme Hotels (id=…)." |
 | 9.3 | DM | `post a journal in Wego SG today: debit 100 to 4100, credit 50 to 1200` (unbalanced) | Error: "Unbalanced journal: debits=100 credits=50 — must net to zero." |
-| 9.4 | (after rotating away the prod TBA token) | DM `list our subsidiaries` | Error reply: "NetSuite returned 401 — token may need rotation. Nikhil — heads up." (Then rotate back.) |
+| 9.4 | (after rotating away the prod TBA token) | DM `list our subsidiaries` | Error reply: "NetSuite returned 401 — token may need rotation. Peter — heads up." (Then rotate back.) |
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: Daily Digest — Contact Lookup & Meeting Context
 description: Pull consolidated contact files by person name(s) or meeting name
-owner: Nikhil Gupta
+owner: Peter Atef
 created: 2026-04-14
 trigger_phrases: 
   - "daily digest with [name]"
@@ -12,7 +12,7 @@ trigger_phrases:
 
 # Daily Digest — Contact Lookup Skill
 
-When Nikhil uses trigger phrases, respond with consolidated contact information in rich Slack format.
+When Peter uses trigger phrases, respond with consolidated contact information in rich Slack format.
 
 ---
 
@@ -30,7 +30,7 @@ When Nikhil uses trigger phrases, respond with consolidated contact information 
 ```
 "daily digest with likith and ayush"
 "checkpoint likith, ayush, peter"
-"summary Duncan and Nikhil"
+"summary Duncan and Peter"
 ```
 
 **Response:** Pull both files, merge into single rich Slack report.
@@ -38,7 +38,7 @@ When Nikhil uses trigger phrases, respond with consolidated contact information 
 ### Pattern 3: Specific Meeting
 ```
 "daily digest with likith from Commission automation"
-"checkpoint Duncan from Nikhil x Duncan catchup"
+"checkpoint Duncan from Peter x Duncan catchup"
 "summary ayush from HCN/Hotels pipeline"
 ```
 
@@ -107,7 +107,7 @@ Format:
 1. Parse query for names/meeting titles
 3. Extract relevant sections (last meeting, recent meetings, action items)
 4. Format in Slack blocks (rich format, no designation/role)
-5. Send to Nikhil
+5. Send to Peter
 
 ---
 

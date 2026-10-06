@@ -68,7 +68,7 @@ Revenue depends on traffic quality, click-through rates, and advertiser bid comp
 | Finance | Accounting, reporting, AP/AR, commissions — heavy NetSuite usage |
 | Marketing | Performance marketing, SEO, affiliate partnerships |
 | Operations | Supplier partnerships, content operations, customer support |
-| AI & Automation | Nikhil Gupta's team — internal process automation, AI agents, data pipelines |
+| AI & Automation | Peter Atef's team — internal process automation, AI agents, data pipelines |
 
 The AI & Automation team sits within Engineering/Operations and services multiple departments (Finance, HR, Payments).
 

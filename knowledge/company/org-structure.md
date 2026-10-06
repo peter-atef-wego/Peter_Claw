@@ -1,17 +1,17 @@
 ---
 name: Wego AI & Automation — Org Structure
-owner: Nikhil Gupta
+owner: Peter Atef
 last_reviewed: 2026-04-06
 ---
 
 # Org Structure
 
-## Nikhil's Position
+## Peter's Position
 
-**Nikhil Gupta** — AI & Automation Lead
+**Peter Atef** — AI & Automation Lead
 - Reports to: **Duncan** (VP Data, Marketing & Growth)
 - Skip-level: **Ross** (CEO)
-- Manages: Ayush Raj, Likith, Peter Atef, Akansha
+- Manages: Ayush Raj, Likith, Akansha
 
 ---
 
@@ -30,7 +30,7 @@ last_reviewed: 2026-04-06
 
 | Name | Role | Email | Relationship to Team |
 |---|---|---|---|
-| Duncan | VP Data, Marketing & Growth | duncan@wego.com | Nikhil's manager; approves major initiatives |
+| Duncan | VP Data, Marketing & Growth | duncan@wego.com | Peter's manager; approves major initiatives |
 | Ross | CEO | — | Skip-level; escalation path for strategic decisions |
 | Madan Kumar | Engineering (OpenClaw platform) | madan@wego.com | Technical support for OpenClaw instance |
 | Li Ping Low | Finance / NetSuite lead | liping@wego.com | Coordinating NetSuite handover to Akansha |
@@ -51,7 +51,7 @@ last_reviewed: 2026-04-06
 ```
 Ross (CEO)
 └── Duncan (VP Data, Marketing & Growth)
-    └── Nikhil Gupta (AI & Automation Lead)
+    └── Peter Atef (AI & Automation Lead)
         ├── Ayush Raj (Bangalore)
         ├── Likith (Bangalore)
         ├── Peter Atef (Cairo)
@@ -64,6 +64,6 @@ Ross (CEO)
 
 - **Capacity-based, not siloed.** Team members are assigned to primary domains but can pick up work across functions when capacity allows.
 - **Bangalore cluster**: Ayush, Likith, Akansha — timezone overlap, in-person collaboration possible.
-- **Cairo pod**: Peter operates independently; Nikhil is the bridge between Cairo and Bangalore.
+- **Cairo pod**: Peter operates independently; Peter is the bridge between Cairo and Bangalore.
 - **Onboarding track**: Akansha is on an accelerated ramp with Ayush as trainer. Target: 2 live automations by end of April 2026, then NetSuite ownership with Li Ping.
 - **GC exit context**: Previous team member GC owned NetSuite. Exited March 2026. Akansha is the designated replacement — transition coordinated by Li Ping.

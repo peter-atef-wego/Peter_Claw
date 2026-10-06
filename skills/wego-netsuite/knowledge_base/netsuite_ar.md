@@ -29,7 +29,7 @@
 
 ---
 
-## title: Accounts Receivable (AR) Operations — Agent Knowledge Base maintainer: Akansha Singh ([akansha@wego.com](mailto:akansha@wego.com)) owners: Akansha Singh, Nikhil Gupta last\_updated: 2026-04-27 next\_review: 2026-05-11 source\_doc: ar\_operations.md (process-by-process rewrite, refreshed against PRODUCTION NetSuite data) data\_source: NetSuite PRODUCTION (acct 5564218\) via netsuite-prod MCP, role "Claude Agent Read-Only" (read-only token) project: NetSuite OpenClaw
+## title: Accounts Receivable (AR) Operations — Agent Knowledge Base maintainer: Akansha Singh ([akansha@wego.com](mailto:akansha@wego.com)) owners: Akansha Singh, Peter Atef last\_updated: 2026-04-27 next\_review: 2026-05-11 source\_doc: ar\_operations.md (process-by-process rewrite, refreshed against PRODUCTION NetSuite data) data\_source: NetSuite PRODUCTION (acct 5564218\) via netsuite-prod MCP, role "Claude Agent Read-Only" (read-only token) project: NetSuite OpenClaw
 
 # Accounts Receivable (AR) — Wego NetSuite
 
@@ -70,12 +70,12 @@ NetSuite AR workflow, customer management, invoicing, revenue recognition, and c
 
 **Technical / Integrations:**
 
-- **Akansha Singh** & **Nikhil Gupta** — NetSuite devs, AR/BRR script owners. As of 2026-03-30 handover, Akansha owns: invoice/payment unlocks, saved-search builds, SuiteScript, permission fixes, custom record maintenance (`customrecord_cus_entity_tax_map`), reclass journals, CSV import template changes, PDF template tweaks.
+- **Akansha Singh** & **Peter Atef** — NetSuite devs, AR/BRR script owners. As of 2026-03-30 handover, Akansha owns: invoice/payment unlocks, saved-search builds, SuiteScript, permission fixes, custom record maintenance (`customrecord_cus_entity_tax_map`), reclass journals, CSV import template changes, PDF template tweaks.
 
 **Slack Channels:**
 
 - `#netsuite_ar` (ID `C08N2SY3HFS`) — **now private, invite-only**. Tag `@Akansha` for script/error, `@Li Ping` for policy.  
-- `#finance-automation-claw` (ID `C0AVB4VR708`) — OpenClaw automation scope (Akansha \+ Nikhil \+ Deepak Thapa).  
+- `#finance-automation-claw` (ID `C0AVB4VR708`) — OpenClaw automation scope (Akansha \+ Peter \+ Deepak Thapa).  
 - `#netsuite_ota` — OTA-specific invoicing.  
 - `#data-automations-bow-finance` — BOW finance automations (PG pipeline, RPA).  
 - `#payments-b2b-credit-management` — B2B credit / collections.
@@ -84,7 +84,7 @@ NetSuite AR workflow, customer management, invoicing, revenue recognition, and c
 
 1. AR preparer → `#netsuite_ar` tagging Akansha (script/permission/unlock) or Sally (approval/policy).  
 2. Akansha can't resolve in a day → tag Li Ping.  
-3. Cross-sub or GL-impacting → Li Ping \+ Akansha \+ Nikhil.  
+3. Cross-sub or GL-impacting → Li Ping \+ Akansha \+ Peter.  
 4. New tax jurisdiction or threshold → Cecilia Tong via Li Ping.
 
 ---
@@ -255,13 +255,13 @@ Approval exceptions → Sally; policy changes → Li Ping → Cecilia.
 
 ### Escalation
 
-Akansha for unlocks; Li Ping for period lock; Akansha \+ Nikhil for FX / PKR issue.
+Akansha for unlocks; Li Ping for period lock; Akansha \+ Peter for FX / PKR issue.
 
 ---
 
 ## Process: BRR-Generated Invoice (Automated)
 
-**Status:** Live. **Owner:** Akansha \+ Nikhil (script owners since 2026-03-30 handover).
+**Status:** Live. **Owner:** Akansha \+ Peter (script owners since 2026-03-30 handover).
 
 ### What BRR is
 
@@ -304,7 +304,7 @@ Booking Revenue Recognition — Wego's custom scheduled-posting pipeline. Bookin
 
 ### Back-dating prevention (Live since Jan 2026\)
 
-Estimate records **cannot be created or modified \>3 days in the past**. Deployed by Akansha to stop GL posting to prior (sometimes closed) months. Historical corrections require a new Estimate dated today \+ a separate manual JE via Akansha/Nikhil.
+Estimate records **cannot be created or modified \>3 days in the past**. Deployed by Akansha to stop GL posting to prior (sometimes closed) months. Historical corrections require a new Estimate dated today \+ a separate manual JE via Akansha/Peter.
 
 ### Known issues
 
@@ -317,7 +317,7 @@ Estimate records **cannot be created or modified \>3 days in the past**. Deploye
 
 ### Escalation
 
-BRR script logic changes → Akansha \+ Nikhil (do-not-answer).
+BRR script logic changes → Akansha \+ Peter (do-not-answer).
 
 ---
 
@@ -417,7 +417,7 @@ Akansha for reclass journals.
 
 ### Constraint
 
-The **Account field on Customer Payment is read-only** except for Admin role. Only Akansha or Nikhil can override the Account to move a payment directly to a specific bank. Everyone else: it lands in Undeposited Funds.
+The **Account field on Customer Payment is read-only** except for Admin role. Only Akansha or Peter can override the Account to move a payment directly to a specific bank. Everyone else: it lands in Undeposited Funds.
 
 ### Workflow
 
@@ -433,7 +433,7 @@ Run Customer Payment list filtered by `Status = "Not Deposited"`, filter dates \
 
 ### Escalation
 
-Admin override (payment → bank) → Akansha / Nikhil. Reclass / reversal → Akansha.
+Admin override (payment → bank) → Akansha / Peter. Reclass / reversal → Akansha.
 
 ---
 
@@ -459,7 +459,7 @@ Use the sibling skill `intercompany-balance-investigation` for structured debugg
 
 ### Escalation
 
-Akansha \+ Nikhil \+ Li Ping for unresolved IC breaks.
+Akansha \+ Peter \+ Li Ping for unresolved IC breaks.
 
 ---
 
@@ -824,7 +824,7 @@ ORDER BY t.trandate;
 
 ## Process: AR Reporting & Dashboards
 
-**Status:** Live for core reports; automation \+ central saved-search registry under OpenClaw scope. **Owner:** Sally Aljary (review, monthly distribution). Akansha \+ Nikhil (saved-search builds, customizations, automation). Supriya Kothari (leadership roll-up). Li Ping (consolidated / DSO).
+**Status:** Live for core reports; automation \+ central saved-search registry under OpenClaw scope. **Owner:** Sally Aljary (review, monthly distribution). Akansha \+ Peter (saved-search builds, customizations, automation). Supriya Kothari (leadership roll-up). Li Ping (consolidated / DSO).
 
 ### Navigation
 
@@ -878,7 +878,7 @@ ORDER BY t.trandate;
 ### Automation scope (OpenClaw / under development)
 
 - **Auto-emailed AR aging extract** (beekim 2026-04-17, AR \+ AP) — not yet built.  
-- **Daily AR digest to `#netsuite_ar`** — proposed in OpenClaw sync 2026-04-22 (Akansha \+ Nikhil).  
+- **Daily AR digest to `#netsuite_ar`** — proposed in OpenClaw sync 2026-04-22 (Akansha \+ Peter).  
 - **Consolidated AR dashboard** — planned in `#finance-automation-claw`.  
 - **BRR post-run summary to Slack** — Akansha scope.
 
@@ -929,9 +929,9 @@ Full Slack-sourced list — cross-reference to the process section for context.
 
 - Credit limit increases → Sally → Cecilia  
 - Period re-open requests → Li Ping only  
-- GL account mapping changes → Li Ping \+ Akansha \+ Nikhil  
+- GL account mapping changes → Li Ping \+ Akansha \+ Peter  
 - Tax treatment for a new jurisdiction or product line → Li Ping \+ external advisor  
-- BRR / Estimate script logic changes → Akansha \+ Nikhil  
+- BRR / Estimate script logic changes → Akansha \+ Peter  
 - Customer write-offs → Sally → Li Ping → Cecilia (per amount)  
 - Cross-subsidiary manual journals → Li Ping  
 - FX rate source changes → Cecilia \+ Akansha  
@@ -992,5 +992,5 @@ Full Slack-sourced list — cross-reference to the process section for context.
 - `gl_reporting.md` — Chart of accounts, JE workflows, elimination  
 - `tax_reporting.md` — VAT / GST / WHT / e-invoicing  
 - Skill: `intercompany-balance-investigation` — IC reconciliation  
-- Skill: `openclaw-meeting-actions` — sync action items from daily Nikhil / Akansha sync
+- Skill: `openclaw-meeting-actions` — sync action items from daily Peter / Akansha sync
 

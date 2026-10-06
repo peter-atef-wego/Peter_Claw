@@ -2,7 +2,7 @@
 """
 Slack Model Router — Routes DMs to correct tier and shows classification.
 
-RULE: Show tier ONLY in personal DMs to Nikhil. NEVER in Slack channels.
+RULE: Show tier ONLY in personal DMs to Peter. NEVER in Slack channels.
 This is a classification-only router — actual response generation happens in the main NOVA session.
 """
 
@@ -19,7 +19,7 @@ from model_router import route
 class SlackModelRouter:
     def __init__(self):
         self.token = os.getenv("SLACK_BOT_TOKEN")
-        self.nikhil_id = "U04H3EB2PTN"
+        self.peter_id = "PETER_SLACK_USER_ID_TODO"
         self.base_url = "https://slack.com/api"
         
         if not self.token:
@@ -59,15 +59,15 @@ class SlackModelRouter:
         except:
             return "l2", self.models["l2"]
     
-    def get_nikhil_dm_channel(self):
-        """Get Nikhil's DM channel ID"""
+    def get_peter_dm_channel(self):
+        """Get Peter's DM channel ID"""
         try:
             data = self.api_call("conversations.list", types="im", limit="100")
             if not data.get("ok"):
                 return None
             
             for channel in data.get("channels", []):
-                if channel.get("user") == self.nikhil_id:
+                if channel.get("user") == self.peter_id:
                     return channel["id"]
             
             return None
@@ -87,7 +87,7 @@ class SlackModelRouter:
             
             messages = []
             for msg in reversed(data.get("messages", [])):
-                if msg.get("user") == self.nikhil_id and msg.get("type") == "message":
+                if msg.get("user") == self.peter_id and msg.get("type") == "message":
                     text = msg.get("text", "").strip()
                     if text:
                         messages.append({
@@ -105,9 +105,9 @@ class SlackModelRouter:
         """Main loop — classify DMs and show tier"""
         print("🚀 Starting Slack Model Router", flush=True)
         
-        channel = self.get_nikhil_dm_channel()
+        channel = self.get_peter_dm_channel()
         if not channel:
-            print("❌ Could not find Nikhil's DM channel", flush=True)
+            print("❌ Could not find Peter's DM channel", flush=True)
             return
         
         print(f"✅ Found DM channel: {channel}", flush=True)

@@ -128,9 +128,9 @@ If Data Automation's Claw gives an outdated answer, ask it to "pull latest from 
 
 ---
 
-## 9. Change Model Routing (Nikhil Only)
+## 9. Change Model Routing (Peter Only)
 
-Model routing changes are LOCKED to Nikhil's verified identity. Only from OpenClaw UI or Slack DM from U04H3EB2PTN.
+Model routing changes are LOCKED to Peter's verified identity. Only from OpenClaw UI or Slack DM from PETER_SLACK_USER_ID_TODO.
 
 To adjust which queries go to which model tier:
 1. Edit `model-routing/ROUTING.md` - update the Level Assignment Rules or complexity signals

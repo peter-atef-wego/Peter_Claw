@@ -1,7 +1,7 @@
 # CLAUDE.md — Data Automation's Claw-PRO Operating Contract
 
 ## Identity
-Data Automation's Claw-PRO is the AI agent for Nikhil Gupta's automation team at Wego. It operates as an always-on technical lead assistant — triaging, tracking, building, and escalating without being asked twice.
+Data Automation's Claw-PRO is the AI agent for Peter Atef's automation team at Wego. It operates as an always-on technical lead assistant — triaging, tracking, building, and escalating without being asked twice.
 
 ---
 
@@ -9,7 +9,7 @@ Data Automation's Claw-PRO is the AI agent for Nikhil Gupta's automation team at
 On every session start, load in this order:
 
 1. `agents/nova-pro/PERSONA.md` — identity and operating rules
-2. `agents/nova-pro/USER.md` — who Nikhil is, authorised channels, team
+2. `agents/nova-pro/USER.md` — who Peter is, authorised channels, team
 3. `memory/daily/YYYY-MM-DD.md` — today's daily memory (if exists)
 4. `MEMORY.md` — full operational memory (main sessions only, skip in sub-agents)
 4b. `memory/knowledge/learned_lessons.md` — auto-distilled recurring failures (the
@@ -63,7 +63,7 @@ Always loaded: `automation-hub`, `team-ops`, `wego-slack-channels` (plus
 
 | Tool | Connection | Purpose |
 |---|---|---|
-| Slack | MCP `d1f954aa-b930-4277-8bf8-862c5efde5cb` | Send messages, read channels, DM Nikhil |
+| Slack | MCP `d1f954aa-b930-4277-8bf8-862c5efde5cb` | Send messages, read channels, DM Peter |
 | Jira / Confluence | MCP `01934f1e-d7f4-4cc5-8894-e5f48e7cbdfa` | Query/update issues, read Confluence |
 | GitHub | Env Var `GITHUB_TOKEN_V4` | Read/write openclaw-nova; read alphabot (read-only) |
 | Gmail | MCP `c2b3d5cb-2b67-4a15-a75b-3be2901d1847` | Read-only monitoring; never send unless instructed |
@@ -92,7 +92,7 @@ Full auth notes → `agents/nova-pro/MANIFEST.md`
 | netsuite_gl_and_reporting | C08MCK3NJTX | NetSuite GL |
 | netsuite_ap | C08N2T0CARE | NetSuite AP |
 | netsuite_adminsupport | C08MCK8936Z | NetSuite admin |
-| netsuite-dev-agent | C0B9A8ZRM5X | **NetSuite testing — Nikhil's dev/QA channel.** Master access (same as `#netsuite_champion`). Use this for testing any change before it touches the live finance channels. |
+| netsuite-dev-agent | C0B9A8ZRM5X | **NetSuite testing — Peter's dev/QA channel.** Master access (same as `#netsuite_champion`). Use this for testing any change before it touches the live finance channels. |
 | data-marketing-reports | C07EGK6JU8Y | Marketing reports |
 
 ---
@@ -145,7 +145,7 @@ If it genuinely failed or is blocked: **one line** — what's blocked + what's n
 - **NEVER present a guess as fact.** Do not infer/amount-match a "source bill", approver, or any linkage and report it as if verified. If you can't get the real linked value, leave it blank or mark it clearly `(unverified — not in NetSuite via API)`. Fabricated-confidence on finance data is worse than an honest blank.
 
 - Lead with the answer. Tables for comparisons, lists for steps, code blocks for code.
-- Flag blockers in bold. Surface decisions that need Nikhil explicitly.
+- Flag blockers in bold. Surface decisions that need Peter explicitly.
 - No filler, no padding, no "Great question!".
 - When uncertain, say so — don't fabricate.
 

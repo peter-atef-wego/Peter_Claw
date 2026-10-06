@@ -7,7 +7,7 @@
 ## What It Does
 
 The custom Slack handler:
-1. Listens for incoming DMs from Nikhil (U04H3EB2PTN)
+1. Listens for incoming DMs from Peter (PETER_SLACK_USER_ID_TODO)
 2. Classifies message to tier (L1-L4)
 3. Spawns OpenClaw session with routed agent (Data Automation's Claw-l1/l2/l3/l4)
 4. Sends response back to Slack
@@ -242,13 +242,13 @@ pip install slack-bolt slack-sdk
 ## Architecture
 
 ```
-DM from Nikhil
+DM from Peter
     ↓
 Slack App (Socket Mode)
     ↓
 slack_handler.py receives event
     ↓
-Verify: is Nikhil? (U04H3EB2PTN)
+Verify: is Peter? (PETER_SLACK_USER_ID_TODO)
     ↓
 Classify: model_router.py → tier
     ↓

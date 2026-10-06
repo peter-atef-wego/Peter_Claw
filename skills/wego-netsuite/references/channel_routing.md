@@ -20,7 +20,7 @@ This table is the source of truth. `agents/nova-pro/MANIFEST.md` mirrors it for 
 | `#netsuite_tax` | `C08MHS9PMFC` | `knowledge_base/netsuite_tax.md` | ✅ | ✅ | VAT code lookup, tax code create, e-invoicing status, tax report retrieval |
 | `#netsuite_ota` | `C08LZTG1YR5` | `knowledge_base/netsuite_ota.md` | ✅ | ✅ | OTA pipeline status, CSV import log, journal upload status, validation errors |
 | `#netsuite_champion` | `C0B1T3B4RMH` | resolved at runtime — see "Master channel routing" below | ✅ | ✅ | anything from any of the five domains; centralized master channel |
-| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | resolved at runtime — uses the same master-channel routing as `#netsuite_champion` | ✅ | ✅ | **Nikhil's dev / QA channel for testing changes before they touch live finance channels.** Treat exactly like `#netsuite_champion` — real MCP calls, real SuiteQL, real sandbox writes when asked. Do NOT degrade behaviour because "it's a test channel" — Nikhil is validating production code paths. |
+| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | resolved at runtime — uses the same master-channel routing as `#netsuite_champion` | ✅ | ✅ | **Peter's dev / QA channel for testing changes before they touch live finance channels.** Treat exactly like `#netsuite_champion` — real MCP calls, real SuiteQL, real sandbox writes when asked. Do NOT degrade behaviour because "it's a test channel" — Peter is validating production code paths. |
 
 **For every channel above**, the MANIFEST also force-loads `SKILL.md` + `CLAUDE.md` + `MEMORY.md` (architecture + 5-rule operating contract + env var inventory). The per-channel KB doc is **additional** domain detail, not a substitute for the core skill files.
 
@@ -32,7 +32,7 @@ This table is the source of truth. `agents/nova-pro/MANIFEST.md` mirrors it for 
 
 | Channel | Channel ID | Why excluded |
 |---|---|---|
-| `#netsuite_adminsupport` | `C08MCK8936Z` | Human-driven channel for auth, role, sandbox-refresh, and config escalation. Akansha and Nikhil triage manually. The Champion should not auto-respond. |
+| `#netsuite_adminsupport` | `C08MCK8936Z` | Human-driven channel for auth, role, sandbox-refresh, and config escalation. Akansha and Peter triage manually. The Champion should not auto-respond. |
 | `#wego-netsuite-automated-tests` | (TBD) | Test-run output channel; no human queries expected. |
 | `#netsuite-integrations` | (TBD) | Integration-design discussion; cross-functional, not a query channel. |
 
@@ -40,7 +40,7 @@ This table is the source of truth. `agents/nova-pro/MANIFEST.md` mirrors it for 
 
 ## Master channel routing — `#netsuite_champion` and `#netsuite-dev-agent`
 
-`#netsuite_champion` (`C0B1T3B4RMH`) is the centralized live master channel. `#netsuite-dev-agent` (`C0B9A8ZRM5X`) is Nikhil's dev / QA channel — **identical routing**, used for validating any new behaviour before it lands in live finance channels. Both follow the same domain-resolution flow below.
+`#netsuite_champion` (`C0B1T3B4RMH`) is the centralized live master channel. `#netsuite-dev-agent` (`C0B9A8ZRM5X`) is Peter's dev / QA channel — **identical routing**, used for validating any new behaviour before it lands in live finance channels. Both follow the same domain-resolution flow below.
 
 Anyone can use either for any domain. Resolve the domain from the user's message in this order:
 

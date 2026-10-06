@@ -1,6 +1,6 @@
 # openclaw-nova — Data Automation's Claw-PRO
 
-**AI & Automation Lead Agent for Nikhil Gupta, Wego — Data Automation team.**
+**AI & Automation Lead Agent for Peter Atef, Wego — Data Automation team.**
 
 | | |
 |---|---|
@@ -8,7 +8,7 @@
 | Repository | https://github.com/wego/openclaw-nova |
 | Workspace | `/home/openclaw/.openclaw/workspace` |
 | Mirror job | `openclaw_nova_mirror` — weekly PR from the OpenClaw workspace into this repo |
-| Owner | Nikhil Gupta (`nikhil@wego.com`) |
+| Owner | Peter Atef (`peter.atef@wego.com`) |
 
 ---
 
@@ -38,7 +38,7 @@ nightly to S3.
 | `HEARTBEAT.md` | Proactive monitoring protocol (window, P1/P2/P3 checks, crisis-mode triggers). |
 | `SOUL.md` | Personality and tone — direct, resourceful, no filler. |
 | `IDENTITY.md` | Agent identity metadata (name, creature, vibe, emoji, avatar). |
-| `USER.md` | About Nikhil — channels, preferences, escalation routes. |
+| `USER.md` | About Peter — channels, preferences, escalation routes. |
 | `TOOLS.md` | Local tool notes — environment-specific config. |
 | `SKILL_REGISTRY.md` | Registry of all 24 skills with descriptions and load conditions. |
 | `TEACHING.md` | Teaching patterns and knowledge-transfer templates. |
@@ -124,7 +124,7 @@ Two execution paths — MCP primary, OAuth script as fallback.
 | Channel | ID | Domain | KB doc |
 |---|---|---|---|
 | `#netsuite_champion` | `C0B1T3B4RMH` | Master (needs domain hint) | resolved per-message |
-| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | **Dev / QA — Nikhil's testing channel.** Master access. Use for testing any change before promoting to live finance channels. | resolved per-message |
+| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | **Dev / QA — Peter's testing channel.** Master access. Use for testing any change before promoting to live finance channels. | resolved per-message |
 | `#netsuite_ap` | `C08N2T0CARE` | Accounts Payable | `wego-netsuite/knowledge_base/netsuite_ap.md` |
 | `#netsuite_ar` | `C08N2SY3HFS` | Accounts Receivable | `netsuite_ar.md` |
 | `#netsuite_gl_and_reporting` | `C08MCK3NJTX` | General Ledger & Reporting | `netsuite_gl_and_reporting.md` |
@@ -132,7 +132,7 @@ Two execution paths — MCP primary, OAuth script as fallback.
 | `#netsuite_ota` | `C08LZTG1YR5` | OTA Integrations | `netsuite_ota.md` |
 | `#netsuite_adminsupport` | `C08MCK8936Z` | Admin/escalation (do not auto-respond) | — |
 
-DMs: `D0AHK0616JW` (Nikhil) — trusted; full access. DMs from any other user are redirected to the relevant channel.
+DMs: `PETER_DM_CHANNEL_ID_TODO` (Peter) — trusted; full access. DMs from any other user are redirected to the relevant channel.
 
 ### 3.6 Standard financial reports (10, server-side templates)
 
@@ -173,7 +173,7 @@ this repo and mirrored to S3. Three layers, with different durability and cost:
 does not answer anything until steps 1-3 complete.
 
 1. `agents/nova-pro/PERSONA.md` — identity and operating rules
-2. `agents/nova-pro/USER.md` — who Nikhil is, authorised channels, team
+2. `agents/nova-pro/USER.md` — who Peter is, authorised channels, team
 3. `memory/daily/YYYY-MM-DD.md` — today's log, if it exists
 4. `MEMORY.md` — full operational memory (main sessions only; skipped in sub-agents to save context)
 4b. `memory/knowledge/learned_lessons.md` — distilled recurring failures; read before any report request
@@ -270,7 +270,7 @@ change reaches the running system.
 | `weekly_team_setup.py` | ✅ Active | Weekly IAX team setup (Monday tickets, Friday wrap-up) |
 | `weekly_team_runner.py` | ✅ Active | Cron entrypoint — `monday` / `friday` mode dispatch |
 | `weekly_team_wrapper.py` | ✅ Active | Wrapper that adds logging + failure reporting around the runner |
-| `daily_sync_status.py` | ✅ Active | Builds the daily cron sync status DM to Nikhil |
+| `daily_sync_status.py` | ✅ Active | Builds the daily cron sync status DM to Peter |
 | `memory_backup/backup_memory.py` | ✅ Active | Nightly `memory/` → S3 backup (`memory_s3_backup` cron) |
 | `memory_backup/restore_memory.py` | ✅ Active | Restore `memory/` from an S3 snapshot |
 | `memory_backup/preflight_s3.py` | ✅ Active | Credential + bucket reachability check before a backup run |
@@ -308,8 +308,8 @@ Always-loaded baseline: `automation-hub`, `team-ops`, `wego-slack-channels` (cha
 | `wego-automation-ops/` | Cross-functional automation strategy |
 | `brain-sync-advanced-format/` | Rich Slack block status reports |
 | `weekly-team-setup/` | Monday tickets + Friday wrap, IAX board automation |
-| `nik-memory-sync/` | Memory file pruning + consolidation |
-| `nik-profile/` | Nikhil profile reload |
+| `peter-memory-sync/` | Memory file pruning + consolidation |
+| `peter-profile/` | Peter profile reload |
 | `dm-model-signature/` | Stamps `🎯 L1/L2/L3/L4` chip on every DM reply |
 | `context-aware-response/` | Channel-vs-DM tone shifts |
 | `model-providers/` | Provider notes (OpenRouter, OpenAI, direct) |
@@ -367,7 +367,7 @@ added after two logged incidents: on 2026-04-27 the agent posted fabricated serv
 health (`AlphaBot offline`, `Port 3002 unreachable`, retry counts) into a bridge
 thread where the listener had in fact succeeded; on 2026-04-29 it posted a
 `*<Supplier> reconciliation confirmed*` block with `Run Parameters` and a
-`Transaction Profile` into Nikhil's DM, for a file the listener never saw and a run
+`Transaction Profile` into Peter's DM, for a file the listener never saw and a run
 that never happened. Neither state is observable from Slack. The rule is that if a
 draft contains a blocklisted phrase, the whole draft is discarded and nothing is
 posted — **narration is the bug**, and silence is the correct output.
@@ -380,7 +380,7 @@ The listener's own source is vendored in `test_py/` for review — see §5.9 *Re
 |---|---|
 | `MANIFEST.md` | **Skill loading rules** — channel ID → skill mapping, keyword routing, execution rules. Master routing table. |
 | `PERSONA.md` | Agent identity and operating rules |
-| `USER.md` | Nikhil profile, authorized channels, team contacts |
+| `USER.md` | Peter profile, authorized channels, team contacts |
 
 ### 5.5 `/cron/` — Scheduled jobs (7 defined, 3 enabled)
 
@@ -394,7 +394,7 @@ The listener's own source is vendored in `test_py/` for review — see §5.9 *Re
 | `openclaw_nova_mirror` | `30 3 * * 0` (Sun 03:30 UTC) | ⛔ | Open mirror PR to `wego/openclaw-nova`. **Broken:** its command runs `scripts/nova_mirror_pr.py`, which is not in the repo. Disabled, so it is not failing — but it cannot work until the script is restored. |
 | `weekly_team_monday` | `0 5 * * 1` (Mon 05:00 UTC) | ⛔ | Create IAX weekly tickets |
 | `weekly_team_friday` | `0 5 * * 5` (Fri 05:00 UTC) | ⛔ | Friday wrap-up post |
-| `daily_sync_status` | `5 19 * * *` (daily 19:05 UTC) | ⛔ | Post sync status to Nikhil's DM |
+| `daily_sync_status` | `5 19 * * *` (daily 19:05 UTC) | ⛔ | Post sync status to Peter's DM |
 
 Supporting files in `cron/`: `dispatch_with_routing.sh`, `router_init.sh`, `example_routed_job.sh`.
 
@@ -511,8 +511,8 @@ in this section refer to sections of that file, not of this README.**
 
 | Date | Decision | Details |
 |---|---|---|
-| 2026-06-09 | `#netsuite-dev-agent` registered (`C0B9A8ZRM5X`) | Master access — same routing as `#netsuite_champion`. Nikhil's dev/QA channel for validating changes before they touch live finance channels. |
-| 2026-06-09 | Standing rule: restart heads-up on code changes | When a change touches a long-running OpenClaw process (e.g. `netsuite_mcp_server.py`), proactively tell Nikhil the container needs a restart for the new code to take effect (MEMORY.md §4). |
+| 2026-06-09 | `#netsuite-dev-agent` registered (`C0B9A8ZRM5X`) | Master access — same routing as `#netsuite_champion`. Peter's dev/QA channel for validating changes before they touch live finance channels. |
+| 2026-06-09 | Standing rule: restart heads-up on code changes | When a change touches a long-running OpenClaw process (e.g. `netsuite_mcp_server.py`), proactively tell Peter the container needs a restart for the new code to take effect (MEMORY.md §4). |
 | 2026-06-09 | `get_role_permissions` via existing `restlet_companion` (PR #62) | Extends the deployed `restlet_companion.js` with a 4th action `role_permissions`. Reuses existing `NETSUITE_<SCOPE>_RESTLET_*` env vars — no new env vars, no parallel deployment. Replaces the standalone RESTlet from PR #61. |
 | 2026-06-09 | §5.18a — Try `get_role_permissions` first | For permission-grid asks, call the new tool; on `RESTLET_HANDLER_STALE` reply with the one-step File Cabinet update path; on `role_load_failed` Akansha widens the integration role's `Setup → Set Up Company → Role` permission. |
 | 2026-06-09 | §5.18 — No substitute deliverables (PR #60) | When a filtered ask can't be satisfied exactly, name the blocker + unblocker + stop. Never dump an unfiltered substitute. 5 forbidden lead-in phrases added to §7 tripwire. |
@@ -550,7 +550,7 @@ in this section refer to sections of that file, not of this README.**
 
 | Contact | Role |
 |---|---|
-| Nikhil Gupta (`nikhil@wego.com`) | Owner / Operator |
+| Peter Atef (`peter.atef@wego.com`) | Owner / Operator |
 | Madan Kumar (`madan@wego.com`) | OpenClaw Platform |
 | Akansha (`akansha@wego.com`) | NetSuite Developer — sandbox→prod promotion, role/permission grants, schema changes |
 | Beekim (`beekim@wego.com`) | Sr Finance Manager — owner of monthly interco BS + GL listing |

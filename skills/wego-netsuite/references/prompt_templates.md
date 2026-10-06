@@ -150,7 +150,7 @@ Useful when you're not sure whether the user wants information or a record creat
 
 > NetSuite returned **401 INVALID_LOGIN_ATTEMPT** on the production read.
 >
-> Nikhil — the TBA token may have expired or the integration role may have been revoked. Heads up.
+> Peter — the TBA token may have expired or the integration role may have been revoked. Heads up.
 
 ### 5.8 Empty result
 

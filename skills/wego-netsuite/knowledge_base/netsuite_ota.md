@@ -30,7 +30,7 @@
 ---
 title: Tax Reporting — Wego NetSuite PRODUCTION
 maintainer: Akansha Singh (akansha@wego.com)
-owners: Akansha Singh, Nikhil Gupta
+owners: Akansha Singh, Peter Atef
 last_updated: 2026-04-28
 next_review: 2026-05-12
 source_doc: prod/tax_reporting.md (first PROD-grounded draft)

@@ -17,7 +17,7 @@ Instead of trying to spawn 5 separate agents (complex, failing), we use:
 ## How It Works
 
 ```
-DM from Nikhil
+DM from Peter
     ↓
 Router classifies → Tier (L1/L2/L3/L4)
     ↓

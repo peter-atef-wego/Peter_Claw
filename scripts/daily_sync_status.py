@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-daily_sync_status.py — Posts cron job run status to Nikhil's Slack DM.
+daily_sync_status.py — Posts cron job run status to Peter's Slack DM.
 Runs via cron at 19:05 UTC (11:05 PM DXB) daily.
 
 Reads executor_state.json for last run times/statuses,
-then sends a formatted Slack message to Nikhil's DM.
+then sends a formatted Slack message to Peter's DM.
 """
 
 import json
@@ -19,7 +19,7 @@ from pathlib import Path
 WORKSPACE_DIR = Path("/home/openclaw/.openclaw/workspace")
 STATE_FILE = WORKSPACE_DIR / "cron" / "executor_state.json"
 SLACK_TOKEN = os.environ.get("SLACK_BOT_TOKEN") or os.environ.get("SLACK_BOT_TOKEN_NETSUITE_CHAMPION")
-NIK_USER_ID = "U04H3EB2PTN"
+NIK_USER_ID = "PETER_SLACK_USER_ID_TODO"
 
 JOBS_TO_REPORT = [
     "openclaw_nova_mirror",

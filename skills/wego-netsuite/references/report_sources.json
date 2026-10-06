@@ -1,5 +1,5 @@
 {
-  "_readme": "Registry of scheduled NetSuite reports ingested into persistent report memory. source=email: fetched from rpa@wego.com Gmail (sender system@sent-via.netsuite.com) by subject substring. source=cabinet: pulled from the File Cabinet via get_cabinet_file. period_format tells the agent how to normalise the period a user asks for. Add entries as Nikhil supplies each report's subject/folder; keep report_key stable — it is the storage path.",
+  "_readme": "Registry of scheduled NetSuite reports ingested into persistent report memory. source=email: fetched from rpa@wego.com Gmail (sender system@sent-via.netsuite.com) by subject substring. source=cabinet: pulled from the File Cabinet via get_cabinet_file. period_format tells the agent how to normalise the period a user asks for. Add entries as Peter supplies each report's subject/folder; keep report_key stable — it is the storage path.",
   "subsidiaries": [
     "Wego",
     "Elimination – Wego Root",
@@ -21,7 +21,7 @@
     "Wego Travel & Tourism (Private) Limited",
     "Wego Travel S.A.E"
   ],
-  "_subsidiaries_note": "Official NetSuite subsidiary names (Nikhil 2026-07-28). Used by get_stored_report(subsidiary=...) to resolve what the user typed to the exact 'Subsidiary: Name' value before filtering. 'consolidated'/'consolidate'/no subsidiary mentioned = serve the stored consolidated file unfiltered.",
+  "_subsidiaries_note": "Official NetSuite subsidiary names (Peter 2026-07-28). Used by get_stored_report(subsidiary=...) to resolve what the user typed to the exact 'Subsidiary: Name' value before filtering. 'consolidated'/'consolidate'/no subsidiary mentioned = serve the stored consolidated file unfiltered.",
   "reports": [
     {
       "report_key": "ap_aging_detail_bk_consolidated",
@@ -67,7 +67,7 @@
         "Wego Travel & Tourism (Private) Limited",
         "Wego Travel S.A.E"
       ],
-      "subsidiary_variants_note": "EXACT scope names as they appear in the subject between 'BK ' and ' as of' (Nikhil 2026-07-30, from the inbox screenshots). The subject IS the mapping: 'AP: A/P Aging Detail BK PT Wego Travel Indonesia as of 30/07/2026' -> scope 'PT Wego Travel Indonesia'. THREE Singapore variants are DISTINCT reports — 'Wego Pte Ltd (Singapore)', '... (Singapore) (Consolidated)' and '... (SG Group) (Consolidated)' — never collapse them. Resolve the user's words against THIS list only: exact match first, else a UNIQUE substring; anything ambiguous or unknown -> ask, listing the candidates. Never guess a scope for finance data."
+      "subsidiary_variants_note": "EXACT scope names as they appear in the subject between 'BK ' and ' as of' (Peter 2026-07-30, from the inbox screenshots). The subject IS the mapping: 'AP: A/P Aging Detail BK PT Wego Travel Indonesia as of 30/07/2026' -> scope 'PT Wego Travel Indonesia'. THREE Singapore variants are DISTINCT reports — 'Wego Pte Ltd (Singapore)', '... (Singapore) (Consolidated)' and '... (SG Group) (Consolidated)' — never collapse them. Resolve the user's words against THIS list only: exact match first, else a UNIQUE substring; anything ambiguous or unknown -> ask, listing the candidates. Never guess a scope for finance data."
     },
     {
       "report_key": "classification_lists",

@@ -80,7 +80,7 @@ When you call a NetSuite tool in Slack:
 Once this is in place, OpenClaw's Slack gateway will validate:
 - If Claude calls a NetSuite MCP tool in a Slack channel, it expects a public-channel reply within 30 seconds
 - If no reply is posted, the gateway logs it as "tool result surfaced: FALSE" in the audit log
-- If this happens repeatedly, Nikhil is notified
+- If this happens repeatedly, Peter is notified
 
 ## Troubleshooting
 

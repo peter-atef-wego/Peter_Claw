@@ -54,7 +54,7 @@ README §3.3 also lists phantom entries `execute_create` / `execute_update` as s
 - PR #61 — Initial role-permissions RESTlet (superseded by #62)
 - PR #62 — `get_role_permissions` via existing `restlet_companion.js` — no new env vars
 - 2026-06-09 — Standing rule: container-restart heads-up on every code-touching change (MEMORY.md §4)
-- 2026-06-09 — `#netsuite-dev-agent` (`C0B9A8ZRM5X`) registered as Nikhil's dev/QA channel
+- 2026-06-09 — `#netsuite-dev-agent` (`C0B9A8ZRM5X`) registered as Peter's dev/QA channel
 
 **Fix:** §7 extended with 6 new rows, footer updated to 2026-06-09.
 
@@ -63,7 +63,7 @@ README §3.3 also lists phantom entries `execute_create` / `execute_update` as s
 **Evidence:**
 - `cron/jobs.json` job names: `daily_sync_status, fireflies_daily_digest, fireflies_sync, nova_claw_pull_sync, openclaw_nova_mirror, weekly_team_friday, weekly_team_monday` (7 jobs)
 - `CRON_SCHEDULE.md` lists 8 jobs — includes phantom `netsuite_kb_sync` (Mon/Thu 04:00) that doesn't exist
-- KB sync was explicitly disabled per `MEMORY.md §4`: *"NetSuite KB sync: DISABLED 2026-04-13 per Nikhil. Script retained at `scripts/netsuite_kb_sync.py` but cron job removed."*
+- KB sync was explicitly disabled per `MEMORY.md §4`: *"NetSuite KB sync: DISABLED 2026-04-13 per Peter. Script retained at `scripts/netsuite_kb_sync.py` but cron job removed."*
 
 **Fix:** Drop the row from `CRON_SCHEDULE.md`. Source of truth = `cron/jobs.json`.
 
@@ -114,13 +114,13 @@ GHOST: skills/meeting-prep         (referenced in MANIFEST)
 
 ```
 brain-sync-advanced-format, context-aware-response, daily-digest-contacts,
-dm-working-indicator, itops, model-providers, nik-memory-sync, nik-profile,
+dm-working-indicator, itops, model-providers, peter-memory-sync, peter-profile,
 openclaw-nova-mirror, ops-sync, robot-python-automation, session-analytics,
 sql-plsql-bigquery, weekly-team-setup, wego-automation-ops, wego-rpa-structure,
 wego-slack-channels
 ```
 
-Some are likely loaded by other mechanisms (e.g. `dm-model-signature` is always-loaded per its own SKILL.md, `nik-memory-sync` runs on schedule, `session-analytics` is a logger). Others may genuinely be orphans.
+Some are likely loaded by other mechanisms (e.g. `dm-model-signature` is always-loaded per its own SKILL.md, `peter-memory-sync` runs on schedule, `session-analytics` is a logger). Others may genuinely be orphans.
 
 **Recommendation:** Audit each — for every skill, document one of: (a) channel/keyword routes that load it, (b) script that imports it, (c) "always-loaded baseline" marker, or (d) orphan → delete. Should take ~1 hour. PR title: `[audit] skill loading inventory + orphan removal`.
 
@@ -201,7 +201,7 @@ Per `MEMORY.md §B` (PRs #53, #54): repeated ghost-state and stale-`nextRunAtMs`
 
 ---
 
-## Open questions for Nikhil before Phase 2
+## Open questions for Peter before Phase 2
 
 1. **P1.6 ghost skills in MANIFEST** — safe to remove the 4 references, or are they wired up via something I don't see? (Most likely safe doc cleanup.)
 2. **P2.2 unreferenced skills** — happy to do the loading-inventory PR; want me to scope it?

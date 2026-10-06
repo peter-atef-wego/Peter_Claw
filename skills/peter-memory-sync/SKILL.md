@@ -1,9 +1,9 @@
 ---
-name: nik-memory-sync
-description: Keep Nikhil’s memory and skills aligned between OpenClaw runtime files and the openclaw-nova GitHub repo. Use when updating memory/skills, syncing changes, or reconciling edits made directly on GitHub so both sources stay consistent.
+name: peter-memory-sync
+description: Keep Peter’s memory and skills aligned between OpenClaw runtime files and the openclaw-nova GitHub repo. Use when updating memory/skills, syncing changes, or reconciling edits made directly on GitHub so both sources stay consistent.
 ---
 
-# Nikhil Memory + Skills Sync
+# Peter Memory + Skills Sync
 
 Maintain a single, aligned “brain” between local memory/skills and the GitHub repo.
 
@@ -16,7 +16,7 @@ Maintain a single, aligned “brain” between local memory/skills and the GitHu
 ## When to sync
 
 - After every memory/skills update, commit + push.
-- If Nikhil says he edited GitHub, pull immediately and reconcile.
+- If Peter says he edited GitHub, pull immediately and reconcile.
 - On session start: pull latest before making changes (if GitHub auth is available).
 
 ## Sync procedure (default)
@@ -29,7 +29,7 @@ Maintain a single, aligned “brain” between local memory/skills and the GitHu
 
 ## Conflict handling
 
-- If a merge conflict appears, pause and ask Nikhil how to resolve.
+- If a merge conflict appears, pause and ask Peter how to resolve.
 - Never overwrite GitHub changes silently.
 
 ## Sensitive data guardrail

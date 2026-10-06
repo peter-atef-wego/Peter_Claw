@@ -25,7 +25,7 @@
         "deploy"
       ],
       "agent_id": "nova-l1",
-      "notes": "Was Haiku 4.5 until 2026-06-16; removed at Nikhil request \u2014 too unreliable for DM tier identification. Same model as L3; chip differentiates surface (DM vs channel), not model."
+      "notes": "Was Haiku 4.5 until 2026-06-16; removed at Peter request \u2014 too unreliable for DM tier identification. Same model as L3; chip differentiates surface (DM vs channel), not model."
     },
     {
       "id": "l2",

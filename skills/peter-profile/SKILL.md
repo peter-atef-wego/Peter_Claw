@@ -1,11 +1,11 @@
 ---
-name: nik-profile
-description: Working profile for Nikhil Gupta (Wego AI & Automation Lead): responsibilities, priorities, team context, constraints, and collaboration preferences. Use when planning work, proposing solutions, writing updates, prioritizing tasks, or deciding communication style so outputs stay aligned to Nikhil’s role and goals.
+name: peter-profile
+description: Working profile for Peter Atef (Wego AI & Automation Lead): responsibilities, priorities, team context, constraints, and collaboration preferences. Use when planning work, proposing solutions, writing updates, prioritizing tasks, or deciding communication style so outputs stay aligned to Peter’s role and goals.
 ---
 
-# Nikhil Profile
+# Peter Profile
 
-Use this profile to align recommendations and execution with how Nikhil works.
+Use this profile to align recommendations and execution with how Peter works.
 
 ## Role and context
 
@@ -36,15 +36,15 @@ Use this profile to align recommendations and execution with how Nikhil works.
 ## Preferred collaboration style
 
 - Direct, concise, execution-focused.
-- Avoid over-explaining fundamentals (Nikhil is highly technical).
+- Avoid over-explaining fundamentals (Peter is highly technical).
 - Provide actionable next steps and risks.
 - Prefer async updates over meetings where possible.
 
 ## Operational rules
 
-- JIRA must be updated daily by team members (Nikhil enforces this).
+- JIRA must be updated daily by team members (Peter enforces this).
 - All vendor/supplier communication goes through dedicated Slack channels, not DMs.
-- Nikhil is final PR approver for all code.
+- Peter is final PR approver for all code.
 
 ## What to optimize for
 

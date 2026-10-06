@@ -225,7 +225,7 @@ def case_4_period_never_emailed():
 def case_5_how_people_actually_ask():
     """The args an agent plausibly forwards from a real Slack message.
 
-    Nikhil pastes the whole subject line. Akansha drops the brackets. Neither
+    Peter pastes the whole subject line. Akansha drops the brackets. Neither
     should produce "which subsidiary did you mean?" when the message already
     said it in full — but genuinely ambiguous wording still must ask.
     """

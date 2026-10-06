@@ -10,7 +10,7 @@ updated: 2026-06-06
 
 ## Rule
 
-**Every response in a Slack DM to Nikhil MUST end with a model tier signature.**
+**Every response in a Slack DM to Peter MUST end with a model tier signature.**
 
 This is NOT optional. It applies to all interactive DM responses (not `NO_REPLY`).
 
@@ -49,7 +49,7 @@ Signature appears as the last line of your message:
 - DM → Default L1 (Sonnet — same model as L3; chip indicates DM surface)
 - Slack channel @mention → Default L3 (Sonnet, minimum floor)
 - Complex/strategy → Default L4 (Opus 4.8)
-- L5 → NEVER auto-routed. Explicit invocation by Nikhil or documented escalation paths only (see `model-routing/ROUTING.md`).
+- L5 → NEVER auto-routed. Explicit invocation by Peter or documented escalation paths only (see `model-routing/ROUTING.md`).
 
 ---
 
@@ -123,7 +123,7 @@ If you call an external API (e.g., OpenRouter for validation, or curl for Jira) 
 
 ## Rationale
 
-This makes model routing transparent to Nikhil:
+This makes model routing transparent to Peter:
 - He sees which tier each response used
 - Helps track cost (L1 << L3 << L4)
 - Teaches him when escalation happens
@@ -134,7 +134,7 @@ This makes model routing transparent to Nikhil:
 
 ## Authority
 
-- Set by Nikhil (2026-05-20 05:35 UTC)
+- Set by Peter (2026-05-20 05:35 UTC)
 - Updated 2026-06-06 for dynamic enforcement
 - Applies in ALL Slack DMs
 - Update this skill if tier mapping or format changes

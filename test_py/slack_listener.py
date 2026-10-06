@@ -104,7 +104,7 @@ if not SLACK_TOKEN:
 # every poll cycle. Adding a channel = invite the bot to it on Slack +
 # add the ID here.
 CHANNELS = {
-    "C090HF85F2P": "proj-alphabot-testing",      # internal team testing (Nikhil + automation team)
+    "C090HF85F2P": "proj-alphabot-testing",      # internal team testing (Peter + automation team)
     "C0AVB4VR708": "finance-automation-claw",    # finance team production (daily use)
 }
 CHANNEL_IDS = list(CHANNELS.keys())

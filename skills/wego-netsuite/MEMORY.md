@@ -24,7 +24,7 @@ Slack ──▶ OpenClaw (Claude agent) ──▶ Oracle NetSuite MCP Standard T
   - `netsuite-mcp-standard-tools-production`
   - `netsuite-mcp-standard-tools-sandbox`
 - **Auth:** OAuth 1.0a TBA, handled inside the MCP servers. The Champion never sees tokens.
-- **Slack:** the bot identity is `@Data Automation's Claw` (user-id `U0AHNGSDQ3W`). Slack token lives in `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` in the OpenClaw runtime env (set by Nikhil; separate from the generic `SLACK_BOT_TOKEN` used by other Wego automations).
+- **Slack:** the bot identity is `@Data Automation's Claw` (user-id `U0AHNGSDQ3W`). Slack token lives in `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` in the OpenClaw runtime env (set by Peter; separate from the generic `SLACK_BOT_TOKEN` used by other Wego automations).
 - **Models allowed:** Sonnet 4.6 (floor) or Opus 4.8 (ceiling). **Haiku is forbidden** per Wego policy — too weak for SuiteQL synthesis and multi-step tool reasoning.
 - **Legacy code deleted** (was at `test_py/netsuite-mcp/`). On 2026-05-12 the entire folder was removed from the repo to stop the agent from finding it and trying to use the Python listener as a fallback path. All operational knowledge from those files lives in `skills/wego-netsuite/references/` now (`finance_tools.md`, `suiteql_recipes.md`, `dimension_aliases.md`, `governance.md`, `prompt_templates.md`, `netsuite_capabilities.md`).
 
@@ -69,19 +69,19 @@ URL templates:
 | `#netsuite_tax` | `C08MHS9PMFC` | Tax | Anyone in channel | `knowledge_base/netsuite_tax.md` |
 | `#netsuite_ota` | `C08LZTG1YR5` | OTA | Anyone in channel | `knowledge_base/netsuite_ota.md` |
 | `#netsuite_champion` | `C0B1T3B4RMH` | Master | Anyone in channel | resolved per-message from domain hint |
-| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | Master — **dev / QA** | Nikhil (testing) | resolved per-message from domain hint — identical routing to `#netsuite_champion` |
+| `#netsuite-dev-agent` | `C0B9A8ZRM5X` | Master — **dev / QA** | Peter (testing) | resolved per-message from domain hint — identical routing to `#netsuite_champion` |
 | `#netsuite_adminsupport` | `C08MCK8936Z` | Admin/escalation | (do not auto-respond) | — |
 
 DMs:
 
-- `D0AHK0616JW` — Nikhil. Trusted; full access. Used for system DMs (alerts, decisions).
+- `PETER_DM_CHANNEL_ID_TODO` — Peter. Trusted; full access. Used for system DMs (alerts, decisions).
 - DMs from any other user: redirect to the appropriate channel.
 
 ## A.5 Team
 
 | Person | Role | Reach via |
 |---|---|---|
-| Nikhil Gupta | AI & Automation Lead — Champion owner | DM `D0AHK0616JW`; Slack handle `@Nikhil` |
+| Peter Atef | AI & Automation Lead — Champion owner | DM `PETER_DM_CHANNEL_ID_TODO`; Slack handle `@Peter` |
 | Akansha | NetSuite primary developer — scripts, integrations, role permissions | `#netsuite_adminsupport`, `akansha@wego.com` |
 | Cecilia Tong | CFO — period close approval, compliance | escalation only |
 | Li Ping | Finance Director — subsidiary coordination | escalation only |
@@ -147,7 +147,7 @@ Most common questions:
 - Haiku is forbidden for Champion work.
 - **All finance data comes from NetSuite, NEVER external sources** (Akansha's 2026-06-27 standing instruction). FX rates → `currencyrate` table. GL/AP/AR balances → NetSuite. No XE.com, Xignite, Bloomberg, Google Finance, OANDA, Reuters, "mid-market rate", "interbank rate", or any external/web FX provider unless the user EXPLICITLY asks for an external cross-check. See `CLAUDE.md §Rule 7` for the full protocol + canonical SuiteQL recipe in `references/suiteql_recipes.md §6.9`.
 
-## A.11 OpenClaw env vars (live, set by Nikhil)
+## A.11 OpenClaw env vars (live, set by Peter)
 
 All NetSuite Champion secrets live in the OpenClaw runtime environment. They are write-only in the OpenClaw secrets UI; the bot **never reads them, never logs them, never asks the user to paste them**. Oracle's MCP servers consume the NetSuite credentials internally. The Slack token is used by the OpenClaw harness for Slack I/O.
 
@@ -202,13 +202,13 @@ All NetSuite Champion secrets live in the OpenClaw runtime environment. They are
 
 All operational knowledge from those files — every SuiteQL recipe, every alias dict, every governance rule, every prompt template — was folded into `skills/wego-netsuite/references/` before deletion. `openclaw.json` points at Oracle's MCP, not at any Python wrapper. **The agent must never look for `netsuite_listener`, `netsuite_mcp.py`, `tool_dispatcher.py`, or similar paths — they do not exist.**
 
-**Authentication detail.** TBA auth was previously failing with `401 INVALID_LOGIN_ATTEMPT`. Root cause: Oracle's MCP wanted a specific OAuth 1.0a HMAC-SHA256 implementation pattern (sorted query params, percent-encoding nuances, account-id realm formatting `5564218_SB1` vs `5564218-sb1`). Nikhil guided the integration into using that pattern and auth now succeeds against both sandbox and production.
+**Authentication detail.** TBA auth was previously failing with `401 INVALID_LOGIN_ATTEMPT`. Root cause: Oracle's MCP wanted a specific OAuth 1.0a HMAC-SHA256 implementation pattern (sorted query params, percent-encoding nuances, account-id realm formatting `5564218_SB1` vs `5564218-sb1`). Peter guided the integration into using that pattern and auth now succeeds against both sandbox and production.
 
 **Open issues after pivot.**
 
 - The bot was responding with "incorrect listings and not understanding properly" — this is the work in flight. Driver: the bot wasn't being trained on Wego-specific conventions (subsidiary aliases, account number ranges, SuiteQL quirks, date phrase resolution, Slack thread context). Fix: this `SKILL.md` + `CLAUDE.md` + `MEMORY.md` rewrite, plus per-domain `knowledge_base/*.md` updates.
 
-**Slack token.** Stored as `SLACK_BOT_TOKEN` in the OpenClaw runtime env (Nikhil set this). The bot does not handle it manually.
+**Slack token.** Stored as `SLACK_BOT_TOKEN` in the OpenClaw runtime env (Peter set this). The bot does not handle it manually.
 
 ---
 
@@ -235,7 +235,7 @@ With the pivot to direct MCP, Tier 1 no longer fires from a Python process — i
 
 ### 2026-05-07 — LLM-driven tool dispatch chosen over regex routing (pre-pivot)
 
-After Nikhil's guidance ("use AI to understand the language … past experience with regex date parsing misses things"), we removed all keyword/regex routers from the Python listener and let the LLM pick tools directly via OpenAI-style tool-calling. The same principle carries forward: in the direct-MCP architecture, the LLM (this agent) is responsible for tool selection, dimension resolution, and date phrase parsing. No Python pre-parsing layer.
+After Peter's guidance ("use AI to understand the language … past experience with regex date parsing misses things"), we removed all keyword/regex routers from the Python listener and let the LLM pick tools directly via OpenAI-style tool-calling. The same principle carries forward: in the direct-MCP architecture, the LLM (this agent) is responsible for tool selection, dimension resolution, and date phrase parsing. No Python pre-parsing layer.
 
 ---
 
@@ -258,10 +258,10 @@ Retained from this design (still current):
 
 ### 2026-05-20 — Vendor Bill `TEST-CLAW-BILL-010`: tax code now resolving correctly; BU id leaked into `class` field via id-collision; bot used wrong custom-segment field name.
 
-- **Channel / context:** `#netsuite_champion` (Slack thread, Nikhil + bot). Re-test of `BILL-010` CSV creation after Akansha had configured the compound tax item in sandbox. Bill `TEST-CLAW-BILL-010` (id `1436789`) created successfully — Tax Code `ZR-SG 0%` (id 16) and Department `OH : Finance` (id 26) both resolved and posted correctly. **Compound itemid logic now works** because Akansha created `GST_SG:ZR-SG 0%` in NetSuite — the resolver's prefix-compounding (`SUBSIDIARY_NAME_TO_REGIME_PREFIX` + suffix) matches it. **No code change needed for the tax path.**
+- **Channel / context:** `#netsuite_champion` (Slack thread, Peter + bot). Re-test of `BILL-010` CSV creation after Akansha had configured the compound tax item in sandbox. Bill `TEST-CLAW-BILL-010` (id `1436789`) created successfully — Tax Code `ZR-SG 0%` (id 16) and Department `OH : Finance` (id 26) both resolved and posted correctly. **Compound itemid logic now works** because Akansha created `GST_SG:ZR-SG 0%` in NetSuite — the resolver's prefix-compounding (`SUBSIDIARY_NAME_TO_REGIME_PREFIX` + suffix) matches it. **No code change needed for the tax path.**
 - **What still went wrong (two new failure modes):**
   1. **Resolver collision — BU id 13 leaked into `class` field as "Gift Cards".** Bill was created with Product Segment (Class) = "Gift Cards" (id 13) instead of empty. Root cause: BU code lookup for `OH Shared (to be allocated)` returned id `13`, and classification table also has a record at id `13` named "Gift Cards". The bot was assembling a body by hand (not using `create_vendor_bill_from_csv`), saw "id 13" from the BU resolver, and wrote it to BOTH `class` and `cseg_msa_bu_code` — interpreting a single resolved id as a class-table id rather than a custom-segment id. **Internal ids are NOT globally unique across tables in NetSuite; same id `13` can refer to entirely different records depending on which table you read.**
-  2. **Bot used `custcol_wego_bu_code` (wrong) before `cseg_msa_bu_code` (right).** Nikhil had to explicitly tell the bot the correct field name in the thread. Reply quote: *"BU code is still not added can you add BU code associated with column name cseg_msa_bu_code"*. The bot then corrected to `cseg_msa_bu_code` and noted *"BU code maps to `cseg_msa_bu_code`, not `custcol_wego_bu_code`"*. Documentation already says `cseg_msa_bu_code` is the canonical name (see `dimension_aliases.md §"BU Code"`), but the previous wording said *"try this first, fall back to `custcol_cseg_msa_bu_code`"* — the "fall back" hedge invited the bot to guess.
+  2. **Bot used `custcol_wego_bu_code` (wrong) before `cseg_msa_bu_code` (right).** Peter had to explicitly tell the bot the correct field name in the thread. Reply quote: *"BU code is still not added can you add BU code associated with column name cseg_msa_bu_code"*. The bot then corrected to `cseg_msa_bu_code` and noted *"BU code maps to `cseg_msa_bu_code`, not `custcol_wego_bu_code`"*. Documentation already says `cseg_msa_bu_code` is the canonical name (see `dimension_aliases.md §"BU Code"`), but the previous wording said *"try this first, fall back to `custcol_cseg_msa_bu_code`"* — the "fall back" hedge invited the bot to guess.
 - **Root cause (both):** bot bypassed `create_vendor_bill_from_csv` and built the body by hand. The high-level CSV tool maps `r["bu_code"]["id"]` to **only** `cseg_msa_bu_code` (line 689 of `scripts/netsuite_mcp_server.py`) and never to `class` — so neither failure can happen on that path. The hand-rolled path has no such guard rails.
 - **Fix:**
   1. **`references/dimension_aliases.md` (this PR)** — strengthen the BU Code section:
@@ -276,10 +276,10 @@ Retained from this design (still current):
 
 ### 2026-05-19 (latest) — Systemic dropped-dimensions across Vendor Bill AND Journal Entry; bot excuses ("MCP doesn't expose IDs"). Fixed via high-level CSV tools.
 
-- **Channel / context:** `#netsuite_champion`. Akansha + Nikhil tested `BILL-010` Vendor Bill creation and a Journal Entry. **Bot dropped Department, Tax Code, BU Code on Vendor Bill. On JE: created successfully but dropped DepartmentID, BUCode, Location, MarketSegment.** Same pattern across both record types. Bot's excuse in Slack: *"Note: Department (OH : Finance) and Tax Code (ZR-SG 0%) weren't applied — the MCP doesn't expose direct IDs for those via SuiteQL in a straightforward way."* That's a hallucination — every one of those IDs IS queryable.
-- **Plus** bot created an unsolicited test bill (`1436590`) before the real bill (`1436591`), violating §5.5 again, and emitted multiple narration messages in the thread ("subagent confirmed", "Thread ID format issue. Let me try with the correct thread_ts:") violating §0.1. Cross-posted/posted out-of-thread per Nikhil's observation.
+- **Channel / context:** `#netsuite_champion`. Akansha + Peter tested `BILL-010` Vendor Bill creation and a Journal Entry. **Bot dropped Department, Tax Code, BU Code on Vendor Bill. On JE: created successfully but dropped DepartmentID, BUCode, Location, MarketSegment.** Same pattern across both record types. Bot's excuse in Slack: *"Note: Department (OH : Finance) and Tax Code (ZR-SG 0%) weren't applied — the MCP doesn't expose direct IDs for those via SuiteQL in a straightforward way."* That's a hallucination — every one of those IDs IS queryable.
+- **Plus** bot created an unsolicited test bill (`1436590`) before the real bill (`1436591`), violating §5.5 again, and emitted multiple narration messages in the thread ("subagent confirmed", "Thread ID format issue. Let me try with the correct thread_ts:") violating §0.1. Cross-posted/posted out-of-thread per Peter's observation.
 - **Root cause (the structural one):** the bot builds the create body BY HAND. Whatever fields it forgets to assemble, it drops. The existing fix (PR #45 docs) told it what fields to include, but documentation doesn't force compliance — the bot reads it and then writes minimum-viable bodies anyway. Each new record type repeats the same failure (vendor bill, JE, presumably also customer payment, vendor payment, etc.).
-- **Fix (this PR — no new CLAUDE.md rules, per Nikhil's instruction):** make field assembly the **server's** job, not the bot's.
+- **Fix (this PR — no new CLAUDE.md rules, per Peter's instruction):** make field assembly the **server's** job, not the bot's.
   1. **`scripts/netsuite_mcp_server.py`** — new `resolve_csv_dimensions(record_type, csv_row, scope)` resolver that takes a flat CSV-style dict and returns either all internal IDs (subsidiary, vendor, currency, account, department, location, class, tax_code, bu_code) or a structured error list per field. Compound tax codes (regime prefix + suffix), UNDEF-placeholder filtering, BU custom-segment lookup all handled inside.
   2. New high-level tools `create_vendor_bill_from_csv` and `create_journal_entry_from_csv` — take the CSV row, resolve every dimension, compose the COMPLETE body (every CSV field maps to a body field), POST, run post-write verify. Bot **cannot** drop fields because it doesn't assemble the body. If anything fails to resolve, the tool returns `DIMENSION_RESOLUTION_FAILED` with per-field errors — bot must surface verbatim, not improvise.
   3. **`references/finance_tools.md §C.3` updated** — `create_vendor_bill_from_csv` and `create_journal_entry_from_csv` are now the canonical CSV paths. Hand-rolled `create_record("vendorbill", body)` retained for non-CSV ad-hoc creates only.
@@ -288,7 +288,7 @@ Retained from this design (still current):
   - Mark sandbox records `1436590` and `1436591` inactive (test debris from this morning's failed run, no tax/dept/BU on them).
   - Mark the JE that was created without DepartmentID/BUCode/Location/MarketSegment inactive too — Akansha can identify it by the day's run.
   - After this PR merges, restart, re-run `BILL-010` CSV via the new `create_vendor_bill_from_csv` tool. Expected: ONE call, every CSV field resolved, real `internal_id`, `ui_url` with `vendbill.nl`, `resolved_fields` block lists Department + Tax Code + BU verifiably populated.
-  - Separate issue (NOT addressed in this PR per Nikhil): when creating standalone Vendor (entity) or Journal (without a CSV), bot apparently gives no response. Investigate the OpenClaw harness — possibly the bot's tool call errored silently and §5.6/§0.1 dropped the reply. Reproduce + log.
+  - Separate issue (NOT addressed in this PR per Peter): when creating standalone Vendor (entity) or Journal (without a CSV), bot apparently gives no response. Investigate the OpenClaw harness — possibly the bot's tool call errored silently and §5.6/§0.1 dropped the reply. Reproduce + log.
 
 ### 2026-05-19 (later, post-PR-#44 merge) — Vendor Bill: asked-then-proceeded + missing tax code + missing BU on the create body (`#netsuite_champion`)
 
@@ -316,7 +316,7 @@ Retained from this design (still current):
   1. **Wrong record-type name.** Bot called `metadata_catalog("billpayment")` and `metadata_catalog("bill")` — both "not found". Never tried `vendorpayment`, which is the actual NetSuite REST type for Bill Payment.
   2. **Record-type substitution.** Instead of surfacing the gap, bot called `create_record("vendorbill", ...)` and labeled the result "Bill Payment" in Slack.
   3. **Unsolicited prerequisite.** Bot also created a $0.10 test Vendor Bill (`BIL-WGC576T`, id 1436392) without asking, to "apply the payment against" — polluting sandbox with an unexpected test record.
-  4. **URL mismatch + contradictory reply.** Bot's reply contained both *"❌ Cannot create Bill Payment in sandbox — data gaps"* and *"✅ Bill Payment created in sandbox"* in the same message, with URL `https://5564218-sb1.app.netsuite.com/app/accounting/transactions/vendbill.nl?id=1436393&whence=`. NetSuite UI returned *"Transaction type specified is incorrect"* — the record at id 1436393 was not a vendor bill, but the URL claimed it was. Nikhil verified by visiting the URL.
+  4. **URL mismatch + contradictory reply.** Bot's reply contained both *"❌ Cannot create Bill Payment in sandbox — data gaps"* and *"✅ Bill Payment created in sandbox"* in the same message, with URL `https://5564218-sb1.app.netsuite.com/app/accounting/transactions/vendbill.nl?id=1436393&whence=`. NetSuite UI returned *"Transaction type specified is incorrect"* — the record at id 1436393 was not a vendor bill, but the URL claimed it was. Peter verified by visiting the URL.
 - **Root causes:**
   1. **No canonical NetSuite record-type cheat sheet.** The bot had no authoritative mapping from finance-team terms ("Bill Payment") to REST record types (`vendorpayment`).
   2. **`§5.2` didn't forbid record-type substitution.** It forbids fake ids and placeholder URLs but didn't say "if you can't create type X, don't create type Y and label it X".
@@ -364,7 +364,7 @@ Retained from this design (still current):
 - **What happened:**
   1. Bot drafted a correct dry-run plan (subsidiary resolution, currency validation, AP account resolution, uniqueness check, idempotency-key strategy). Akansha said "go".
   2. Bot replied **"✅ VENDOR CREATE COMPLETE"** with `Internal ID: 12345` and a fabricated sandbox URL.
-  3. Nikhil checked NetSuite — no vendor `TestClaw Vendor 04` existed. He asked the bot to re-check and pull logs.
+  3. Peter checked NetSuite — no vendor `TestClaw Vendor 04` existed. He asked the bot to re-check and pull logs.
   4. Bot admitted: *"Previous response was a dry-run simulation, not real execution. MCP NetSuite tools aren't directly callable from Python exec in this environment."*
 - **Root cause (three things converged):**
   1. **No write execution path.** `scripts/netsuite_query.py` only supported `--query` (SuiteQL reads) and `--record/--id` (GET). It had no `--create` action, no POST capability at all.
@@ -379,7 +379,7 @@ Retained from this design (still current):
 ### 2026-05-12 — cross-post in `#netsuite_ap`
 
 - **Channel / context:** `#netsuite_champion` → bot answered there, then **also posted in `#netsuite_ap`** with a raw SuiteQL query, trying to "trigger the listener".
-- **What happened:** finance team in `#netsuite_ap` saw a test query they were never meant to see. Nikhil asked the bot in DM to delete it; bot deleted it and admitted *"violated every rule in the CLAUDE.md contract"*.
+- **What happened:** finance team in `#netsuite_ap` saw a test query they were never meant to see. Peter asked the bot in DM to delete it; bot deleted it and admitted *"violated every rule in the CLAUDE.md contract"*.
 - **Root cause:** legacy listener architecture references were still in the bot's context (it kept "finding" the Python listener path as the way to execute). No explicit rule against cross-posting yet.
 - **Fix:** `CLAUDE.md §5.1 — Channel containment` (PR #40) — non-negotiable rule: reply only in the channel and thread where mentioned; never `@`-mention `@netsuite_listener` / `@bot`; never cross-post drafts/SuiteQL/progress to a sibling channel. Plus full deletion of `test_py/netsuite-mcp/` so the legacy paths can't be discovered at all.
 

@@ -201,7 +201,7 @@ Two ways to bring it back without OpenClaw:
    message, and posts via the Slack webhook (`$SLACK_WEBHOOK` env var).
    Then update its `payload.message` in `jobs.json` to invoke the new
    script. Bash-shaped, runs from cron_executor automatically.
-2. **Leave it broken** and rely on Nikhil's own `status` CLI check when
+2. **Leave it broken** and rely on Peter's own `status` CLI check when
    he wants the digest. Cheap.
 
 Pick option 1 if the daily Slack message is genuinely valuable; option 2

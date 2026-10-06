@@ -30,7 +30,7 @@
 ---
 title: Accounts Payable (AP) Operations — Wego NetSuite PRODUCTION
 maintainer: Akansha Singh (akansha@wego.com)
-owners: Akansha Singh, Nikhil Gupta
+owners: Akansha Singh, Peter Atef
 last_updated: 2026-04-28
 next_review: 2026-05-12
 source_doc: prod/ap_operations.md (rewrite blending Wego AP Process deck + live PROD pulls)
@@ -92,7 +92,7 @@ Authoritative reference for Wego's **production** NetSuite AP operations. The ho
 
 1. AP preparer hits an issue → post in `#netsuite_ap` tagging GC (script/permission) or Nurul Ain (approval/policy).
 2. If GC can't resolve within a day → tag Li Ping.
-3. Cross-subsidiary or GL-impacting → Li Ping + Akansha + Nikhil.
+3. Cross-subsidiary or GL-impacting → Li Ping + Akansha + Peter.
 4. New payment channel, bank H2H change, or FX rate source → Li Ping → Cecilia Tong (CFO).
 
 ---
@@ -123,7 +123,7 @@ PROD has **16 active operating subsidiaries + 3 elimination subsidiaries** in Ne
 | 32 | Shopcash FZ-LLC | AE | AED (id=10) | Operating |
 | 33 | Wego FZ-LLC | AE | AED (id=10) | Operating |
 
-> **PROD anomaly to verify:** `subsidiary.currency` for SG-country subsidiaries (1, 3, 11, 15, 16, 27, 31) returns **id=1**, which the `currency` table maps to USD, not SGD (id=11). The SBX KB doc lists SG subs as SGD-base. Likely a functional vs. transaction currency nuance. **Confirm with Nikhil / Li Ping before quoting base currency for SG subs.** [Gap §23]
+> **PROD anomaly to verify:** `subsidiary.currency` for SG-country subsidiaries (1, 3, 11, 15, 16, 27, 31) returns **id=1**, which the `currency` table maps to USD, not SGD (id=11). The SBX KB doc lists SG subs as SGD-base. Likely a functional vs. transaction currency nuance. **Confirm with Peter / Li Ping before quoting base currency for SG subs.** [Gap §23]
 
 ### Active vendor counts — PROD vs SBX
 
@@ -236,7 +236,7 @@ These pair with AP bills' input/withholding tax postings. Output tax accounts (u
 > - `1401016` VAT Input (Indonesia)
 > - `1401090` VAT on Purchases PK
 > - `1401091` VAT on Purchases SA
-> Plus a generic `140 GST/VAT Input & Other Tax refund` (id=1896) — likely a catch-all or legacy. Use the per-jurisdiction accounts for new postings; verify with Nikhil if 140 should be retired.
+> Plus a generic `140 GST/VAT Input & Other Tax refund` (id=1896) — likely a catch-all or legacy. Use the per-jurisdiction accounts for new postings; verify with Peter if 140 should be retired.
 
 ### SuiteQL: find an AP account in PROD
 
@@ -787,7 +787,7 @@ In PROD these are extra-sensitive — never propose changes without sign-off:
 - New vendor approval exceptions → Nurul Ain / Li Ping
 - Payment term exceptions beyond policy → Nurul Ain / Li Ping
 - Period re-open requests → Li Ping only
-- GL account mapping changes → Li Ping + Akansha + Nikhil
+- GL account mapping changes → Li Ping + Akansha + Peter
 - Tax treatment for a new jurisdiction or new vendor type → tax team
 - TDS section / rate decisions on unusual vendor types → tax team
 - Customer write-off analogs on AP side → Nurul Ain + Li Ping
@@ -801,7 +801,7 @@ In PROD these are extra-sensitive — never propose changes without sign-off:
 ## 22. Future / Not Yet Live (PROD)
 
 - **Vendor creation automation** — OpenClaw scope; bulk upload + duplicate prevention + checkbox validation
-- **Bill processing automation** — OCR → draft bill (with the 5 segments pre-populated) → preparer review flow (Nikhil; later phase)
+- **Bill processing automation** — OCR → draft bill (with the 5 segments pre-populated) → preparer review flow (Peter; later phase)
 - **Payment workflow automation** — Pay Bills → approval → file gen → bank integration end-to-end
 - **AP aging auto-extract** — beekim's 2026-04-17 request; weekly summary + detail push (Slack or email)
 - **Full bank data import auto-heal** — when bank changes format, agent flags and suggests mapping update instead of silent failure

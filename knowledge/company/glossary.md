@@ -1,6 +1,6 @@
 ---
 name: Wego AI & Automation — Glossary
-owner: Nikhil Gupta
+owner: Peter Atef
 last_reviewed: 2026-04-06
 ---
 
@@ -16,8 +16,8 @@ last_reviewed: 2026-04-06
 | **ADM** | Agent Debit Memo — a charge issued by an airline to a travel agent for ticketing errors or policy violations. Relevant to disputes and Finance automation. |
 | **IATA** | International Air Transport Association — governs airline standards, ticketing rules, and ADMs. |
 | **RHC** | Revenue Health Check — internal finance process. Context: automated reconciliation checks. |
-| **AlphaBot** | Wego's internal automation bot framework built on Robot Framework + Python. Repo: `github.com/wego/alphabot` (read-only for Nikhil's team). |
-| **OpenClaw** | AI agent platform used by Wego. Nikhil's instance: s-c58f0c35.openclaw.wego.engineering. |
+| **AlphaBot** | Wego's internal automation bot framework built on Robot Framework + Python. Repo: `github.com/wego/alphabot` (read-only for Peter's team). |
+| **OpenClaw** | AI agent platform used by Wego. Peter's instance: s-c58f0c35.openclaw.wego.engineering. |
 | **IAX** | Jira project key for the AI Automation board (board 721). Used for all automation-related tickets. |
 | **NDS** | Jira project key for the NetSuite board (board 753). Used for all NetSuite-related tickets. |
 | **Any10** | Wego's hosted n8n environment. Used for deploying and running n8n workflows in production. |

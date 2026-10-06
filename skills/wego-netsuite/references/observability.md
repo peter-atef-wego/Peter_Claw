@@ -12,8 +12,8 @@
 |---|---|---|
 | **Tool errors** (NetSuite 4xx/5xx, timeouts, MCP plugin errors) | Surfaced verbatim in the agent's Slack reply per `CLAUDE.md` Rule 5 (errors surface verbatim) | Whoever is in the thread |
 | **State-changing actions** (every sandbox create/update/delete) | One line per action in `memory/knowledge/action_tracker.md` | Whoever inspects the audit log |
-| **Slack-side delivery failures** (auth, rate limits) | Surfaced as an agent post if possible; otherwise the OpenClaw harness logs | Nikhil (via OpenClaw runtime logs) |
-| **OpenClaw harness logs** (skill loading, MCP-server calls, exceptions) | OpenClaw runtime log files / dashboards | Nikhil |
+| **Slack-side delivery failures** (auth, rate limits) | Surfaced as an agent post if possible; otherwise the OpenClaw harness logs | Peter (via OpenClaw runtime logs) |
+| **OpenClaw harness logs** (skill loading, MCP-server calls, exceptions) | OpenClaw runtime log files / dashboards | Peter |
 
 There is **no** Python daemon, no separate listener log, no per-mention JSONL trace, no daily rollup script. If you need traceability, the audit log + Slack thread history together tell the full story.
 
@@ -37,7 +37,7 @@ There is **no** Python daemon, no separate listener log, no per-mention JSONL tr
 2026-05-12T15:11:48+00 | #netsuite_gl_and_reporting  | U02ABC | create_journal_entry | journalentry | 99001 | https://5564218-sb1.app.netsuite.com/app/accounting/transactions/journal.nl?id=99001
 ```
 
-**Reads are NOT logged here.** Only state changes — that's the audit trail Akansha and Nikhil need.
+**Reads are NOT logged here.** Only state changes — that's the audit trail Akansha and Peter need.
 
 ---
 
@@ -54,11 +54,11 @@ Specific signals worth surfacing immediately:
 
 | Signal | Likely cause | Suggested reply |
 |---|---|---|
-| `401 INVALID_LOGIN_ATTEMPT` (prod or sandbox) | TBA token expired or integration role revoked | "NetSuite returned 401. The TBA token may have expired. Nikhil — heads up." |
+| `401 INVALID_LOGIN_ATTEMPT` (prod or sandbox) | TBA token expired or integration role revoked | "NetSuite returned 401. The TBA token may have expired. Peter — heads up." |
 | `403` on a SuiteQL field | Integration role lacks permission | "NetSuite returned 403 on `<table>`. Akansha may need to extend the integration role." |
 | `429` | Concurrency / rate limit hit | Wait 5 s, retry once. Surface if still failing. |
 | `5xx` / network timeout | NetSuite slow or transient outage | Retry once with a tighter query. Surface if still failing. |
-| Slack `not_authed` / `invalid_auth` | `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` issue | Cannot reply via Slack — log via OpenClaw harness; Nikhil must rotate. |
+| Slack `not_authed` / `invalid_auth` | `SLACK_BOT_TOKEN_NETSUITE_CHAMPION` issue | Cannot reply via Slack — log via OpenClaw harness; Peter must rotate. |
 
 ---
 
@@ -81,4 +81,4 @@ For now, the audit log + on-demand inspection is sufficient.
 3. **OpenClaw runtime logs** — for skill-loading issues, MCP-server connectivity issues, or harness-level errors. Access via the OpenClaw admin UI.
 4. **NetSuite audit trail (in NetSuite UI)** — for "did the record actually post?" questions on writes. Search by `tranid` or by the user's name as the script executor.
 
-If none of these surface the issue, escalate to Akansha (NetSuite-side) or Nikhil (OpenClaw / MCP server config).
+If none of these surface the issue, escalate to Akansha (NetSuite-side) or Peter (OpenClaw / MCP server config).

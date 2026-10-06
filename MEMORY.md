@@ -1,15 +1,15 @@
 # MEMORY.md — Operational Memory (Core)
 
-_Last reviewed: 2026-07-01. Owner: Nikhil Gupta / Data Automation's Claw-PRO._
+_Last reviewed: 2026-07-01. Owner: Peter Atef / Data Automation's Claw-PRO._
 _This is the lean, always-loaded core. Full dated history/changelog → **`memory/knowledge/memory_changelog.md`**._
 
 ---
 
 ## 1. User Context
 
-- **Name**: Nikhil Gupta
+- **Name**: Peter Atef
 - **Role**: AI & Automation Lead, Wego
-- **Email**: nikhil@wego.com | **Slack**: U04H3EB2PTN | **DM channel**: D0AHK0616JW | **TZ**: Asia/Kolkata
+- **Email**: peter.atef@wego.com | **Slack**: PETER_SLACK_USER_ID_TODO | **DM channel**: PETER_DM_CHANNEL_ID_TODO | **TZ**: Africa/Cairo
 - **Preferred time display**: Dubai (DXB, UTC+4) — ALWAYS show times in DXB, NEVER raw UTC. Hard rule.
 - **Manager**: Duncan (VP Data, Marketing & Growth) | **Skip**: Ross (CEO)
 - **OpenClaw instance**: s-c58f0c35.openclaw.wego.engineering | **Workspace**: /home/openclaw/.openclaw/workspace
@@ -27,7 +27,7 @@ _This is the lean, always-loaded core. Full dated history/changelog → **`memor
 | netsuite_ar | C08N2SY3HFS | Accounts receivable |
 | netsuite_gl_and_reporting | C08MCK3NJTX | GL, reporting |
 | netsuite_adminsupport | C08MCK8936Z | Admin config |
-| netsuite-dev-agent | C0B9A8ZRM5X | Nikhil's dev/QA test channel (master access) |
+| netsuite-dev-agent | C0B9A8ZRM5X | Peter's dev/QA test channel (master access) |
 | proj-alphabot-testing | C090HF85F2P | Supplier recon — internal testing |
 | finance-automation-claw | C0AVB4VR708 | Supplier recon — production |
 
@@ -55,13 +55,13 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 
 **Standing operating decisions:**
 - Team is capacity-based, not siloed.
-- Secrets in WegoClaw: `GITHUB_TOKEN_V4` (Nikhil-Wego org), `FIREFLIES_TOKEN`, `JIRA_API_TOKEN`, `NETSUITE_<SCOPE>_*`. Verify before ops. Never commit secrets.
-- AlphaBot repo (`github.com/wego/alphabot`) is **read-only** unless Nikhil authorises a write (PR + ask).
+- Secrets in WegoClaw: `GITHUB_TOKEN_V4` (peter-atef-wego org), `FIREFLIES_TOKEN`, `JIRA_API_TOKEN`, `NETSUITE_<SCOPE>_*`. Verify before ops. Never commit secrets.
+- AlphaBot repo (`github.com/wego/alphabot`) is **read-only** unless Peter authorises a write (PR + ask).
 - openclaw-nova is the canonical repo (`github.com/wego/openclaw-nova`); the workspace mirrors into it weekly (Sunday PR).
 - All production automations need an IAX Jira ticket. Never disable a running automation without logging + notifying.
 - **MEMORY.md edits**: never use the `edit` tool (truncation/redaction breaks exact-match) — use `sed`/`python3`/full-file write.
-- **Self-improvement / rule changes via PR (STRICT):** Any change to MEMORY.md, SKILL.md, AGENTS.md, memory_changelog.md, or any workspace rule file MUST be committed to a feature branch and exposed as a GitHub PR for Nikhil to review. NEVER push rule/memory/skill changes directly to `main`. No exceptions.
-- **Post-PR playbook**: every PR body + end-of-session summary includes: merge order · sync (or "automatic") · restart YES/NO + urgency · exact Slack test + expected reply · what breaks if wrong vs safe · rollback command. **Nikhil merges; the agent never merges.**
+- **Self-improvement / rule changes via PR (STRICT):** Any change to MEMORY.md, SKILL.md, AGENTS.md, memory_changelog.md, or any workspace rule file MUST be committed to a feature branch and exposed as a GitHub PR for Peter to review. NEVER push rule/memory/skill changes directly to `main`. No exceptions.
+- **Post-PR playbook**: every PR body + end-of-session summary includes: merge order · sync (or "automatic") · restart YES/NO + urgency · exact Slack test + expected reply · what breaks if wrong vs safe · rollback command. **Peter merges; the agent never merges.**
 - **Restart heads-up**: any change to a long-running process (`scripts/netsuite_mcp_server.py`, `scripts/slack_upload_file.py`, etc.) needs an OpenClaw container restart to take effect — say so plainly at end of session. Doc/skill/`*.md` changes need no restart (read per session).
 
 ---
@@ -77,7 +77,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 | Supplier reconciliation | server listener | **Live** (bridge channels; agent is silent there) |
 
 - Cron: 5 jobs in `cron/jobs.json` (mirror, hourly pull-sync, weekly Mon/Fri, daily_sync_status). Daemon resurrected by `scripts/cron/ensure_daemon.py`.
-- **`daily_sync_status` posts ONLY to Nikhil's DM (D0AHK0616JW)** — never a channel.
+- **`daily_sync_status` posts ONLY to Peter's DM (PETER_DM_CHANNEL_ID_TODO)** — never a channel.
 - Systems: OpenClaw · Jira IAX/NDS · GitHub openclaw-nova (`wego/openclaw-nova`) · AlphaBot (read-only) · weekly mirror.
 
 ---
@@ -91,7 +91,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 - **L5 (manual only, cross-provider)**: `openai/gpt-5.5` — was L6 until 2026-08-11. There is no L6.
 - **Haiku removed entirely (2026-06-16)** — Sonnet is the floor everywhere below L4. Cost trade-off accepted.
 - Fallback chain: each tier → `openai/gpt-4o`.
-- **DM signature**: end every DM reply to Nikhil with `---` then `:dart: *L1 (Sonnet)*` (actual tier that ran). L4 only on explicit escalation (spawn subagent — no silent escalation).
+- **DM signature**: end every DM reply to Peter with `---` then `:dart: *L1 (Sonnet)*` (actual tier that ran). L4 only on explicit escalation (spawn subagent — no silent escalation).
 - **GitHub push**: always show commit hash + URL.
 
 ---
@@ -114,7 +114,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 - **No diagnostic leak:** never send raw script/exec/print output to Slack — summarise. (changelog §17)
 - **A/P Aging BK delivery format (STRICT):** NEVER upload the raw `.xls`. The conversion is the TOOL's job — `get_stored_report` already picks the `.csv` (NetSuite mails both), converts it to `.xlsx` and returns exactly ONE file path. Upload that path. Do NOT hand-convert with pandas: a hand-rolled version drops the NetSuite title block and produces a different file from the tool's. If you ever receive more than one path or a `.xls`, the pod is running stale code — say so and stop, don't paper over it. **Never hand-inspect the store** (no `ls ~/.openclaw/reports`, no size comparisons, no reading the *consolidated* file to answer a *subsidiary* question — each subsidiary has its own email). **When the requested period was never emailed, the TOOL already serves the latest available and sets `substituted_from`** — relay its note in one line and send the file; never offer the user a choice of periods. (changelog §37, 2026-08-10)
 - **Threading:** channel/group replies go in-thread (`replyToMode=all`); DMs flat. Files must land in the SAME thread as the answer. (changelog §29)
-- **DM security:** only Nikhil (U04H3EB2PTN) may use the bot via DM; others → deny + email alert + stop. Channels are open. (changelog §17b)
+- **DM security:** only Peter (PETER_SLACK_USER_ID_TODO) may use the bot via DM; others → deny + email alert + stop. Channels are open. (changelog §17b)
 - **Bridge-channel silence:** in `#finance-automation-claw` / `#proj-alphabot-testing` the agent stays silent (listener owns those). Never emit the forbidden supplier-recon phrases. (changelog §20)
 - **NetSuite tool-response mandate:** every NetSuite tool call in a channel posts exactly one result (status + id + URL for writes). No fake success. (changelog §32; skill)
 - **NetSuite default:** reads default to **production**; sandbox only if explicitly asked. Finance data ALWAYS from NetSuite, never external (Rule 7 in skill).

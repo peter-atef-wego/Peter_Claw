@@ -1,9 +1,9 @@
 ---
 name: weekly-team-setup
 description: >
-  Nikhil's weekly team automation skill for the Intelligent Alpha Automation (IAX) team at Wego.
+  Peter's weekly team automation skill for the Intelligent Alpha Automation (IAX) team at Wego.
   Manages the full weekly update workflow: creates Jira tasks every Monday and sends Slack reminders
-  every Friday. Load this skill whenever Nikhil asks to: set up the weekly tasks, create Jira weekly
+  every Friday. Load this skill whenever Peter asks to: set up the weekly tasks, create Jira weekly
   update tickets, send or schedule the Friday Slack reminder, deploy the weekly automation to OpenClaw
   or AlphaBot, make changes to team members, epics, boards, or the reminder message, or anything
   related to the recurring weekly team update process.
@@ -37,7 +37,7 @@ Two automated jobs every week:
 
 ```
 JIRA_BASE_URL   = https://api.atlassian.com/ex/jira/a7e53b72-ded0-45e3-8d7c-fd3573f46f1d/rest/api/3
-JIRA_AUTH_EMAIL = nikhil@wego.com
+JIRA_AUTH_EMAIL = peter.atef@wego.com
 CLOUD_ID        = a7e53b72-ded0-45e3-8d7c-fd3573f46f1d
 IAX_EPIC_KEY    = IAX-454   ← "Weekly Update Automation Team" epic on IAX board
 NDS_EPIC_KEY    = NDS-67    ← "Weekly Update Automation Team" epic on NDS board
@@ -152,7 +152,7 @@ No `nova_api` HTTP endpoint, no Slack `slack_listener` trigger phrase. Manual ru
 
 ---
 
-## Common Changes Nikhil May Ask For
+## Common Changes Peter May Ask For
 
 | Change | What to update |
 |--------|---------------|

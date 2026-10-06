@@ -1,7 +1,7 @@
 """
 model_router.py - openclaw-nova Smart 5-Level Model Router
 Auto-escalation based on query complexity scoring.
-Updated: 2026-04-14 per Nikhil Gupta instruction.
+Updated: 2026-04-14 per Peter Atef instruction.
 """
 
 from dataclasses import dataclass
@@ -12,7 +12,7 @@ from typing import Optional
 # routing and is the auto-escalation target from L3; L5 stays manual-only.
 # Updated 2026-06-16: Haiku REMOVED. L1 is now Sonnet 4.6 (same model as L3); chip
 # differentiation indicates SURFACE (DM vs channel), not model. Haiku was too
-# unreliable for tier self-identification — Nikhil decision.
+# unreliable for tier self-identification — Peter decision.
 MODELS = {
     "l1":      "anthropic/claude-sonnet-4-6",
     "l2":      "openai/gpt-4o-mini",
