@@ -1,0 +1,88 @@
+{
+  "_readme": "Registry of scheduled NetSuite reports ingested into persistent report memory. source=email: fetched from rpa@wego.com Gmail (sender system@sent-via.netsuite.com) by subject substring. source=cabinet: pulled from the File Cabinet via get_cabinet_file. period_format tells the agent how to normalise the period a user asks for. Add entries as Peter supplies each report's subject/folder; keep report_key stable — it is the storage path.",
+  "subsidiaries": [
+    "Wego",
+    "Elimination – Wego Root",
+    "Wego Group Pte Ltd",
+    "Wego Pte Ltd (SG Group)",
+    "Elimination Subsidiary – Wego Pte Ltd (Group)",
+    "PT Wego Travel Indonesia",
+    "Shopcash FZ-LLC",
+    "ShopCash Pte Ltd",
+    "Wego Egypt LLC",
+    "Wego FZ-LLC",
+    "Wego ME Travel & Tourism LLC",
+    "Wego Pte Ltd (Singapore)",
+    "Elimination – Wego Pte Ltd (Singapore)",
+    "Wego Middle East",
+    "WeGo Saudi for Travel and Tourism",
+    "Wego Search Technologies Private Limited",
+    "Wego Technology Malaysia",
+    "Wego Travel & Tourism (Private) Limited",
+    "Wego Travel S.A.E"
+  ],
+  "_subsidiaries_note": "Official NetSuite subsidiary names (Peter 2026-07-28). Used by get_stored_report(subsidiary=...) to resolve what the user typed to the exact 'Subsidiary: Name' value before filtering. 'consolidated'/'consolidate'/no subsidiary mentioned = serve the stored consolidated file unfiltered.",
+  "reports": [
+    {
+      "report_key": "ap_aging_detail_bk_consolidated",
+      "title": "A/P Aging Detail BK Wego (Consolidated)",
+      "domain": "AP",
+      "team": "netsuite_ap",
+      "source": "email",
+      "subject_contains": "AP: A/P Aging Detail BK Wego (Consolidated)",
+      "from": "system@sent-via.netsuite.com",
+      "period_format": "YYYY-MM-DD",
+      "period_notes": "Subject carries 'as of DD/MM/YYYY' (e.g. 'as of 30/06/2026'); the fetcher normalises it to 2026-06-30. When a user asks 'as of 30/06/2026' or 'for June end', resolve to the ISO date before calling get_stored_report.",
+      "cadence": "scheduled by NetSuite (Akansha)",
+      "notes": "Subject prefix 'AP:' is the DOMAIN tag — identifies which channel/team the report belongs to. Report name is 'A/P Aging Detail BK Wego'. Default variant is (Consolidated); if the user names NO subsidiary, serve this one. Per-subsidiary variants will be registered later — if a user asks for a specific subsidiary before those exist, say that variant isn't ingested yet (do NOT serve Consolidated as a substitute without saying so). Attachment arrives as generic 'report.xls' — the period path keeps versions apart; meta.subject holds provenance. This is the report that CANNOT be rebuilt via SuiteQL (report-engine only) — serving this NetSuite-generated file is the only correct source.",
+      "example_questions": [
+        "AP aging detail BK consolidated as of 30/06/2026",
+        "A/P aging report for June end",
+        "consolidated AP aging"
+      ],
+      "subject_note": "Matched with whitespace collapsed + case-insensitive, so the real subject's DOUBLE space between 'BK' and 'Wego' is handled. Keep the FULL subject including '(Consolidated)': a truncated 'AP: A/P Aging Detail BK' would also match per-subsidiary variants and file them under this consolidated key.",
+      "refresh": "always",
+      "deliver_as": "xlsx",
+      "attachment_format_note": "NetSuite's scheduled export is now report.CSV (was report.xls). Any format is ingested; delivery always converts to .xlsx (rows verbatim, only cell types/formats change) so finance gets Excel.",
+      "refresh_note": "refresh=always: re-check the inbox on EVERY request even if the period is already stored — Akansha re-sends/reschedules, so the newest email for a period supersedes what we hold. Newest wins (same key/period/filename is overwritten).",
+      "subsidiary_source": "email",
+      "subsidiary_subject_template": "AP: A/P Aging Detail BK {subsidiary} as of",
+      "subsidiary_report_key_template": "ap_aging_detail_bk__{slug}",
+      "subsidiary_note": "Since 2026-07-30 Akansha schedules a SEPARATE email per subsidiary: 'AP: A/P Aging Detail BK <Subsidiary> as of DD/MM/YYYY' with report.csv attached. These are PREFERRED over filtering the consolidated file: NetSuite segregates the rows itself, so the '- No Vendor -' / '- No Subsidiary -' block is attributed correctly and nothing has to be inferred. Matching is anchored on 'BK <subsidiary> as of' (normalised whitespace, case-insensitive) so 'Wego' cannot swallow 'Wego Middle East'. Filtering the consolidated export remains only as a FALLBACK when a subsidiary's email is absent, and is flagged as derived. Extraction is pure Python stdlib + openpyxl — NO AI tokens.",
+      "subsidiary_variants": [
+        "Wego (Consolidated)",
+        "Wego Pte Ltd (SG Group) (Consolidated)",
+        "Wego Pte Ltd (Singapore) (Consolidated)",
+        "Wego Pte Ltd (Singapore)",
+        "PT Wego Travel Indonesia",
+        "Shopcash FZ-LLC",
+        "ShopCash Pte Ltd",
+        "Wego Egypt LLC",
+        "Wego FZ-LLC",
+        "Wego ME Travel & Tourism LLC",
+        "Wego Middle East",
+        "WeGo Saudi for Travel and Tourism",
+        "Wego Search Technologies Private Limited",
+        "Wego Technology Malaysia",
+        "Wego Travel & Tourism (Private) Limited",
+        "Wego Travel S.A.E"
+      ],
+      "subsidiary_variants_note": "EXACT scope names as they appear in the subject between 'BK ' and ' as of' (Peter 2026-07-30, from the inbox screenshots). The subject IS the mapping: 'AP: A/P Aging Detail BK PT Wego Travel Indonesia as of 30/07/2026' -> scope 'PT Wego Travel Indonesia'. THREE Singapore variants are DISTINCT reports — 'Wego Pte Ltd (Singapore)', '... (Singapore) (Consolidated)' and '... (SG Group) (Consolidated)' — never collapse them. Resolve the user's words against THIS list only: exact match first, else a UNIQUE substring; anything ambiguous or unknown -> ask, listing the candidates. Never guess a scope for finance data."
+    },
+    {
+      "report_key": "classification_lists",
+      "title": "NetSuite Classification Lists",
+      "source": "email",
+      "subject_contains": "NetSuite Classification Lists",
+      "from": "system@sent-via.netsuite.com",
+      "period_format": "YYYY-MM",
+      "cadence": "monthly",
+      "notes": "Departments / BU Code / Products / Market Segment lists, one xlsx attachment. Subject carries the period, e.g. 'NetSuite Classification Lists : 2026-07'.",
+      "example_questions": [
+        "classification lists for July",
+        "latest BU code list",
+        "departments list from NetSuite"
+      ]
+    }
+  ]
+}

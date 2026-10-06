@@ -1,0 +1,10 @@
+# Every path in this repo is owned by Peter — the agent's operating contract
+# names him as the only authorised source for routing and protocol changes.
+* peter-atef-wego
+
+# Model routing may ONLY be changed by Peter (model-routing/ROUTING.md §
+# "Model Routing Change Authorization"). Listing it explicitly so a review is
+# always requested even if the catch-all above is ever narrowed.
+/model-routing/ peter-atef-wego
+/agents/        peter-atef-wego
+/cron/jobs.json peter-atef-wego

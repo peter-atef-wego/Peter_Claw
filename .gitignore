@@ -1,0 +1,65 @@
+
+# ─── Secrets ──────────────────────────────────────────────────────────────────
+# Real values live in WegoClaw / /home/openclaw/.openclaw/cron/openclaw.env.
+# Only .env.example is committed.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─── Cron runtime state ───────────────────────────────────────────────────────
+# cron/jobs.json IS the committed source of truth for schedules. Everything else
+# under cron/ is written by the daemon at runtime and recreated on demand —
+# committing it produced a merge conflict on every mirror sync.
+cron/daemon.pid
+cron/state.json
+cron/jobs-state.json
+cron/executor_state.json
+cron/locks/
+cron/runs/
+*.bak
+
+# ─── Runtime logs ─────────────────────────────────────────────────────────────
+# The logs/ directory is kept (.gitkeep) because universal_cron_runner.py opens
+# a FileHandler there without creating it first. The log files themselves are not
+# committed.
+logs/*.log
+logs/*.jsonl
+
+# Raw MCP activity JSONL — written by scripts/netsuite_mcp_server.py, rendered
+# daily into memory/logs/netsuite-mcp/*.md (which IS committed). The raw JSONL
+# is ephemeral and grows fast; only the rendered markdown is committed.
+logs/netsuite-mcp/*.jsonl
+
+# Listener runtime logs
+test_py/netsuite-mcp/logs/
+
+# ─── Agent runtime caches ─────────────────────────────────────────────────────
+# Short-term recall cache + event stream, rebuilt by the runtime each session.
+memory/.dreams/
+
+# ─── Local exports ────────────────────────────────────────────────────────────
+# Local CSV exports from export_suiteql_to_csv — not committed to repo.
+/tmp/netsuite_exports/
+*.tar.xz
+*.tar.gz
+*.zip
+
+# ─── OS / editor cruft ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/

@@ -23,45 +23,13 @@ Things like:
 
 ### SSH
 
-- home-server → [IP_ADDRESS], user: admin
+- home-server → 192.168.1.100, user: admin
 
 ### TTS
 
-- Preferred voice: "Nova" (warm, slightly British)
+- Preferred voice: "Data Automation's Claw" (warm, slightly British)
 - Default speaker: Kitchen HomePod
 ```
-
-## GitHub
-
-- **Username:** peter-atef-wego
-- **Status:** ✅ Connected via PAT (stored locally, not in repo)
-
-## Atlassian (Jira + Confluence)
-
-- **Email:** [EMAIL]
-- **Company Workspace:** WegoMushi
-- **Jira URL:** https://wegomushi.atlassian.net
-- **Jira Dashboard:** https://wegomushi.atlassian.net/jira/for-you
-- **Confluence URL:** https://wegomushi.atlassian.net/wiki
-- **API Token:** (stored securely in environment, not in repo)
-- **Status:** ✅ API token configured
-
-To use with Jira/Confluence REST APIs:
-```bash
-export ATLASSIAN_API_TOKEN=***
-export JIRA_EMAIL=***
-export JIRA_URL="https://wegomushi.atlassian.net"
-export CONFLUENCE_URL="https://wegomushi.atlassian.net/wiki"
-```
-
-Endpoints:
-- Jira: `https://wegomushi.atlassian.net/rest/api/3/`
-- Confluence: `https://wegomushi.atlassian.net/wiki/api/v2/`
-
-### AI & Automation 2026 Folder
-- **Folder URL:** https://wegomushi.atlassian.net/wiki/x/OYBo6g
-- **Folder ID (encoded):** OYBo6g
-- **Status:** ✅ Found and configured
 
 ## Why Separate?
 
@@ -70,7 +38,3 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
-
-## Related
-
-- [Agent workspace](/concepts/agent-workspace)
