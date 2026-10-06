@@ -1,0 +1,103 @@
+name: validate
+
+# The repo already carried scripts/bootstrap-validate.py but nothing ran it, so
+# stale tier mappings and truncated memory files only surfaced at runtime. This
+# runs the existing validators plus a few repo-hygiene guards on every push and PR.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile every Python file
+        run: |
+          # Syntax only — no third-party deps are installed, so importing would
+          # fail on slack_sdk/boto3 and tell us nothing useful.
+          find . -name '*.py' -not -path './.git/*' -print0 \
+            | xargs -0 -r python3 -m py_compile
+          echo "OK — all Python files compile"
+
+      - name: Parse every JSON file
+        run: |
+          fail=0
+          while IFS= read -r -d '' f; do
+            python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f" \
+              || { echo "::error file=$f::invalid JSON"; fail=1; }
+          done < <(find . -name '*.json' -not -path './.git/*' -print0)
+          exit $fail
+
+      - name: Parse every JSONL file
+        run: |
+          fail=0
+          while IFS= read -r -d '' f; do
+            python3 - "$f" <<'PY' || fail=1
+          import json, sys
+          path = sys.argv[1]
+          with open(path, encoding="utf-8") as fh:
+              for n, line in enumerate(fh, 1):
+                  if not line.strip():
+                      continue
+                  try:
+                      json.loads(line)
+                  except json.JSONDecodeError as e:
+                      print(f"::error file={path},line={n}::invalid JSONL: {e}")
+                      raise SystemExit(1)
+          PY
+          done < <(find . -name '*.jsonl' -not -path './.git/*' -print0)
+          exit $fail
+
+      - name: Bootstrap validation (tier mapping, memory integrity)
+        env:
+          OPENCLAW_WORKSPACE: ${{ github.workspace }}
+        run: python3 scripts/bootstrap-validate.py
+
+      - name: Routing consistency (models.json vs routers vs docs)
+        run: python3 scripts/validate_routing_consistency.py
+
+      - name: No secrets committed
+        run: |
+          # Placeholder values in .env.example end in "..." and are fine; a real
+          # credential is not. Keep this in sync with the .gitignore secrets block.
+          if grep -rInE \
+              'xox[bapse]-[A-Za-z0-9-]{20,}|github_pat_[A-Za-z0-9_]{30,}|ghp_[A-Za-z0-9]{36}|AKIA[0-9A-Z]{16}|sk-ant-[A-Za-z0-9-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----' \
+              --exclude-dir=.git --exclude-dir=.github . ; then
+            echo "::error::A credential-shaped string is committed. Move it to WegoClaw / openclaw.env and read it from the environment."
+            exit 1
+          fi
+          echo "OK — no credential-shaped strings found"
+
+      - name: No runtime artifacts committed
+        run: |
+          # cron/jobs.json is the committed source of truth for schedules; all
+          # other cron/ state and every log file is runtime output (see .gitignore).
+          bad=$(git ls-files \
+            'cron/daemon.pid' 'cron/state.json' 'cron/jobs-state.json' \
+            'cron/executor_state.json' 'cron/locks/*' 'cron/runs/*' \
+            'logs/*.log' 'memory/.dreams/*' '*.pyc' '*.bak' \
+            '*.tar.xz' '*.tar.gz' '*.zip')
+          if [ -n "$bad" ]; then
+            echo "::error::Runtime artifacts are committed:"
+            echo "$bad"
+            exit 1
+          fi
+          echo "OK — no runtime artifacts tracked"
+
+      - name: Cron jobs runnable (schedule valid, scripts exist)
+        run: python3 scripts/validate_cron_jobs.py
+
+      - name: README counts match the tree
+        run: python3 scripts/validate_readme_counts.py

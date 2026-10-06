@@ -1,0 +1,10 @@
+# Every path in this repo is owned by Nikhil — the agent's operating contract
+# names him as the only authorised source for routing and protocol changes.
+* @Nikhil-Wego
+
+# Model routing may ONLY be changed by Nikhil (model-routing/ROUTING.md §
+# "Model Routing Change Authorization"). Listing it explicitly so a review is
+# always requested even if the catch-all above is ever narrowed.
+/model-routing/ @Nikhil-Wego
+/agents/        @Nikhil-Wego
+/cron/jobs.json @Nikhil-Wego

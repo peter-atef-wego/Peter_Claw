@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "description": "openclaw-nova Model Routing \u2014 Single Source of Truth (5 tiers; Opus 4.7 L4 retired 2026-08-11)",
+  "tiers": [
+    {
+      "id": "l1",
+      "name": "L1 \u2014 Default (Sonnet 4.6)",
+      "model": "anthropic/claude-sonnet-4.6",
+      "provider": "openrouter",
+      "cost_tier": "medium",
+      "speed": "balanced",
+      "use_cases": [
+        "DMs (default)",
+        "simple queries",
+        "routine ops",
+        "git/cron/scripts"
+      ],
+      "keywords": [
+        "git",
+        "push",
+        "commit",
+        "script",
+        "bash",
+        "cron",
+        "deploy"
+      ],
+      "agent_id": "nova-l1",
+      "notes": "Was Haiku 4.5 until 2026-06-16; removed at Nikhil request \u2014 too unreliable for DM tier identification. Same model as L3; chip differentiates surface (DM vs channel), not model."
+    },
+    {
+      "id": "l2",
+      "name": "L2 \u2014 Daily Operations (DEFAULT)",
+      "model": "openai/gpt-4o-mini",
+      "provider": "openrouter",
+      "cost_tier": "low",
+      "speed": "fast",
+      "use_cases": [
+        "Slack queries",
+        "Jira triage",
+        "generic questions",
+        "daily ops"
+      ],
+      "keywords": [
+        "what",
+        "when",
+        "status",
+        "meeting",
+        "standup",
+        "calendar",
+        "schedule"
+      ],
+      "agent_id": "nova-l2",
+      "default": true
+    },
+    {
+      "id": "l3",
+      "name": "L3 \u2014 Technical Work",
+      "model": "anthropic/claude-sonnet-4.6",
+      "provider": "openrouter",
+      "cost_tier": "medium",
+      "speed": "balanced",
+      "use_cases": [
+        "code review",
+        "debugging",
+        "automation",
+        "technical"
+      ],
+      "keywords": [
+        "code",
+        "debug",
+        "error",
+        "review",
+        "optimize",
+        "technical",
+        "python"
+      ],
+      "agent_id": "nova-l3"
+    },
+    {
+      "id": "l4",
+      "name": "L4 \u2014 Premium (Opus 4.8)",
+      "model": "anthropic/claude-opus-4.8",
+      "provider": "openrouter",
+      "cost_tier": "premium",
+      "speed": "slowest",
+      "use_cases": [
+        "strategy",
+        "architecture",
+        "executive reports",
+        "complex planning",
+        "crisis response",
+        "production-write reviews",
+        "HERMES proposal validation",
+        "highest-stakes decisions"
+      ],
+      "keywords": [
+        "design",
+        "architecture",
+        "strategy",
+        "roadmap",
+        "plan",
+        "executive",
+        "crisis review",
+        "p0 postmortem",
+        "prod write approval",
+        "hermes validate"
+      ],
+      "agent_id": "nova-l4",
+      "notes": "Top Anthropic tier. Absorbed the retired Opus 4.7 L4 on 2026-08-11, so it is keyword-routable and is the auto-escalation target from L3 \u2014 the manual-only restriction it carried as L5 no longer applies. Verify the OpenRouter model ID resolves before first use."
+    },
+    {
+      "id": "l5",
+      "name": "L5 \u2014 Cross-Provider Second Opinion (GPT-5.5)",
+      "model": "openai/gpt-5.5",
+      "provider": "openrouter",
+      "cost_tier": "premium",
+      "speed": "slow",
+      "use_cases": [
+        "independent cross-check of Anthropic output",
+        "HERMES adversarial validation diversity",
+        "final fallback when Anthropic unavailable"
+      ],
+      "keywords": [
+        "second opinion",
+        "cross-check",
+        "independent review"
+      ],
+      "agent_id": "nova-l5",
+      "notes": "Was L6 until 2026-08-11. Different provider family by design \u2014 independent check of Anthropic answers (HERMES validator diversity) or last-resort fallback. Never keyword-auto-routed. Verify the OpenRouter model ID resolves before first use."
+    }
+  ],
+  "fallback": {
+    "agent_id": "nova-l2",
+    "reason": "Default to daily ops tier for unknown/ambiguous queries"
+  }
+}
