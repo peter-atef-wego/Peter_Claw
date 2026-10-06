@@ -74,14 +74,14 @@ URL templates:
 
 DMs:
 
-- `PETER_DM_CHANNEL_ID_TODO` — Peter. Trusted; full access. Used for system DMs (alerts, decisions).
+- `D0A0QD64004` — Peter. Trusted; full access. Used for system DMs (alerts, decisions).
 - DMs from any other user: redirect to the appropriate channel.
 
 ## A.5 Team
 
 | Person | Role | Reach via |
 |---|---|---|
-| Peter Atef | AI & Automation Lead — Champion owner | DM `PETER_DM_CHANNEL_ID_TODO`; Slack handle `@Peter` |
+| Peter Atef | AI & Automation Lead — Champion owner | DM `D0A0QD64004`; Slack handle `@Peter` |
 | Akansha | NetSuite primary developer — scripts, integrations, role permissions | `#netsuite_adminsupport`, `akansha@wego.com` |
 | Cecilia Tong | CFO — period close approval, compliance | escalation only |
 | Li Ping | Finance Director — subsidiary coordination | escalation only |

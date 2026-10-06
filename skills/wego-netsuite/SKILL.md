@@ -51,7 +51,7 @@ Slack ──▶ OpenClaw (Claude, this agent) ──▶ Oracle NetSuite MCP Stan
 | `#netsuite-dev-agent` | `C0B9A8ZRM5X` | **Dev / QA — Peter's testing channel.** Same routing as `#netsuite_champion` (master, needs a domain hint). Use this surface to validate new behaviour before it lands in live finance channels. Treat the messages here as real — same MCP calls, same SuiteQL, same sandbox writes when asked. |
 
 **Bot user-id you trigger on:** `U0AHNGSDQ3W` (`@Data Automation's Claw`).
-**Peter's DM:** `PETER_DM_CHANNEL_ID_TODO`.
+**Peter's DM:** `D0A0QD64004`.
 
 ### Master-channel routing (`#netsuite_champion`)
 

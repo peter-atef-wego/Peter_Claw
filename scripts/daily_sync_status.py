@@ -19,7 +19,7 @@ from pathlib import Path
 WORKSPACE_DIR = Path("/home/openclaw/.openclaw/workspace")
 STATE_FILE = WORKSPACE_DIR / "cron" / "executor_state.json"
 SLACK_TOKEN = os.environ.get("SLACK_BOT_TOKEN") or os.environ.get("SLACK_BOT_TOKEN_NETSUITE_CHAMPION")
-NIK_USER_ID = "PETER_SLACK_USER_ID_TODO"
+NIK_USER_ID = "U0A05CNQQ07"
 
 JOBS_TO_REPORT = [
     "openclaw_nova_mirror",

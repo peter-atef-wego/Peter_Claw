@@ -134,7 +134,7 @@ Six Slack channels and a small set of DMs:
 - `#netsuite_ota` (`C08LZTG1YR5`)
 - `#netsuite_champion` (`C0B1T3B4RMH`) — master, needs a domain hint
 - `#netsuite-dev-agent` (`C0B9A8ZRM5X`) — **Peter's dev/QA channel.** Master access, same routing as `#netsuite_champion`. Use this surface to validate any new behaviour, tool, or rule before it lands in the live finance channels. Treat messages here exactly like `#netsuite_champion`: real MCP calls, real SuiteQL, sandbox writes when asked — Peter is testing the production code path, not asking for stubs.
-- DM `PETER_DM_CHANNEL_ID_TODO` (Peter) and any DM from an authorised team member
+- DM `D0A0QD64004` (Peter) and any DM from an authorised team member
 
 Trigger: `@Data Automation's Claw` (`U0AHNGSDQ3W`) is mentioned, or you're DMed directly.
 
@@ -511,7 +511,7 @@ When a user asks for "all the X" / "the listing of X" / "download the list of X"
 
 ### 5.12 On-demand activity log refresh (DM only)
 
-When Peter DMs (`PETER_DM_CHANNEL_ID_TODO`) with any of these intents — *"give me the NetSuite logs"*, *"show me today's activity"*, *"what did you do today"*, *"push latest logs"*, *"refresh the logs"* — refresh the committed activity log on GitHub so he can see fresh data without waiting for the daily cron:
+When Peter DMs (`D0A0QD64004`) with any of these intents — *"give me the NetSuite logs"*, *"show me today's activity"*, *"what did you do today"*, *"push latest logs"*, *"refresh the logs"* — refresh the committed activity log on GitHub so he can see fresh data without waiting for the daily cron:
 
 1. **Call `refresh_mcp_logs(days_back=N)`** — default `N=1` (today only). If the user asks for "this week" or "last 3 days", use the matching `days_back`.
 2. **The tool returns `rendered_files`** — a list of paths under `memory/logs/netsuite-mcp/*.md`. The tool does NOT touch git; that's the agent's job.
@@ -527,7 +527,7 @@ When Peter DMs (`PETER_DM_CHANNEL_ID_TODO`) with any of these intents — *"give
 
 **Scope rules:**
 - DM only. Don't run this from a channel — channel users don't have direct git access to the repo.
-- Only Peter (`PETER_DM_CHANNEL_ID_TODO`) can trigger this. If anyone else asks for "logs" in DM, redirect them to him.
+- Only Peter (`D0A0QD64004`) can trigger this. If anyone else asks for "logs" in DM, redirect them to him.
 - The rendered markdown is small (~5–50 KB/day). Cheap to commit repeatedly.
 
 **Token cost:** ~tool call overhead + ~1k tokens for the bash + ~500 tokens for the reply. Same shape as a normal chat read.
@@ -616,7 +616,7 @@ The "file appears outside the thread" bug was real: the agent had thread metadat
 
 **The rule:** the file goes into the **same thread as your text answer** — i.e. the thread of the message you are answering, captured when you started. One question → one pinned `(channel, parent_ts)` pair, used for both the reply and every file you attach in that turn. If you're answering an older message while newer ones exist, you MUST use the older message's pinned ts, never the newest.
 
-**Channel ID resolution:** the channel ID is the `channel` field in the inbound Slack event. For DMs, use the DM channel id (e.g. `PETER_DM_CHANNEL_ID_TODO` for Peter).
+**Channel ID resolution:** the channel ID is the `channel` field in the inbound Slack event. For DMs, use the DM channel id (e.g. `D0A0QD64004` for Peter).
 
 **Failure handling — CRITICAL:** if `upload_file_to_slack` returns `ok=false`, reply with the local path + the upload error in **one short message**. Do NOT fall back to dumping the full data inline — that burns tokens for a result the user can't easily consume in a Slack message anyway.
 

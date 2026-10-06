@@ -132,7 +132,7 @@ Two execution paths — MCP primary, OAuth script as fallback.
 | `#netsuite_ota` | `C08LZTG1YR5` | OTA Integrations | `netsuite_ota.md` |
 | `#netsuite_adminsupport` | `C08MCK8936Z` | Admin/escalation (do not auto-respond) | — |
 
-DMs: `PETER_DM_CHANNEL_ID_TODO` (Peter) — trusted; full access. DMs from any other user are redirected to the relevant channel.
+DMs: `D0A0QD64004` (Peter) — trusted; full access. DMs from any other user are redirected to the relevant channel.
 
 ### 3.6 Standard financial reports (10, server-side templates)
 

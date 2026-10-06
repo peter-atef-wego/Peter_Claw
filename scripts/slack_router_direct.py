@@ -23,7 +23,7 @@ from model_router import route
 class DirectSlackRouter:
     def __init__(self):
         self.token = os.getenv("SLACK_BOT_TOKEN")
-        self.peter_id = "PETER_SLACK_USER_ID_TODO"
+        self.peter_id = "U0A05CNQQ07"
         self.base_url = "https://slack.com/api"
         
         if not self.token:

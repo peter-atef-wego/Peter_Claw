@@ -34,7 +34,7 @@ logging.basicConfig(
 logger = logging.getLogger('SlackHandler')
 
 # Peter's user ID (authorized only)
-PETER_USER_ID = "PETER_SLACK_USER_ID_TODO"
+PETER_USER_ID = "U0A05CNQQ07"
 
 class SlackDMRouter:
     """Routes Slack DMs to correct tier agent."""

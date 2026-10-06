@@ -24,7 +24,7 @@ These files are loaded on every session regardless of context:
 When Peter is using OpenClaw UI directly (not from a Slack channel):
 - **No channel-based routing restrictions apply**
 - Load skills based on query intent (Step 2) with full access to all skill files
-- Identity confirmed via OpenClaw UI session (peer.id = PETER_SLACK_USER_ID_TODO) — no Slack channel context present
+- Identity confirmed via OpenClaw UI session (peer.id = U0A05CNQQ07) — no Slack channel context present
 - Default model: L1 (Sonnet 4.6) for DMs; L3 (Sonnet 4.6) for channel @mentions — same model, different chip; L4 (Opus 4.8) for strategy and highest-stakes work; L5 (GPT-5.5) manual only. Haiku removed 2026-06-16; Opus 4.7 retired 2026-08-11.
 
 If no Slack channel ID is detected in the query context, treat as personal use and proceed to Step 2 directly.

@@ -22,7 +22,7 @@ If any of 0.1–0.3 fail, stop and fix before running anything below.
 
 | # | Channel | Test message | Expected reply (shape) |
 |---|---|---|---|
-| 1.1 | DM (`PETER_DM_CHANNEL_ID_TODO`) | `list our 8 subsidiaries` | Table of 8 rows with `id`, `name`, `country`, `currency`. Matches the alias table in `dimension_aliases.md`. |
+| 1.1 | DM (`D0A0QD64004`) | `list our 8 subsidiaries` | Table of 8 rows with `id`, `name`, `country`, `currency`. Matches the alias table in `dimension_aliases.md`. |
 | 1.2 | DM | `which period is open right now?` | One-line: "Current period is `MAY-2026` — open (closed=F, alllocked=F)." or the actual state. |
 | 1.3 | DM | `what's the FX rate AED to SGD today?` | Headline `1 AED = X.XXXX SGD`, with effective date. |
 

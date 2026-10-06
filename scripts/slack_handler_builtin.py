@@ -23,7 +23,7 @@ from model_router import route
 class SlackHandler:
     def __init__(self):
         self.bot_token = os.getenv("SLACK_BOT_TOKEN")
-        self.peter_id = "PETER_SLACK_USER_ID_TODO"
+        self.peter_id = "U0A05CNQQ07"
         
         if not self.bot_token:
             print("❌ SLACK_BOT_TOKEN not set")

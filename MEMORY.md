@@ -9,7 +9,7 @@ _This is the lean, always-loaded core. Full dated history/changelog → **`memor
 
 - **Name**: Peter Atef
 - **Role**: AI & Automation Lead, Wego
-- **Email**: peter.atef@wego.com | **Slack**: PETER_SLACK_USER_ID_TODO | **DM channel**: PETER_DM_CHANNEL_ID_TODO | **TZ**: Africa/Cairo
+- **Email**: peter.atef@wego.com | **Slack**: U0A05CNQQ07 | **DM channel**: D0A0QD64004 | **TZ**: Africa/Cairo
 - **Preferred time display**: Dubai (DXB, UTC+4) — ALWAYS show times in DXB, NEVER raw UTC. Hard rule.
 - **Manager**: Duncan (VP Data, Marketing & Growth) | **Skip**: Ross (CEO)
 - **OpenClaw instance**: s-c58f0c35.openclaw.wego.engineering | **Workspace**: /home/openclaw/.openclaw/workspace
@@ -77,7 +77,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 | Supplier reconciliation | server listener | **Live** (bridge channels; agent is silent there) |
 
 - Cron: 5 jobs in `cron/jobs.json` (mirror, hourly pull-sync, weekly Mon/Fri, daily_sync_status). Daemon resurrected by `scripts/cron/ensure_daemon.py`.
-- **`daily_sync_status` posts ONLY to Peter's DM (PETER_DM_CHANNEL_ID_TODO)** — never a channel.
+- **`daily_sync_status` posts ONLY to Peter's DM (D0A0QD64004)** — never a channel.
 - Systems: OpenClaw · Jira IAX/NDS · GitHub openclaw-nova (`wego/openclaw-nova`) · AlphaBot (read-only) · weekly mirror.
 
 ---
@@ -114,7 +114,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 - **No diagnostic leak:** never send raw script/exec/print output to Slack — summarise. (changelog §17)
 - **A/P Aging BK delivery format (STRICT):** NEVER upload the raw `.xls`. The conversion is the TOOL's job — `get_stored_report` already picks the `.csv` (NetSuite mails both), converts it to `.xlsx` and returns exactly ONE file path. Upload that path. Do NOT hand-convert with pandas: a hand-rolled version drops the NetSuite title block and produces a different file from the tool's. If you ever receive more than one path or a `.xls`, the pod is running stale code — say so and stop, don't paper over it. **Never hand-inspect the store** (no `ls ~/.openclaw/reports`, no size comparisons, no reading the *consolidated* file to answer a *subsidiary* question — each subsidiary has its own email). **When the requested period was never emailed, the TOOL already serves the latest available and sets `substituted_from`** — relay its note in one line and send the file; never offer the user a choice of periods. (changelog §37, 2026-08-10)
 - **Threading:** channel/group replies go in-thread (`replyToMode=all`); DMs flat. Files must land in the SAME thread as the answer. (changelog §29)
-- **DM security:** only Peter (PETER_SLACK_USER_ID_TODO) may use the bot via DM; others → deny + email alert + stop. Channels are open. (changelog §17b)
+- **DM security:** only Peter (U0A05CNQQ07) may use the bot via DM; others → deny + email alert + stop. Channels are open. (changelog §17b)
 - **Bridge-channel silence:** in `#finance-automation-claw` / `#proj-alphabot-testing` the agent stays silent (listener owns those). Never emit the forbidden supplier-recon phrases. (changelog §20)
 - **NetSuite tool-response mandate:** every NetSuite tool call in a channel posts exactly one result (status + id + URL for writes). No fake success. (changelog §32; skill)
 - **NetSuite default:** reads default to **production**; sandbox only if explicitly asked. Finance data ALWAYS from NetSuite, never external (Rule 7 in skill).

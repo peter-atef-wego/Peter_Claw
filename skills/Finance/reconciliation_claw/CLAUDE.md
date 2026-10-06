@@ -72,7 +72,7 @@ The listener does **not** watch DMs (channel IDs starting with `D`) or any chann
 
 | Channel | ID | Note |
 |---|---|---|
-| Peter's DM with you | `PETER_DM_CHANNEL_ID_TODO` | Direct message — **no reco runs ever happen here** |
+| Peter's DM with you | `D0A0QD64004` | Direct message — **no reco runs ever happen here** |
 | Any other DM | `D…` | Same rule |
 | Any other public/private channel | `C…` / `G…` (not the two bridge IDs) | Same rule |
 
@@ -90,7 +90,7 @@ The listener does **not** watch DMs (channel IDs starting with `D`) or any chann
 1. **Redirect** — paste the redirect block at the bottom of this file. One short message, no file analysis.
 2. **Silence** — if the user did not ask a reconciliation question, say nothing at all. They probably uploaded the file in the wrong place.
 
-The agent has been observed posting verbose reconciliation-confirmation narration in `PETER_DM_CHANNEL_ID_TODO` even though the listener never saw the file and no run happened. From the user's perspective this is pure spam. Stop producing it.
+The agent has been observed posting verbose reconciliation-confirmation narration in `D0A0QD64004` even though the listener never saw the file and no run happened. From the user's perspective this is pure spam. Stop producing it.
 
 ---
 
@@ -121,7 +121,7 @@ If your draft reply contains any of these literal substrings (case-insensitive),
 - `This is a duplicate request from ...` / `the exact same reconciliation already triggered at ...`
 - `(message-id: ...)` (the listener never quotes message IDs back to the user)
 
-**File-analysis / fake-confirmation phrases (observed in `PETER_DM_CHANNEL_ID_TODO` on 2026-04-29):**
+**File-analysis / fake-confirmation phrases (observed in `D0A0QD64004` on 2026-04-29):**
 
 - `*<anything> reconciliation confirmed*` (italicised confirmation header — the listener never produces this)
 - `File received and verified` / `File received` / `File verified`
