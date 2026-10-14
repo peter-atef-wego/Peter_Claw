@@ -11,9 +11,9 @@ Use this skill to keep Confluence documentation synchronized with Git branch wor
 
 Before acting, identify:
 
-- Repository name or local repo path
+- Repository name (`owner/repo`) or local repo path; if omitted, use `GITHUB_REPOSITORY` only as a fallback/default
 - Branch name
-- Base branch, usually `main`, `master`, or the PR target branch
+- Base branch, usually `main`, `master`, the repository default branch, or the PR target branch
 - Confluence parent page or folder ID
 - Confluence page title pattern
 - Whether the task is:
@@ -27,7 +27,7 @@ Expect these values from environment variables, config, or user-provided context
 ```bash
 CONFLUENCE_URL="https://example.atlassian.net/wiki"
 CONFLUENCE_SPACE_ID="..."
-CONFLUENCE_PARENT_PAGE_ID="..."
+CONFLUENCE_PARENT_PAGE_ID="..."  # Confluence parent page or folder ID
 ATLASSIAN_EMAIL="..."
 ATLASSIAN_API_TOKEN="***"
 ```
@@ -35,7 +35,7 @@ ATLASSIAN_API_TOKEN="***"
 For GitHub-backed repositories, also use:
 
 ```bash
-GITHUB_REPOSITORY="owner/repo"
+GITHUB_REPOSITORY="owner/repo"  # optional fallback/default; explicit repo in the request wins
 GITHUB_TOKEN="***"
 ```
 
@@ -90,7 +90,7 @@ When receiving a new branch event:
    - Optionally update the page metadata section.
 
 4. If no page exists:
-   - Create a new Confluence page under the configured parent page.
+   - Create a new Confluence page under the configured parent page or folder.
 
 5. Use this initial page structure:
 
@@ -147,9 +147,9 @@ _No diff analyzed yet._
 When asked to update a Confluence page using a branch diff:
 
 1. Confirm or infer:
-   - repository
+   - repository (`owner/repo` from the request; fall back to `GITHUB_REPOSITORY` only if the request does not name one)
    - branch name
-   - base branch
+   - base branch / PR target / repository default branch
    - Confluence page
 
 2. Fetch latest refs:

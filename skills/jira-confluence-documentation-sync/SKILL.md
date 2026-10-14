@@ -97,6 +97,10 @@ GET /wiki/api/v2/spaces?keys=DATA_MARKETING_GROWTH
 
 **Get folder structure:**
 ```bash
+# If AI_AUTOMATION_2026_FOLDER_ID is a Confluence folder ID, prefer:
+GET /wiki/api/v2/folders/{folderId}
+
+# Legacy/page fallback when the parent is a page:
 GET /wiki/api/v2/pages/{parentPageId}/children
 ```
 
@@ -105,7 +109,7 @@ GET /wiki/api/v2/pages/{parentPageId}/children
 POST /wiki/api/v2/pages
 {
   "spaceId": "space_id",
-  "parentId": "ai_automation_2026_page_id",
+  "parentId": "ai_automation_2026_folder_or_page_id",
   "title": "[Process Name] - AI/Automation Process",
   "body": {
     "representation": "storage",

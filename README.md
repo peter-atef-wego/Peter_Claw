@@ -8,7 +8,7 @@ Jira is used read-only to initialize a page for a new process.
 | Request | Result |
 |---|---|
 | A new branch is created | A `[Branch Docs] <Branch Name>` page is created under the configured parent page |
-| "Update the Confluence page from branch `X`" | The page is updated from the diff of `X` against its base branch |
+| "Update the Confluence page from branch `X` in repo `owner/repo`" | The page is updated from the diff of `X` against its base branch |
 | "Create a Confluence page for process X" | Searches the AI & Automation 2026 folder; if no page exists, creates one from the matching Jira ticket |
 | "Update the documentation for process X" | Updates the page from recent GitHub commits and diffs |
 
@@ -31,7 +31,7 @@ docs/
 
 1. Copy `.env.example` to `.env` (gitignored) and fill in real values.
 2. Set `CONFLUENCE_PARENT_PAGE_ID` / `AI_AUTOMATION_2026_FOLDER_ID` to the Confluence page that new pages go under.
-3. Point `GITHUB_REPOSITORY` at the repo whose branches you want documented.
+3. Optionally point `GITHUB_REPOSITORY` at a default repo. For “any repo / any branch” usage, include the repo and branch in the request; explicit request values override the default.
 4. Run the agent with this repo as its workspace so it loads `CLAUDE.md` and the skills.
 
 ## Security

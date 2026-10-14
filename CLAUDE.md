@@ -14,10 +14,12 @@ and stop.
 | System | Use | Access |
 |---|---|---|
 | Confluence | Search, create and update documentation pages | Read/write |
-| GitHub | Read branches, commits and diffs | Read-only |
+| GitHub | Read branches, commits and diffs from the repo named in the request | Read-only |
 | Jira | Read a ticket to initialize a new process page | Read-only |
 
 Credentials come from environment variables (see `.env.example`). Never print, log or commit them.
+
+`GITHUB_REPOSITORY` is only a fallback/default. For cross-repo work, the user can say: “sync Confluence page for process X in repo `<owner/repo>` branch `<branch>`”; the explicit repo and branch in the request always win.
 
 ## Skills
 
@@ -30,7 +32,11 @@ Load the matching skill and follow it. If neither fits, ask which one applies.
 
 ## Triggers
 
-- A user request in chat (the normal case).
+- A user request in chat (the normal case). For branch-diff updates, collect or infer:
+  - process/page name
+  - repository (`owner/repo` or local repo path)
+  - branch name
+  - base branch/PR target, defaulting to the repository default branch when not supplied
 - A GitHub `create` event with `ref_type == "branch"`, if the hosting environment delivers
   webhooks. Ignore tag events.
 
