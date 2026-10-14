@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "_doc": "Saved-search registry for the NetSuite Champion. SOURCE OF TRUTH for intent -> saved-search routing. Peter populates this from the NetSuite UI: paste a saved-search URL (.../searchresults.nl?searchid=NNN), the agent/dev records its id + title + the kind of question it answers. At runtime the agent matches the finance user's question to the best entry by `intent` / `example_questions`, then runs it with `run_saved_search(key=...)`. Finance users NEVER paste URLs or ids. To add a search: append an object to `searches` with a unique `key`, the `search_id` (number after searchid= in the URL, OR the customsearch script id), a human `title`, the `intent`, and a few `example_questions`. Keep `search_id` a STRING.",
+  "_not_saved_searches": "Some things are NOT saved searches and must NOT be added here. (1) Currency Exchange Rates = native page Lists > Accounting > Currency Exchange Rates (currencyratelist.nl), backed by the currencyrate table -> handled by run_standard_report report_name=fx_rate_list / fx_rate_range, NOT run_saved_search. (2) Financial Report Builder reports (reportrunner.nl?cr=NNN) CANNOT be run via API/RESTlet at all -> reproduce their data via SuiteQL run_standard_report templates instead.",
+  "matching_rules": {
+    "confidence": "If the question clearly matches one entry's intent/example_questions, run it. If it plausibly matches MORE THAN ONE, or matches NONE well, ask the user to confirm which report (list the candidate titles) before running — do not guess. Read the Slack thread context first; the answer is often upthread.",
+    "no_url_from_users": "Finance users must never be asked for a URL or search id. That mapping lives here.",
+    "after_running": "For list/report/export asks, set export_csv=true (most entries default it on) and deliver the CSV via upload_file_to_slack into the user's thread. Tag the source: 'Source: NetSuite Production (saved search <id> — <title>)'.",
+    "overlap_with_templates": "Some intents also have a run_standard_report SuiteQL template (e.g. AR aging, customer payments, revenue/GL). These maintained saved searches are Finance's own definitions — prefer the saved search when the user names it or wants 'the report we use'; use the SuiteQL template for ad-hoc/parameterised pulls. If genuinely unsure which the user wants, ask."
+  },
+  "searches": [
+    {
+      "key": "ar_aging_details",
+      "search_id": "694",
+      "script_id": "customsearch694",
+      "title": "A/R Aging Search - Details",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=694&whence=",
+      "intent": "Accounts-receivable aging at the transaction/detail level — open customer invoices with age/overdue.",
+      "example_questions": [
+        "A/R aging details",
+        "receivables aging detail",
+        "aged receivables by invoice",
+        "AR aging search"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "bills_approval_per_user",
+      "search_id": "736",
+      "script_id": "customsearch736",
+      "title": "Bills Approval Per User",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=736&whence=",
+      "intent": "Vendor bill approvals grouped by the approver/user — who approved which bills. Used by the AP team (Nurul / netsuite_ap).",
+      "example_questions": [
+        "bills approval per user",
+        "who approved which bills",
+        "bill approvals by user",
+        "AP bill approvals",
+        "bills approved by whom",
+        "bill approval report"
+      ],
+      "team": "netsuite_ap",
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "transaction_estimate",
+      "search_id": "439",
+      "script_id": "customsearch_wego_transactio",
+      "title": "Wego|Transaction Estimate",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=439&whence=",
+      "intent": "Wego transaction estimates list.",
+      "example_questions": [
+        "transaction estimates",
+        "Wego transaction estimate",
+        "estimate transactions"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "journals_approvals_per_user",
+      "search_id": "735",
+      "script_id": "customsearch735",
+      "title": "Journals Approvals Per User",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=735&whence=",
+      "intent": "Journal entry approvals grouped by approver/user.",
+      "example_questions": [
+        "journal approvals per user",
+        "JE approvals by user",
+        "who approved which journals"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "transaction_je",
+      "search_id": "483",
+      "script_id": "customsearch_wego_transactio_5",
+      "title": "Wego|Transaction JE",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=483&whence=",
+      "intent": "Journal entry (JE) transactions list.",
+      "example_questions": [
+        "JE transactions",
+        "journal entries list",
+        "Wego transaction JE",
+        "list journal entries"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "supplier_transaction_detail",
+      "search_id": "785",
+      "script_id": "customsearch785",
+      "title": "Supplier Transaction detail",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=785&whence=",
+      "intent": "Supplier / vendor transaction detail.",
+      "example_questions": [
+        "supplier transaction detail",
+        "vendor transactions detail",
+        "transactions for a supplier"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "vendor_bill_pending_approval",
+      "search_id": "446",
+      "script_id": "customsearch_wg_bill_approval",
+      "title": "Vendor Bill Pending Approval",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=446&whence=",
+      "intent": "Vendor bills currently pending approval (unapproved).",
+      "example_questions": [
+        "vendor bills pending approval",
+        "pending bill approvals",
+        "unapproved vendor bills",
+        "bills awaiting approval"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "jv_pending_approval",
+      "search_id": "444",
+      "script_id": "customsearch_wg_jv_approval",
+      "title": "JV Pending Approval",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=444&whence=",
+      "intent": "Journal vouchers / journal entries currently pending approval.",
+      "example_questions": [
+        "JV pending approval",
+        "journals pending approval",
+        "journal vouchers awaiting approval"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "revenue_transactions_by_gl_v2",
+      "search_id": "757",
+      "script_id": "customsearch581",
+      "title": "Wego|Revenue Transactions By GL | Ver. 2 - Sally",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=757&whence=",
+      "intent": "Revenue transactions grouped by GL account (Ver. 2). This is the PRIMARY, most-widely-used GL revenue report across teams — treat it as the default for a plain 'revenue by GL' / 'GL revenue' ask (prefer over Ver. 3 unless the user explicitly says Ver. 3).",
+      "example_questions": [
+        "revenue transactions by GL",
+        "revenue by GL",
+        "GL revenue report",
+        "revenue by GL account",
+        "revenue GL listing",
+        "revenue transactions by GL ver 2"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "customer_payments_search",
+      "search_id": "708",
+      "script_id": "customsearch708",
+      "title": "Customer Payments Search",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=708&whence=",
+      "intent": "Customer payments received — list of payment transactions from customers.",
+      "example_questions": [
+        "customer payments",
+        "payments received from customers",
+        "customer payment list"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "revenue_transactions_by_gl_v3",
+      "search_id": "customsearch583",
+      "script_id": "customsearch583",
+      "title": "Wego|Revenue Transactions By GL | Ver. 3",
+      "source_url": null,
+      "intent": "Revenue transactions grouped by GL account (version 3 — latest). Run by script id (no shared numeric URL).",
+      "example_questions": [
+        "revenue transactions by GL ver 3",
+        "latest revenue by GL",
+        "revenue by GL v3"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "outstanding_ap_bills",
+      "search_id": "692",
+      "script_id": "customsearch692",
+      "title": "Outstanding AP Bills",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=692&whence=",
+      "intent": "Outstanding / unpaid accounts-payable vendor bills (open AP). NOT an aging report.",
+      "example_questions": [
+        "outstanding AP bills",
+        "open vendor bills",
+        "unpaid bills",
+        "what do we owe vendors"
+      ],
+      "default_export_csv": true,
+      "scope": "prod",
+      "never_use_for": "A/P Aging Detail BK (any subsidiary/period). Open unpaid AP bills are NOT the aging report and must never be offered as 'the closest thing' — that happened 2026-07-28. Route those asks to get_stored_report(ap_aging_detail_bk_consolidated)."
+    },
+    {
+      "key": "vat_report_purchase_by_tax_code_mena",
+      "search_id": "561",
+      "script_id": "customsearch561",
+      "title": "Wego | VAT Report - Purchase by Tax Code | MENA",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=561&whence=",
+      "intent": "VAT report — purchases grouped by tax code, MENA region (input VAT).",
+      "example_questions": [
+        "VAT report purchase",
+        "purchase by tax code MENA",
+        "input VAT report",
+        "VAT on purchases"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "all_transactions_by_gl",
+      "search_id": "customsearch520",
+      "script_id": "customsearch520",
+      "title": "Wego|All Transaction By GL",
+      "source_url": null,
+      "intent": "All transactions grouped by GL account. Run by script id (no shared numeric URL).",
+      "example_questions": [
+        "all transactions by GL",
+        "GL transactions list",
+        "every transaction by GL account"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "invoices_for_approval_by_user",
+      "search_id": "customsearchinvoicesforapproval_2",
+      "script_id": "customsearchinvoicesforapproval_2",
+      "title": "Invoices for Approval by user by approval",
+      "source_url": null,
+      "intent": "Invoices pending approval, grouped by user / approval step — who needs to approve which invoices. AP team (Nurul / netsuite_ap). Run by script id (no shared numeric URL).",
+      "example_questions": [
+        "invoices for approval",
+        "invoices pending approval by user",
+        "who needs to approve invoices",
+        "invoice approvals by user",
+        "pending invoice approvals"
+      ],
+      "team": "netsuite_ap",
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "vat_report_sales_by_tax_code_sg",
+      "search_id": "customsearch556",
+      "script_id": "customsearch556",
+      "title": "Wego | VAT Report - Sales by Tax Code | SG",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=556&whence=",
+      "intent": "VAT report — SALES grouped by tax code, Singapore (SG) — output VAT. Used by the NetSuite Tax team (NS_Tax). Distinct from the MENA purchase VAT report.",
+      "example_questions": [
+        "VAT report sales SG",
+        "sales by tax code Singapore",
+        "SG output VAT report",
+        "Wego VAT sales by tax code SG"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    },
+    {
+      "key": "vat_report_purchase_by_tax_code_sg",
+      "search_id": "customsearch559",
+      "script_id": "customsearch559",
+      "title": "Wego | VAT Report - Purchase by Tax Code | SG",
+      "source_url": "https://5564218.app.netsuite.com/app/common/search/searchresults.nl?searchid=559&whence=",
+      "intent": "VAT report — PURCHASES grouped by tax code, Singapore (SG) — input VAT. Used by the NetSuite Tax team (NS_Tax). Distinct from the MENA purchase VAT report (customsearch561).",
+      "example_questions": [
+        "VAT report purchase SG",
+        "purchase by tax code Singapore",
+        "SG input VAT report",
+        "Wego VAT purchase by tax code SG"
+      ],
+      "default_export_csv": true,
+      "scope": "prod"
+    }
+  ]
+}

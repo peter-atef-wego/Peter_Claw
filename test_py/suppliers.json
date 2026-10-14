@@ -1,0 +1,923 @@
+{
+  "suppliers": {
+    "jazeera": {
+      "_serial": "#1",
+      "name": "Jazeera",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Jazeera/jazeera_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Jazeera_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "jazeera",
+        "jaz reco"
+      ]
+    },
+    "ajet": {
+      "_serial": "#2",
+      "name": "AJet",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_AJet/ajet_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/AJet_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "ajet"
+      ]
+    },
+    "al_madar": {
+      "_serial": "#3",
+      "name": "AL Madar Travel",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_AL_Madar_Travel/al_madar_travel.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/AL_Madar_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "al madar"
+      ],
+      "download_path_template": "/config/Finance_Files/AL_Madar_SReco/{date}/raw"
+    },
+    "airblue": {
+      "_serial": "#4",
+      "name": "AirBlue",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_AirBlue/airblue_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/AirBlue_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "airblue"
+      ],
+      "download_path_template": "/config/Finance_Files/AirBlue_SReco/{date}/raw"
+    },
+    "airindia_express": {
+      "_serial": "#5",
+      "name": "AirIndia Express",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_AirIndia_Express/airindia_express_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/AirIndia_Express_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "airindia express",
+        "air india express"
+      ],
+      "download_path_template": "/config/Finance_Files/AirIndia_Express_SReco/{date}/raw"
+    },
+    "air_arabia": {
+      "_serial": "#6",
+      "name": "Air Arabia",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Air_Arabia/airarabia_s_reco.robot",
+      "skip_tests": [
+        "Download the report from portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Air_Arabia_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "air arabia"
+      ]
+    },
+    "akasaair": {
+      "_serial": "#7",
+      "name": "AkasaAir",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_AkasaAir/akasaair_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/AkasaAir_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "akasa",
+        "akasaair"
+      ],
+      "download_path_template": "/config/Finance_Files/AkasaAir_SReco/{date}/raw"
+    },
+    "atlas_lc": {
+      "_serial": "#8",
+      "name": "Atlas LowCost",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Atlas_LC/atlas_lowcost_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Atlas_LowCost_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "atlas",
+        "atlas lc"
+      ]
+    },
+    "belair_travel": {
+      "_serial": "#9",
+      "name": "Belair Travel",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_BELAIR_TRAVEL/belair_travel_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/BELAIR_TRAVEL_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "belair travel"
+      ],
+      "download_path_template": "/config/Finance_Files/BELAIR_TRAVEL_SReco/{date}"
+    },
+    "belair_inr": {
+      "_serial": "#10",
+      "name": "Belair INR",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Belair_INR/belair_inr_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Belair_INR_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "belair inr"
+      ],
+      "download_path_template": "/config/Finance_Files/Belair_INR_SReco/{date}/raw"
+    },
+    "belair_sgd": {
+      "_serial": "#11",
+      "name": "Belair SGD",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Belair_SGD/belair_sgd_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Belair_SGD_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "belair sgd"
+      ],
+      "download_path_template": "/config/Finance_Files/Belair_SGD_SReco/{date}/raw"
+    },
+    "bingtrip": {
+      "_serial": "#12",
+      "name": "Bingtrip",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Bingtrip/bingtrip_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Bingtrip_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "bingtrip"
+      ],
+      "download_path_template": "/config/Finance_Files/Bingtrip_SReco/{date}/raw"
+    },
+    "blue_horizon": {
+      "_serial": "#13",
+      "name": "Blue Horizon",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Blue_Horizon/blue_horizon_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/BlueHorizon_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "blue horizon"
+      ],
+      "download_path_template": "/config/Finance_Files/BlueHorizon_SReco/{date}/raw"
+    },
+    "brightsun": {
+      "_serial": "#14",
+      "name": "Brightsun",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Brightsun/brightsun_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Brightsun_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "brightsun"
+      ],
+      "download_path_template": "/config/Finance_Files/Brightsun_SReco/{date}/raw"
+    },
+    "cit_malaysia": {
+      "_serial": "#15",
+      "name": "CIT Malaysia",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_CIT_Malaysia/cit_malaysia_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/CIT_Malaysia_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "cit malaysia"
+      ],
+      "download_path_template": "/config/Finance_Files/CIT_Malaysia_SReco/{date}/raw"
+    },
+    "chamwings_ae": {
+      "_serial": "#16",
+      "name": "Chamwings AE",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Chamwings_AE/chamwings_ae_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Chamwings_AE_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "chamwings ae"
+      ]
+    },
+    "chamwings_int": {
+      "_serial": "#17",
+      "name": "Chamwings INT",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Chamwings_INT/chamwings_int_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Chamwings_IN_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "chamwings int"
+      ]
+    },
+    "chamwings_om": {
+      "_serial": "#18",
+      "name": "Chamwings OM",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Chamwings_OM/chamwings_om_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Chamwings_OM_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "chamwings om"
+      ]
+    },
+    "citizenplane": {
+      "_serial": "#19",
+      "name": "Citizenplane",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Citizenplane/citizenplane_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Portal",
+        "Process Date before reco",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Citizenplane_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "citizenplane"
+      ]
+    },
+    "dadabhai_kwd": {
+      "_serial": "#20",
+      "name": "Dadabhai KWD",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Dadabhai_KWD/dadabhai_kwd_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Dadabhai_KWD_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "dadabhai"
+      ],
+      "download_path_template": "/config/Finance_Files/Dadabhai_KWD_SReco/{date}/raw"
+    },
+    "dnata_bh": {
+      "_serial": "#21",
+      "name": "Dnata BH",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_DnataBH/dnata_bh_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Dnata_BH_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "dnata bh"
+      ],
+      "download_path_template": "/config/Finance_Files/Dnata_BH_SReco/{date}/raw"
+    },
+    "dnata_gold": {
+      "_serial": "#22",
+      "name": "Dnata Gold",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_DnataGold/dnata_gold_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Dnata_Gold_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "dnata gold"
+      ],
+      "download_path_template": "/config/Finance_Files/Dnata_Gold_SReco/{date}/raw"
+    },
+    "dnata_om": {
+      "_serial": "#23",
+      "name": "Dnata OM",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_DnataOM/dnata_om_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Dnata_Om_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "dnata om"
+      ],
+      "download_path_template": "/config/Finance_Files/Dnata_Om_SReco/{date}/raw"
+    },
+    "fitsair": {
+      "_serial": "#24",
+      "name": "FitsAir",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_FitsAir/fitsair_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/FitsAir_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "fitsair"
+      ]
+    },
+    "flydubai": {
+      "_serial": "#25",
+      "name": "FlyDubai",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_FlyDubai/flydubai_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flydubai_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flydubai"
+      ],
+      "download_path_template": "/config/Finance_Files/Flydubai_SReco/{date}/raw"
+    },
+    "flyarystan": {
+      "_serial": "#26",
+      "name": "Flyarystan",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flyarystan/flyarystan_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flyarystan_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flyarystan"
+      ]
+    },
+    "flydeal_lc": {
+      "_serial": "#27",
+      "name": "Flydeal LowCost",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flydeal_LC/flydeal_lowcost_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flydeal_LowCost_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flydeal"
+      ],
+      "download_path_template": "/config/Finance_Files/Flydeal_LowCost_SReco/{date}"
+    },
+    "flyin_egp": {
+      "_serial": "#28",
+      "name": "Flyin EGP",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flyin_EGP/flyin_EGP_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flyin_EGP_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flyin egp"
+      ],
+      "download_path_template": "/config/Finance_Files/Flyin_EGP_SReco/{date}"
+    },
+    "flyin_eg_lc": {
+      "_serial": "#29",
+      "name": "Flyin EG LowCost",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flyin_EG_LC/flyin_EG_lowcost_s_reco.robot",
+      "skip_tests": [
+        "Downloading the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flyin_EG_LowCost_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flyin eg lc"
+      ]
+    },
+    "flyin_sar": {
+      "_serial": "#30",
+      "name": "Flyin SAR",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flyin_SAR/flyin_SAR_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flyin_SAR_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flyin sar"
+      ],
+      "download_path_template": "/config/Finance_Files/Flyin_SAR_SReco/{date}"
+    },
+    "flynas_lc": {
+      "_serial": "#31",
+      "name": "Flynas LowCost",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Flynas_LC/flynas_lowcost_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Flynas_LowCost_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "flynas"
+      ],
+      "download_path_template": "/config/Finance_Files/Flynas_LowCost_SReco/{date}"
+    },
+    "holiday_tours": {
+      "_serial": "#32",
+      "name": "Holiday Tours",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_HOLIDAY_TOURS/holiday_tours_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/HOLIDAY_TOURS_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "holiday tours"
+      ],
+      "download_path_template": "/config/Finance_Files/HOLIDAY_TOURS_SReco/{date}"
+    },
+    "hong_ngoc": {
+      "_serial": "#33",
+      "name": "Hong Ngoc",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Hong_Ngoc/hong_ngoc_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Hong_Ngoc_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "hong ngoc"
+      ],
+      "download_path_template": "/config/Finance_Files/Hong_Ngoc_SReco/{date}/raw"
+    },
+    "indigo": {
+      "_serial": "#34",
+      "name": "Indigo",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Indigo/indigo_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Indigo_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "indigo"
+      ],
+      "download_path_template": "/config/Finance_Files/Indigo_SReco/{date}/raw"
+    },
+    "jordan_airlines": {
+      "_serial": "#35",
+      "name": "Jordan Airlines",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Jordan_Airlines/jordan_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Jordan_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+  "jordan airlines", "jordan"
+  ]
+    },
+    "kanoo_sar": {
+      "_serial": "#36",
+      "name": "Kanoo SAR",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_KANOO_SAR/kanoo_sar_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/KANOO_SAR_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "kanoo sar"
+      ],
+      "download_path_template": "/config/Finance_Files/KANOO_SAR_SReco/{date}"
+    },
+    "kanoo_egypt": {
+      "_serial": "#37",
+      "name": "Kanoo Travel Egypt",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_KANOO_TRAVEL_EGYPT/kanoo_travel_egypt_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/KANOO_Travel_Egypt_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "kanoo egypt"
+      ],
+      "download_path_template": "/config/Finance_Files/KANOO_Travel_Egypt_SReco/{date}"
+    },
+    "kanoo_aed": {
+      "_serial": "#38",
+      "name": "Kanoo AED",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Kanoo_AED/kanoo_aed_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Kanoo_AED_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "kanoo aed"
+      ],
+      "download_path_template": "/config/Finance_Files/Kanoo_AED_SReco/{date}/raw"
+    },
+    "kanoo_bhd": {
+      "_serial": "#39",
+      "name": "Kanoo BHD",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Kanoo_BHD/kanoo_bhd_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/KANOO_BHD_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "kanoo bhd"
+      ],
+      "download_path_template": "/config/Finance_Files/KANOO_BHD_SReco/{date}"
+    },
+    "letsfly": {
+      "_serial": "#40",
+      "name": "LetsFly",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_LetsFly/letsfly_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/LetsFly_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "letsfly"
+      ],
+      "download_path_template": "/config/Finance_Files/LetsFly_SReco/{date}/raw"
+    },
+    "monde_cad": {
+      "_serial": "#41",
+      "name": "Monde CAD",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_MONDE_CAD/monde_cad_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/MONDE_CAD_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "monde cad"
+      ],
+      "download_path_template": "/config/Finance_Files/MONDE_CAD_SReco/{date}"
+    },
+    "monde_usd": {
+      "_serial": "#42",
+      "name": "Monde USD",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_MONDE_USD/monde_usd_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/MONDE_USD_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "monde usd"
+      ],
+      "download_path_template": "/config/Finance_Files/MONDE_USD_SReco/{date}"
+    },
+    "moonline": {
+      "_serial": "#43",
+      "name": "Moonline",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Moonline/moonline_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Moonline_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "moonline"
+      ],
+      "download_path_template": "/config/Finance_Files/Moonline_SReco/{date}/raw"
+    },
+    "nesma": {
+      "_serial": "#44",
+      "name": "Nesma",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Nesma/nesma_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Nesma_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "nesma"
+      ]
+    },
+    "nokair": {
+      "_serial": "#45",
+      "name": "NokAir",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_NokAir/nokair_reco.robot",
+      "skip_tests": [
+        "Send the report from the web portal",
+        "Process Date before Reco",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Nokair_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "nokair"
+      ],
+      "download_path_template": "/config/Finance_Files/NokAir_SReco/{date}/raw"
+    },
+    "quality_aviation": {
+      "_serial": "#46",
+      "name": "Quality Aviation",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Quality_Aviation/quality_aviation_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Quality_Aviation_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "quality aviation"
+      ],
+      "download_path_template": "/config/Finance_Files/Quality_Aviation_SReco/{date}"
+    },
+    "regency": {
+      "_serial": "#47",
+      "name": "Regency Travels",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Regency_Travels/regency.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Regency",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "regency"
+      ],
+      "download_path_template": "/config/Finance_Files/Regency/{date}"
+    },
+    "salamair": {
+      "_serial": "#48",
+      "name": "Salamair",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Salamair/salamair_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Salamair_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "salamair"
+      ],
+      "download_path_template": "/config/Finance_Files/Salamair_SReco/{date}/raw"
+    },
+    "samad_tours": {
+      "_serial": "#49",
+      "name": "Samad Tours",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Samad_Tours/samad_tours_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Samad_Tours_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "samad tours"
+      ],
+      "download_path_template": "/config/Finance_Files/Samad_Tours_SReco/{date}/raw"
+    },
+    "sereneair": {
+      "_serial": "#50",
+      "name": "SereneAir",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Sereneair/sereneair_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/SereneAir_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "sereneair"
+      ]
+    },
+    "spicejet": {
+      "_serial": "#51",
+      "name": "SpiceJet",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_SpiceJet/spicejet_s_reco.robot",
+      "skip_tests": [
+        "Download the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/SpiceJet_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "spicejet"
+      ]
+    },
+    "tsy_travel": {
+      "_serial": "#52",
+      "name": "TSY Travel",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_TSY_Travel/TSY_Travel_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/TSY_Travel_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "tsy travel"
+      ],
+      "download_path_template": "/config/Finance_Files/TSY_Travel_SReco/{date}"
+    },
+    "tidesquare": {
+      "_serial": "#53",
+      "name": "Tidesquare",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Tidesquare/tidesquare_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/TideSquare_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "tidesquare"
+      ],
+      "download_path_template": "/config/Finance_Files/TideSquare_SReco/{date}/raw"
+    },
+    "transnusa": {
+      "_serial": "#54",
+      "name": "TransNusa",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_TransNusa/transnusa_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/TransNusa_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "transnusa"
+      ]
+    },
+    "trans_arabian": {
+      "_serial": "#55",
+      "name": "Trans Arabian",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Trans_Arabian/trans_arabian_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Trans_Arabian_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "trans arabian"
+      ],
+      "download_path_template": "/config/Finance_Files/Trans_Arabian_SReco/{date}/raw"
+    },
+    "transavia": {
+      "_serial": "#56",
+      "name": "Transavia",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Transavia/transavia_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "UnZip the File",
+        "Process Date before Reco",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Transavia_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "transavia"
+      ],
+      "download_path_template": "/config/Finance_Files/Transavia_SReco/{date}/raw"
+    },
+    "ur_airline": {
+      "_serial": "#57",
+      "name": "UR Airline",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_UR_Airline/ur_airline_s_reco.robot",
+      "skip_tests": [
+        "Downloading the report from the web portal",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/UR_Airline_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "ur airline"
+      ]
+    },
+    "wonder_egp": {
+      "_serial": "#58",
+      "name": "Wonder EGP",
+      "category": "LCC",
+      "robot_path": "/config/rpa/Finance/Supplier_Reco_Wonder_EGP/wonder_EGP_s_reco.robot",
+      "skip_tests": [
+        "Download the report from Gmail",
+        "Send the excel file to the management"
+      ],
+      "output_folder": "/config/Finance_Files/Wonder_EGP_SReco",
+      "output_pattern": "Final_Summary_*.xlsx",
+      "slack_trigger_phrases": [
+        "wonder egp"
+      ],
+      "download_path_template": "/config/Finance_Files/Wonder_EGP_SReco/{date}"
+    }
+  }
+}

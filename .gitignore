@@ -18,3 +18,9 @@ Thumbs.db
 *~
 .idea/
 .vscode/
+# OpenClaw local runtime state
+.openclaw/
+logs/
+cron/*.pid
+cron/state.json
+cron/locks/

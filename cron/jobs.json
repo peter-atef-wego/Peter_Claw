@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "memory_s3_backup",
+      "name": "memory_s3_backup",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *"
+      },
+      "enabled": true,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "python3 /home/openclaw/.openclaw/workspace/scripts/memory_backup/backup_memory.py",
+      "timeout_s": 600,
+      "state": {}
+    },
+    {
+      "id": "lessons_distil",
+      "name": "lessons_distil",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 23 * * *"
+      },
+      "enabled": true,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "python3 /home/openclaw/.openclaw/workspace/scripts/report_store/lessons.py",
+      "timeout_s": 120,
+      "state": {}
+    },
+    {
+      "id": "openclaw_nova_mirror",
+      "name": "openclaw_nova_mirror",
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 3 * * 0"
+      },
+      "enabled": false,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "cd /home/openclaw/.openclaw/workspace && python3 scripts/nova_mirror_pr.py",
+      "timeout_s": 300,
+      "state": {}
+    },
+    {
+      "id": "nova_claw_pull_sync",
+      "name": "nova_claw_pull_sync",
+      "schedule": {
+        "kind": "cron",
+        "expr": "5 * * * *"
+      },
+      "enabled": true,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "cd /home/openclaw/.openclaw/workspace && git pull origin main 2>&1",
+      "timeout_s": 300,
+      "state": {}
+    },
+    {
+      "id": "weekly_team_monday",
+      "name": "weekly_team_monday",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5 * * 1"
+      },
+      "enabled": false,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "python3 /home/openclaw/.openclaw/workspace/scripts/weekly_team_runner.py monday",
+      "timeout_s": 300,
+      "state": {}
+    },
+    {
+      "id": "daily_sync_status",
+      "name": "daily_sync_status",
+      "schedule": {
+        "kind": "cron",
+        "expr": "5 19 * * *"
+      },
+      "enabled": false,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "cd /home/openclaw/.openclaw/workspace && python3 scripts/daily_sync_status.py",
+      "timeout_s": 300,
+      "state": {}
+    },
+    {
+      "id": "weekly_team_friday",
+      "name": "weekly_team_friday",
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 5 * * 5"
+      },
+      "enabled": false,
+      "wakeMode": "now",
+      "sessionTarget": "main",
+      "delivery": {
+        "mode": "none"
+      },
+      "command": "python3 /home/openclaw/.openclaw/workspace/scripts/weekly_team_runner.py friday",
+      "timeout_s": 300,
+      "state": {}
+    }
+  ]
+}
