@@ -122,6 +122,17 @@ _To be filled as implementation progresses._
 
 _To be updated from branch diffs._
 
+## Current Branch State
+
+- Head commit: `<short-sha>` — `<commit subject>`
+- Compared against: `<base-branch>`
+- Ahead/behind: `<ahead>` / `<behind>` commits
+- Last commit date: `<timestamp>`
+
+## Difference From Base Branch
+
+_To be updated from the branch diff against `<base-branch>`._
+
 ## Files Changed
 
 _No diff analyzed yet._
@@ -165,25 +176,35 @@ git fetch origin <branch-name>
 git merge-base origin/<base-branch> origin/<branch-name>
 ```
 
-4. Generate useful diff context:
+4. Generate current branch state and useful diff context:
 
 ```bash
+git rev-parse origin/<branch-name>
+git log --oneline --decorate -10 origin/<branch-name>
+git rev-list --left-right --count origin/<base-branch>...origin/<branch-name>
 git diff --stat <merge-base>..origin/<branch-name>
 git diff --name-status <merge-base>..origin/<branch-name>
-git diff <merge-base>..origin/<branch-name>
+git diff --find-renames <merge-base>..origin/<branch-name>
 ```
 
-5. Summarize the diff into documentation-friendly sections:
+If using the GitHub API instead of local git, fetch:
+- branch head commit
+- compare result (`/repos/{owner}/{repo}/compare/{base}...{branch}`)
+- commits, file statuses, additions/deletions, patches where available
 
+5. Summarize the diff into documentation-friendly sections. The page must reflect the current state of the branch and explain what changed versus the base branch in enough detail for a reviewer to understand the implementation without reading the full diff:
+
+- Current branch state: head SHA, latest commit subject/date, base branch, ahead/behind counts
+- Executive summary: 3–6 bullets describing the overall branch intent and impact
 - Functional changes
 - Technical implementation changes
 - New files
 - Modified files
-- Deleted files
+- Deleted/renamed files
 - Configuration changes
 - Database/schema changes
 - API changes
-- Risks or migration notes
+- Risks, migration notes, or unknowns
 - Testing notes, if visible from changed files
 
 6. Find the related Confluence page.
@@ -200,17 +221,25 @@ Prefer matching by:
 8. Update the page by replacing or appending these sections:
 
 ```markdown
+## Current Branch State
+
+<head SHA, latest commit, base branch, ahead/behind counts, last commit date>
+
+## Difference From Base Branch
+
+<detailed reviewer-friendly explanation of what changed compared with base/main, grouped by functional and technical area>
+
 ## Technical Notes
 
 <summary of implementation changes>
 
 ## Files Changed
 
-<grouped list of changed files>
+<brief grouped list of every changed file with status and one-line purpose>
 
 ## Diff Summary
 
-<high-level branch diff summary>
+<high-level branch diff summary with additions/deletions and notable directories>
 
 ## Risks / Review Notes
 
