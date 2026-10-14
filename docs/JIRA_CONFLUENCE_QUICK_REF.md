@@ -198,8 +198,7 @@ For detailed workflow and technical info, see: `JIRA_CONFLUENCE_WORKFLOW.md`
 ## 📞 Support
 
 If something breaks:
-1. Check TOOLS.md for API token configuration
+1. Check `.env` for the API token configuration (see `.env.example`)
 2. Verify Confluence folder ID is correct
 3. Check GitHub repo is accessible
-4. Review JIRA_CONFLUENCE_WORKFLOW.md troubleshooting section
-5. Update MEMORY.md with issue for future reference
+4. Review the troubleshooting section in `docs/JIRA_CONFLUENCE_WORKFLOW.md`

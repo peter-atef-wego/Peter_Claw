@@ -465,5 +465,5 @@ export GITHUB_REPO="owner/repo"
 - [Jira API Docs](https://developer.atlassian.com/cloud/jira/rest/v3/)
 - [Confluence API Docs](https://developer.atlassian.com/cloud/confluence/rest/v2/)
 - [GitHub API Docs](https://docs.github.com/en/rest)
-- [GitHub Skills](/skills/github)
-- [Jira Confluence API Integration](/skills/jira-confluence-api)
+- [Branch-based docs](../confluence-branch-docs/SKILL.md)
+- [Workflow guide](../../docs/JIRA_CONFLUENCE_WORKFLOW.md)

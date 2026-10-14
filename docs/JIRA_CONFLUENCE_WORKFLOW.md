@@ -401,19 +401,15 @@ Authorization: token {GITHUB_TOKEN}
 
 ## 📚 Related Documentation
 
-- Jira Confluence API Skill: `~/.openclaw/workspace/skills/jira-confluence-api/`
-- GitHub Skill: `~/.openclaw/skills/github/`
-- Skill Workshop: `skill_workshop` tool
-- TOOLS.md: Local configuration (not in repo)
-- MEMORY.md: This project's memory log
+- Process docs skill: `skills/jira-confluence-documentation-sync/SKILL.md`
+- Branch docs skill: `skills/confluence-branch-docs/SKILL.md`
+- Agent rules: `CLAUDE.md`
+- Configuration: `.env` (not in repo; template in `.env.example`)
 
 ---
 
 ## 💡 Future Enhancements
 
-- [ ] Auto-create Jira tickets from Confluence discussions
 - [ ] Webhook triggers for automatic syncing
 - [ ] Page templates per process type
-- [ ] Change notifications to Slack
 - [ ] Historical version tracking (commit log)
-- [ ] Integration with Linear or other project tools
