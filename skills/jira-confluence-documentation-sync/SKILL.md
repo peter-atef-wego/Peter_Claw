@@ -17,7 +17,7 @@ Triggered by user chat requests or Jira ticket-created events when the hosting e
 
 ## Hard Rules
 
-1. **New Jira ticket → new Confluence page only after duplicate search.** When a new Jira ticket is the source, search Confluence by Jira key and summary before creating anything.
+1. **New Jira ticket → new Confluence page only after duplicate/fuzzy search.** When a new Jira ticket is the source, search Confluence by Jira key and summary before creating anything. If no exact title match exists, run fuzzy matching before creating.
 2. **Page title mirrors the Jira ticket.** Use the Jira summary as the page name, lightly normalized for readability, and include the Jira key for traceability. Recommended format: `<Jira summary> (<JIRA-KEY>)`.
 3. **Initialize from Jira content.** The first page version must be grounded in the Jira ticket: summary, description, acceptance criteria, status, assignee, reporter, labels, priority, components, due date, links, and visible custom fields that describe scope. Unknown or empty fields become `TODO`, never invented content.
 4. **Branch updates are diff-owned sections only.** When updating from branch changes, preserve Jira-originated/business sections and human edits. Replace only branch/diff-owned sections: Current Branch State, Difference From Base Branch, Technical Notes, Files Changed, Diff Summary, Risks / Review Notes, Testing Notes, Recent Updates.
@@ -35,6 +35,7 @@ Triggered by user chat requests or Jira ticket-created events when the hosting e
    - Space: "Data, Marketing and Growth Homepage"
    - Folder: "AI & Automation 2026"
    - Query: Process name
+   - If no exact match, search by Jira key, normalized title, and meaningful tokens; use the closest high-confidence match instead of creating a duplicate
    
 2. If page exists → Return link, ask if user wants to update
    
@@ -68,10 +69,17 @@ Triggered by user chat requests or Jira ticket-created events when the hosting e
 
 **Execution Flow:**
 ```
-1. Find Confluence page by Jira key, Jira summary/page title, process name, or stored branch metadata in "AI & Automation 2026" folder
+1. Find Confluence page by Jira key, Jira summary/page title, process name, or stored branch metadata in "AI & Automation 2026" folder. If the supplied page/process name is not exact, use fuzzy matching:
+   - exact title first
+   - Jira key in title/body
+   - normalized title comparison (lowercase, punctuation removed, hyphens/spaces/slashes collapsed)
+   - token overlap with candidate page titles
+   - CQL text search using the strongest process tokens
+   Use one clear closest match; if multiple candidates are plausible, ask the user to choose.
 
 2. Get current branch state and GitHub diff:
    - Resolve repo, branch, and base branch / PR target / default branch
+   - If the supplied branch name is not exact, fetch repository branches and resolve the closest normalized/token match. Use one clear closest match; if ambiguous, ask the user to choose.
    - Fetch head commit, latest commit date, ahead/behind counts
    - Compare base...branch
    - Parse commits and file diffs for:

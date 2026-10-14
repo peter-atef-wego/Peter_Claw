@@ -163,6 +163,15 @@ When asked to update a Confluence page using a branch diff:
    - base branch / PR target / repository default branch
    - Confluence page
 
+   If the requested branch name is not an exact match, do not fail immediately. Fetch the repository branch list and find the closest branch by normalized name:
+   - lowercase
+   - replace hyphens, spaces, and slashes with underscores
+   - collapse repeated separators
+   - compare exact normalized match first, then substring match, then edit-distance / similarity
+   - prefer branches containing the same key tokens (for example `checkout`, `invoice`, task/ticket id)
+
+   If there is one strong candidate, use it and mention the resolved branch in the result. If multiple candidates are close, stop and ask the user to choose. If no reasonable candidate exists, report the branch-not-found blocker with the closest 3 candidates.
+
 2. Fetch latest refs:
 
 ```bash
@@ -215,6 +224,15 @@ Prefer matching by:
 2. Exact branch name
 3. Page title
 4. Repository + normalized branch title
+
+If the page name supplied by the user is not an exact match, search Confluence with fuzzy matching before creating or failing:
+- exact title
+- Jira key in title/body
+- normalized title match (lowercase, punctuation removed, separators collapsed)
+- token overlap between requested process/page name and candidate titles
+- CQL text search using the most meaningful tokens
+
+Use the best single high-confidence match. If there are multiple plausible matches, ask the user to choose and include candidate links. Never create a new page solely because an exact title search failed.
 
 7. Fetch the current Confluence page version.
 
