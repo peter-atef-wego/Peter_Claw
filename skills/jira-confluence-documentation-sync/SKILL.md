@@ -13,12 +13,21 @@ This skill automates the documentation lifecycle for AI & Automation processes:
 3. **Update** documentation from GitHub commit history and diffs
 4. **Sync** changes back to keep knowledge centralized
 
-Triggered by user chat requests only—manual workflow, not automatic webhooks.
+Triggered by user chat requests or Jira ticket-created events when the hosting environment delivers them.
+
+## Hard Rules
+
+1. **New Jira ticket → new Confluence page only after duplicate search.** When a new Jira ticket is the source, search Confluence by Jira key and summary before creating anything.
+2. **Page title mirrors the Jira ticket.** Use the Jira summary as the page name, lightly normalized for readability, and include the Jira key for traceability. Recommended format: `<Jira summary> (<JIRA-KEY>)`.
+3. **Initialize from Jira content.** The first page version must be grounded in the Jira ticket: summary, description, acceptance criteria, status, assignee, reporter, labels, priority, components, due date, links, and visible custom fields that describe scope. Unknown or empty fields become `TODO`, never invented content.
+4. **Branch updates are diff-owned sections only.** When updating from branch changes, preserve Jira-originated/business sections and human edits. Replace only branch/diff-owned sections: Current Branch State, Difference From Base Branch, Technical Notes, Files Changed, Diff Summary, Risks / Review Notes, Testing Notes, Recent Updates.
+5. **Branch update detail standard.** Branch updates must show current branch state, ahead/behind versus base, detailed explanation of changes, and a brief line for every changed file.
 
 ## Workflow Triggers
 
-### Trigger 1: Create Confluence Page for Process
+### Trigger 1: Create Confluence Page for Process or New Jira Ticket
 **User Request:** "Create confluence page for process [X]"
+**Jira Event:** new ticket created for an AI/Automation process
 
 **Execution Flow:**
 ```
@@ -30,22 +39,28 @@ Triggered by user chat requests only—manual workflow, not automatic webhooks.
 2. If page exists → Return link, ask if user wants to update
    
 3. If NOT found:
-   a. Search Jira for matching ticket
+   a. Search Jira for matching ticket unless the trigger already includes a ticket
       - Search: project=* AND (summary~"[process]" OR description~"[process]")
       - Order: most recent first
    
-   b. If Jira ticket found:
-      - Extract: summary, description, acceptance criteria, labels, assignee
-      - Create Confluence page with:
+   b. If Jira ticket found or provided by event:
+      - Title the page from the Jira ticket: `<Jira summary> (<JIRA-KEY>)`
+      - Extract useful ticket content: summary, description, acceptance criteria, labels, assignee, reporter, status, priority, components, due date, linked issues, attachments list, and scope-related custom fields
+      - Create Confluence page initialized with:
+        * Jira Ticket Snapshot
         * Business Summary (from Jira summary + description)
-        * Technical Architecture (from acceptance criteria)
+        * Objective / Scope
+        * Acceptance Criteria
+        * Technical Architecture / Implementation Notes
         * Data Flows
         * Dependencies
-        * Status & Owner
+        * Owner, Reporter, Status, Priority, Labels
+        * Jira Link
+        * Branch / GitHub Updates placeholder
    
    c. If NO Jira ticket:
       - Ask user for process details
-      - Create stub page for manual completion
+      - Create stub page for manual completion only if explicitly instructed
 ```
 
 ### Trigger 2: Update Confluence Documentation from GitHub
@@ -53,31 +68,37 @@ Triggered by user chat requests only—manual workflow, not automatic webhooks.
 
 **Execution Flow:**
 ```
-1. Find Confluence page by name in "AI & Automation 2026" folder
+1. Find Confluence page by Jira key, Jira summary/page title, process name, or stored branch metadata in "AI & Automation 2026" folder
 
-2. Get GitHub commit history:
-   - Fetch recent commits for related code/docs
-   - Parse diffs for:
+2. Get current branch state and GitHub diff:
+   - Resolve repo, branch, and base branch / PR target / default branch
+   - Fetch head commit, latest commit date, ahead/behind counts
+   - Compare base...branch
+   - Parse commits and file diffs for:
      * New features/changes
      * Bug fixes
      * Performance improvements
      * Architecture updates
+     * Config/schema/API changes
+     * Risks and testing evidence
 
 3. Update Confluence page:
-   a. Find "Recent Updates" section
-   b. Add new entries from GitHub:
-      - Date
-      - Commit message
-      - Changed files
-      - Key changes (extracted from diff)
-   
-   c. Update "Technical Architecture" if needed:
-      - Highlight breaking changes
-      - Update data flow diagrams
-      - Note deprecated features
+   a. Preserve Jira-originated and human-written sections
+   b. Replace or add only branch/diff-owned sections:
+      - Current Branch State
+      - Difference From Base Branch
+      - Technical Notes
+      - Files Changed
+      - Diff Summary
+      - Risks / Review Notes
+      - Testing Notes
+      - Recent Updates
+   c. List every changed file briefly with status, additions/deletions, and one-line purpose
 
 4. Add metadata:
    - Last synced: [timestamp]
+   - Base branch: [base]
+   - Branch: [branch]
    - Last commit: [commit hash + message]
 ```
 
@@ -110,7 +131,7 @@ POST /wiki/api/v2/pages
 {
   "spaceId": "space_id",
   "parentId": "ai_automation_2026_folder_or_page_id",
-  "title": "[Process Name] - AI/Automation Process",
+  "title": "<Jira summary> (<JIRA-KEY>)",
   "body": {
     "representation": "storage",
     "value": "<page_content_html>"
@@ -197,10 +218,23 @@ curl -s -H "Authorization: token $GITHUB_TOKEN" \
 
 ### New Page from Jira Ticket
 
+Title format: `<Jira summary> (<JIRA-KEY>)`.
+
 ```html
 <ac:structured-macro ac:name="panel">
-  <ac:parameter ac:name="title">Process Overview</ac:parameter>
+  <ac:parameter ac:name="title">Jira Ticket Snapshot</ac:parameter>
   <ac:rich-text-body>
+    <h2>Ticket Metadata</h2>
+    <ul>
+      <li>Jira Key: [JIRA-KEY linked to ticket]</li>
+      <li>Status: [Jira status]</li>
+      <li>Priority: [Jira priority or TODO]</li>
+      <li>Assignee: [Jira assignee or TODO]</li>
+      <li>Reporter: [Jira reporter or TODO]</li>
+      <li>Labels / Components: [Jira labels/components or TODO]</li>
+      <li>Due Date: [Jira due date or TODO]</li>
+    </ul>
+
     <h2>Business Summary</h2>
     <p>[Extracted from Jira summary + description]</p>
     
@@ -224,10 +258,13 @@ curl -s -H "Authorization: token $GITHUB_TOKEN" \
     <p>Owner: [From Jira assignee]</p>
     <p>Status: [From Jira status]</p>
     <p>Jira Ticket: [Link to PROJ-123]</p>
-    
+
+    <h2>Branch / GitHub Updates</h2>
+    <p><em>No branch diff synced yet.</em></p>
+
     <h2>Recent Updates</h2>
     <p>Last updated: [timestamp]</p>
-    <!-- GitHub commits inserted here -->
+    <!-- GitHub branch diff updates inserted here without overwriting Jira-originated sections -->
   </ac:rich-text-body>
 </ac:structured-macro>
 ```
