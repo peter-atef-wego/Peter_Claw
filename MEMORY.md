@@ -57,7 +57,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 - Team is capacity-based, not siloed.
 - Secrets in WegoClaw: `GITHUB_TOKEN_V4` (peter-atef-wego org), `FIREFLIES_TOKEN`, `JIRA_API_TOKEN`, `NETSUITE_<SCOPE>_*`. Verify before ops. Never commit secrets.
 - AlphaBot repo (`github.com/wego/alphabot`) is **read-only** unless Peter authorises a write (PR + ask).
-- openclaw-nova is the canonical repo (`github.com/wego/openclaw-nova`); the workspace mirrors into it weekly (Sunday PR).
+- Peter_Claw is the canonical repo (`github.com/peter-atef-wego/Peter_Claw`).
 - All production automations need an IAX Jira ticket. Never disable a running automation without logging + notifying.
 - **MEMORY.md edits**: never use the `edit` tool (truncation/redaction breaks exact-match) — use `sed`/`python3`/full-file write.
 - **Self-improvement / rule changes via PR (STRICT):** Any change to MEMORY.md, SKILL.md, AGENTS.md, memory_changelog.md, or any workspace rule file MUST be committed to a feature branch and exposed as a GitHub PR for Peter to review. NEVER push rule/memory/skill changes directly to `main`. No exceptions.
@@ -78,7 +78,7 @@ Live project status → Jira (not stored here). Boards: IAX 721 (AI Automation),
 
 - Cron: 5 jobs in `cron/jobs.json` (mirror, hourly pull-sync, weekly Mon/Fri, daily_sync_status). Daemon resurrected by `scripts/cron/ensure_daemon.py`.
 - **`daily_sync_status` posts ONLY to Peter's DM (D0A0QD64004)** — never a channel.
-- Systems: OpenClaw · Jira IAX/NDS · GitHub openclaw-nova (`wego/openclaw-nova`) · AlphaBot (read-only) · weekly mirror.
+- Systems: OpenClaw · Jira IAX/NDS · GitHub Peter_Claw (`peter-atef-wego/Peter_Claw`) · AlphaBot (read-only).
 
 ---
 

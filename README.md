@@ -1,11 +1,11 @@
-# openclaw-nova — Data Automation's Claw-PRO
+# Peter_Claw: Data Automation's Claw-PRO
 
 **AI & Automation Lead Agent for Peter Atef, Wego — Data Automation team.**
 
 | | |
 |---|---|
 | OpenClaw instance | `s-c58f0c35.openclaw.wego.engineering` |
-| Repository | https://github.com/wego/openclaw-nova |
+| Repository | https://github.com/peter-atef-wego/Peter_Claw |
 | Workspace | `/home/openclaw/.openclaw/workspace` |
 | Mirror job | `openclaw_nova_mirror` — weekly PR from the OpenClaw workspace into this repo |
 | Owner | Peter Atef (`peter.atef@wego.com`) |
@@ -40,11 +40,10 @@ nightly to S3.
 | `IDENTITY.md` | Agent identity metadata (name, creature, vibe, emoji, avatar). |
 | `USER.md` | About Peter — channels, preferences, escalation routes. |
 | `TOOLS.md` | Local tool notes — environment-specific config. |
-| `SKILL_REGISTRY.md` | Registry of all 24 skills with descriptions and load conditions. |
+| `SKILL_REGISTRY.md` | Registry of all 27 skills with descriptions and load conditions. |
 | `TEACHING.md` | Teaching patterns and knowledge-transfer templates. |
 | `CRON_SCHEDULE.md` | Quick reference for cron job schedules (cross-reference for `cron/jobs.json`). |
 | `ENVIRONMENT.md` | Environment variables and where secrets live. |
-| `BOOTSTRAP.md` | First-run initialization (delete after first run). |
 
 ---
 
@@ -292,7 +291,7 @@ change reaches the running system.
 
 Docs living alongside the scripts: `scripts/SLACK_HANDLER_SETUP.md`, `scripts/cron/README.md`, `scripts/memory_backup/README.md`.
 
-### 5.2 `/skills/` — Agent skills (24 active)
+### 5.2 `/skills/` — Agent skills (27 active)
 
 Always-loaded baseline: `automation-hub`, `team-ops`, `wego-slack-channels` (channel-ID routing).
 
@@ -323,6 +322,9 @@ Always-loaded baseline: `automation-hub`, `team-ops`, `wego-slack-channels` (cha
 | `daily-digest-contacts/` | Recipient map for the daily digest |
 | `dm-working-indicator/` | Shows a working indicator while a DM turn is in flight |
 | `wego-rpa-structure/` | RPA project layout reference |
+| `confluence-branch-docs/` | Create or update Confluence pages from Git branch activity |
+| `jira-confluence-api/` | Jira / Confluence REST API integration |
+| `jira-confluence-documentation-sync/` | Jira ticket to Confluence process docs, updated from GitHub commits |
 | `itops/` | IT ops escalation paths |
 
 ### 5.3 `/skills/Finance/` — Finance reconciliation agent (LCC)
@@ -556,7 +558,7 @@ in this section refer to sections of that file, not of this README.**
 | Beekim (`beekim@wego.com`) | Sr Finance Manager — owner of monthly interco BS + GL listing |
 | Cecilia / Li Ping | Period close approvers |
 
-**Repository:** https://github.com/wego/openclaw-nova — the canonical repo. The `openclaw_nova_mirror` cron opens the weekly PR that syncs the live OpenClaw workspace into it.
+**Repository:** https://github.com/peter-atef-wego/Peter_Claw is the canonical repo. (The inherited `openclaw_nova_mirror` cron targets `wego/openclaw-nova` and is disabled.)
 
 ---
 

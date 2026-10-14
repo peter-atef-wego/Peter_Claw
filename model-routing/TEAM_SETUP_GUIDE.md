@@ -6,7 +6,7 @@ Model routing automatically selects the best (cheapest + capable) AI model for e
 ---
 
 ## GitHub Repository
-**Repo:** https://github.com/wego/openclaw-nova
+**Repo:** https://github.com/peter-atef-wego/Peter_Claw
 
 ---
 

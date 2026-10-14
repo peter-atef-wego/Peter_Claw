@@ -52,7 +52,7 @@ Full triage of NDS board 753. Focus on NetSuite transition items.
 Flag anything waiting on team response.
 
 ### C. GitHub PR Review
-Check `github.com/wego/openclaw-nova` for open PRs older than 2 days.
+Check `github.com/peter-atef-wego/Peter_Claw` for open PRs older than 2 days.
 Check `github.com/wego/alphabot` for PRs from team members awaiting review.
 
 ### D. Cron Health Check

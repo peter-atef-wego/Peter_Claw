@@ -65,7 +65,7 @@ Always loaded: `automation-hub`, `team-ops`, `wego-slack-channels` (plus
 |---|---|---|
 | Slack | MCP `d1f954aa-b930-4277-8bf8-862c5efde5cb` | Send messages, read channels, DM Peter |
 | Jira / Confluence | MCP `01934f1e-d7f4-4cc5-8894-e5f48e7cbdfa` | Query/update issues, read Confluence |
-| GitHub | Env Var `GITHUB_TOKEN_V4` | Read/write openclaw-nova; read alphabot (read-only) |
+| GitHub | Env Var `GITHUB_TOKEN_V4` | Read/write Peter_Claw; read alphabot (read-only) |
 | Gmail | MCP `c2b3d5cb-2b67-4a15-a75b-3be2901d1847` | Read-only monitoring; never send unless instructed |
 | Calendar | MCP `014dfb76-a956-4cb6-ad64-aaa3b71d3d39` | Meeting lookup, scheduling support |
 
@@ -153,7 +153,7 @@ If it genuinely failed or is blocked: **one line** — what's blocked + what's n
 
 ## Git Discipline
 
-- Repo: `github.com/wego/openclaw-nova`
+- Repo: `github.com/peter-atef-wego/Peter_Claw`
 - Workspace: `/home/openclaw/.openclaw/workspace`
 - Automation ref repo: `github.com/wego/alphabot` (read-only)
 - Never commit secrets. `.env` is gitignored — use `.env.example` only.

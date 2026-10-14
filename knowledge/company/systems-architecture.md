@@ -26,7 +26,7 @@ last_reviewed: 2026-04-06
 
 | Repo | Access | Purpose |
 |---|---|---|
-| github.com/wego/openclaw-nova | Read/Write | This Data Automation's Claw-PRO agent repo |
+| github.com/peter-atef-wego/Peter_Claw | Read/Write | This Data Automation's Claw-PRO agent repo |
 | github.com/wego/alphabot | Read-only | Wego's automation bot framework (Robot Framework + Python) |
 
 ---

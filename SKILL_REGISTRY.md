@@ -1,7 +1,7 @@
 # SKILL_REGISTRY.md - Master Skill Index
 
-_Single reference for all skills in openclaw-nova. Updated when skills are added, removed, or versioned._
-_Last updated: 2026-08-11_
+_Single reference for all skills in Peter_Claw. Updated when skills are added, removed, or versioned._
+_Last updated: 2026-10-14_
 
 > Every directory under `skills/` must appear in this file. `scripts/validate_readme_counts.py`
 > fails CI if one is missing, so a new skill cannot ship unregistered.
@@ -69,10 +69,13 @@ is the authoritative routing table — this is a summary of it.
 | Skill | File | When to Load |
 |---|---|---|
 | brain-sync-advanced-format | skills/brain-sync-advanced-format/SKILL.md | Building a rich Slack Block status report |
+| confluence-branch-docs | skills/confluence-branch-docs/SKILL.md | Creating or updating a Confluence page from a Git branch (new branch, or branch diff vs base) |
 | context-aware-response | skills/context-aware-response/SKILL.md | When answering from memory or prior context; channel-vs-DM tone shifts |
 | daily-digest-contacts | skills/daily-digest-contacts/SKILL.md | Resolving who receives the daily digest |
 | dm-working-indicator | skills/dm-working-indicator/SKILL.md | Showing a working indicator while a DM turn is in flight |
 | itops | skills/itops/SKILL.md | IT operations, monitoring, incident workflows |
+| jira-confluence-api | skills/jira-confluence-api/SKILL.md | Direct Jira / Confluence REST API calls |
+| jira-confluence-documentation-sync | skills/jira-confluence-documentation-sync/SKILL.md | Creating or updating AI & Automation process docs in Confluence from Jira tickets and GitHub commits |
 | model-providers | skills/model-providers/SKILL.md | OpenAI vs Claude selection, API patterns |
 | peter-memory-sync | skills/peter-memory-sync/SKILL.md | When syncing memory/skills to GitHub |
 | peter-profile | skills/peter-profile/SKILL.md | When collaboration style or Peter context is needed |

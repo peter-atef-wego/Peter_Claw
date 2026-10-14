@@ -523,7 +523,7 @@ When Peter DMs (`D0A0QD64004`) with any of these intents — *"give me the NetSu
    ```
    If `git commit` returns "nothing to commit" (no changes — file already up to date), that's fine, just continue.
 4. **Reply to Peter with the GitHub URL**:
-   > *"✅ MCP activity log refreshed. See https://github.com/wego/openclaw-nova/blob/main/memory/logs/netsuite-mcp/`<TODAY>`.md — `N` tool calls today, `M` errors, top tool: `<tool_name>`."*
+   > *"✅ MCP activity log refreshed. See https://github.com/peter-atef-wego/Peter_Claw/blob/main/memory/logs/netsuite-mcp/`<TODAY>`.md — `N` tool calls today, `M` errors, top tool: `<tool_name>`."*
 
 **Scope rules:**
 - DM only. Don't run this from a channel — channel users don't have direct git access to the repo.

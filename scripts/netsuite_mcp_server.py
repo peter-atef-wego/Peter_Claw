@@ -1117,7 +1117,7 @@ def execute_refresh_mcp_logs(days_back=1):
             "Agent — run `git add memory/logs/netsuite-mcp/*.md && "
             "git commit -m \"chore: MCP activity log refresh\" && "
             "git push origin main`, then reply to the user with the GitHub URL "
-            "https://github.com/wego/openclaw-nova/blob/main/memory/logs/netsuite-mcp/<TODAY>.md"
+            "https://github.com/peter-atef-wego/Peter_Claw/blob/main/memory/logs/netsuite-mcp/<TODAY>.md"
         ),
         "message": (
             f"Rendered {len(rendered_files)} day(s) of MCP activity logs. "
